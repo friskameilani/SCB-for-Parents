@@ -23,7 +23,7 @@ class ProfilCard extends StatelessWidget {
               Divider(
                 color: Colors.green[800],
                 height: 20,
-                thickness: 1.5,
+                //thickness: 1.5,
               ),
                CardText(
                  big: 'Friska Meilani',
@@ -57,7 +57,7 @@ class ProfilCard extends StatelessWidget {
               Divider(
                 color: Colors.green[800],
                 height: 20,
-                thickness: 1.5,
+               // thickness: 1.5,
               ),
                CardText(
                  big: 'Kipli Meilani',

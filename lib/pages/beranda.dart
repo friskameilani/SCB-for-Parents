@@ -60,7 +60,7 @@ class _BerandaState extends State<Beranda> {
             ),
             imageCarousel,
             new Padding(
-              padding: const EdgeInsets.all(20.0),
+              padding: const EdgeInsets.fromLTRB(10.0, 20.0, 10.0, 10.0),
               child: new Text(
                 "Kabar Seputar SCB",
                 style: TextStyle(
@@ -71,7 +71,7 @@ class _BerandaState extends State<Beranda> {
             Container(
               height: 320.0,
               child: KabarSeputarSCB(),
-            )
+            ),
           ],
         ),
     );
