@@ -17,11 +17,6 @@ class _ProfilState extends State<Profil> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: Text('SCB For Parents'),
-        backgroundColor: Color(hexColor('#01532F')),
-        ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ProfilCard(),

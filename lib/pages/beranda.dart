@@ -36,11 +36,7 @@ class _BerandaState extends State<Beranda> {
     );
 
     return Scaffold(
-        appBar: new AppBar(
-          automaticallyImplyLeading: false,
-          backgroundColor: Color(hexColor('#01532F')),
-          leading: Image.asset("/images/Logo-SCB.png",),
-          title: Text('SCB for Parents'),),
+
         body: new ListView(
           padding: EdgeInsets.all(8.0),
           children: <Widget>[

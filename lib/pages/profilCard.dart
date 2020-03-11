@@ -23,7 +23,6 @@ class ProfilCard extends StatelessWidget {
               Divider(
                 color: Colors.green[800],
                 height: 20,
-                //thickness: 1.5,
               ),
                CardText(
                  big: 'Friska Meilani',
@@ -37,6 +36,9 @@ class ProfilCard extends StatelessWidget {
                  big: 'Jalan Raya Dramaga, Dramaga, Bogor, 16680',
                  small: 'Alamat'
                ),
+               CardText(big: 'Laki-Laki', small: 'Jenis Kelamin',),
+               CardText(big: 'IX', small: 'Kelas',),
+               CardText(big: 'Asrama Putri Kamar 28', small: 'Asrama',)
             ])
           )
           ),
@@ -57,7 +59,6 @@ class ProfilCard extends StatelessWidget {
               Divider(
                 color: Colors.green[800],
                 height: 20,
-               // thickness: 1.5,
               ),
                CardText(
                  big: 'Kipli Meilani',
