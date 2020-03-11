@@ -11,13 +11,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // home: SplashScreen(),
-      initialRoute: '/dashboard',
+      home: SplashScreen(),
       routes: <String, WidgetBuilder>{
 
         '/login' : (context)=> Login(),
         // '/login' : (context)=> Profil(),
-        '/beranda': (BuildContext context) => Beranda(),
+        '/beranda': (BuildContext context) => Dashboard(),
         '/profil': (context)=> Profil(),
         '/dashboard': (context)=>Dashboard(),
       },
