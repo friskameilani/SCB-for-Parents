@@ -37,6 +37,9 @@ class ProfilCard extends StatelessWidget {
                  big: 'Jalan Raya Dramaga, Dramaga, Bogor, 16680',
                  small: 'Alamat'
                ),
+               CardText(big: 'Laki-Laki', small: 'Jenis Kelamin',),
+               CardText(big: 'IX', small: 'Kelas',),
+               CardText(big: 'Asrama Putri Kamar 28', small: 'Asrama',)
             ])
           )
           ),

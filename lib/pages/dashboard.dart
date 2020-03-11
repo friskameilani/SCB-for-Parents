@@ -15,16 +15,24 @@ class Dashboard extends StatelessWidget {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
+      appBar: AppBar(
+      automaticallyImplyLeading: false,
+      title: Text('SCB For Parents'),
+      backgroundColor: Color(hexColor('#01532F')),
+      ),
       body: TabBarView(
       children: [
             new Container(
              child: Beranda()
+
             ),
             new Container(
               color: Colors.orange,
             ),
             new Container(
+              height: 800,
               child: Profil(),
+              
             ),
           ],
         ),

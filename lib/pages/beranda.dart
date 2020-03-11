@@ -34,10 +34,7 @@ class _BerandaState extends State<Beranda> {
     );
 
     return Scaffold(
-        appBar: new AppBar(
-          automaticallyImplyLeading: false,
-          backgroundColor: Color(hexColor('#01532F')),
-          title: Text('SCB for Parents'),),
+        
         body: new ListView(
           children: <Widget>[
             imageCarousel,
