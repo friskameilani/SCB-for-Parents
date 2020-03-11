@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:scbforparents/components/kabarseputar_scb.dart';
@@ -14,10 +15,11 @@ class _BerandaState extends State<Beranda> {
     int colorint = int.parse(colornew);
     return colorint;
   }
-
+  
   @override
   Widget build(BuildContext context) {
     Widget imageCarousel = new Container(
+      padding: EdgeInsets.only(top: 8.0),
       height: 200.0,
       child: new Carousel(
         boxFit: BoxFit.cover,
@@ -37,13 +39,34 @@ class _BerandaState extends State<Beranda> {
         appBar: new AppBar(
           automaticallyImplyLeading: false,
           backgroundColor: Color(hexColor('#01532F')),
+          leading: Image.asset("/images/Logo-SCB.png",),
           title: Text('SCB for Parents'),),
         body: new ListView(
+          padding: EdgeInsets.all(8.0),
           children: <Widget>[
+            Container(
+              padding: EdgeInsets.all(5.0),
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.grey,
+                  width: 1,
+                ),
+                borderRadius: BorderRadius.circular(7.0),
+                ),
+              child: ListTile(
+                leading: Icon(Icons.person, color: Colors.green,),
+                title: Text('Selamat datang,\nOrang Tua Friska Meilani',),
+              ),
+            ),
             imageCarousel,
             new Padding(
               padding: const EdgeInsets.all(20.0),
-              child: new Text("Kabar Seputar SCB"),
+              child: new Text(
+                "Kabar Seputar SCB",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                ),),
             ),
             Container(
               height: 320.0,

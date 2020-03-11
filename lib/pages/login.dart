@@ -36,7 +36,7 @@ class _LoginState extends State<Login> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
+              children: <Widget>[
               Text(
                 'Username',
                 style: TextStyle(
