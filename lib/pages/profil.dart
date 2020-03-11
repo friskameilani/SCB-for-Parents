@@ -18,6 +18,7 @@ class _ProfilState extends State<Profil> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Text('SCB For Parents'),
         backgroundColor: Color(hexColor('#01532F')),
         ),
