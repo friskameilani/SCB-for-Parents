@@ -9,9 +9,9 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
-      body: 
-      Column(children: <Widget>[
+      resizeToAvoidBottomInset: false,
+      body: SingleChildScrollView(
+      child: Column(children: <Widget>[
         Container(
           width: MediaQuery.of(context).size.width,
           height: 150.0,
@@ -84,6 +84,7 @@ class _LoginState extends State<Login> {
         ),
       ),
       ],)
-      );
+      )
+    );
   }
 }
