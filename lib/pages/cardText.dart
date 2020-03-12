@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
 class CardText extends StatelessWidget {
-  String small;
-  String big;
   CardText({
     this.big,
     this.small
   });
+
+  String big;
+  String small;
 
   @override
   Widget build(BuildContext context) {

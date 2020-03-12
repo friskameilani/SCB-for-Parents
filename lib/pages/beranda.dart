@@ -15,7 +15,7 @@ class _BerandaState extends State<Beranda> {
     int colorint = int.parse(colornew);
     return colorint;
   }
-  
+
   @override
   Widget build(BuildContext context) {
     Widget imageCarousel = new Container(
