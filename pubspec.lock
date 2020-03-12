@@ -21,7 +21,11 @@ packages:
       name: async
       url: "https://pub.dartlang.org"
     source: hosted
+<<<<<<< HEAD
     version: "2.4.0"
+=======
+    version: "2.0.8"
+>>>>>>> a713e8a50468d5e36f1b560e533ffc423e9fb0bc
   boolean_selector:
     dependency: transitive
     description:
@@ -94,7 +98,7 @@ packages:
       name: matcher
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.12.6"
+    version: "0.12.3+1"
   meta:
     dependency: transitive
     description:
@@ -115,6 +119,7 @@ packages:
       name: pedantic
       url: "https://pub.dartlang.org"
     source: hosted
+<<<<<<< HEAD
     version: "1.8.0+1"
   petitparser:
     dependency: transitive
@@ -123,13 +128,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.4.0"
+=======
+    version: "1.4.0"
+>>>>>>> a713e8a50468d5e36f1b560e533ffc423e9fb0bc
   quiver:
     dependency: transitive
     description:
       name: quiver
       url: "https://pub.dartlang.org"
     source: hosted
+<<<<<<< HEAD
     version: "2.0.5"
+=======
+    version: "2.0.1"
+>>>>>>> a713e8a50468d5e36f1b560e533ffc423e9fb0bc
   sky_engine:
     dependency: transitive
     description: flutter
@@ -176,7 +188,11 @@ packages:
       name: test_api
       url: "https://pub.dartlang.org"
     source: hosted
+<<<<<<< HEAD
     version: "0.2.11"
+=======
+    version: "0.2.2"
+>>>>>>> a713e8a50468d5e36f1b560e533ffc423e9fb0bc
   typed_data:
     dependency: transitive
     description:
@@ -199,5 +215,9 @@ packages:
     source: hosted
     version: "3.5.0"
 sdks:
+<<<<<<< HEAD
   dart: ">=2.4.0 <3.0.0"
+=======
+  dart: ">=2.1.0 <3.0.0"
+>>>>>>> a713e8a50468d5e36f1b560e533ffc423e9fb0bc
   flutter: ">=1.2.0 <2.0.0"
