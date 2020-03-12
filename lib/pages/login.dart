@@ -10,81 +10,67 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: SingleChildScrollView(
-      child: Column(children: <Widget>[
+      body: ListView(children: <Widget>[
         Container(
-          width: MediaQuery.of(context).size.width,
-          height: 150.0,
-          color: Colors.green[800],
+          padding: const EdgeInsets.fromLTRB(32.0, 80.0, 32.0, 0.0),
           child: SafeArea(
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(32.0, 48.0, 32.0, 0.0),
-                  child: Text(
-                    'Masuk',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 30,
-                      ),
-                  )
-                )
-              )
+            child: Image.asset("images/Logo-SCB_Hitam.png", width:80, height: 80,),
+          )
         ),
         Padding(
-        padding: const EdgeInsets.fromLTRB(32.0, 0.0, 32.0, 0.0),
+        padding: const EdgeInsets.fromLTRB(32.0, 80.0, 32.0, 0.0),
         child: SafeArea(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-              Text(
-                'Username',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.grey[800]
+                Text(
+                  'Username',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.grey[800]
+                  ),
                 ),
-              ),
-              SizedBox(height: 10,),
-              TextFormField( 
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                  borderSide: const BorderSide(color: Colors.green)),
-                hintText: 'Masukan Username Anda',
-              ),
-              ),   
-              SizedBox(height: 16.0,),
-               Text(
-                'Password',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.grey[800]
+                SizedBox(height: 10,),
+                TextFormField( 
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                      borderSide: const BorderSide(color: Colors.green)),
+                    hintText: 'Masukkan Username Anda',
+                  ),
+                ),   
+                SizedBox(height: 16.0,),
+                Text(
+                  'Password',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.grey[800]
+                  ),
                 ),
-              ),
-              SizedBox(height: 10.0,),
-              TextFormField( 
-              obscureText: true,
-              decoration: const InputDecoration(
-              border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(8.0))),
-              
-                hintText: 'Masukan Password Anda',
-              ),
-              ),
-              SizedBox(height: 16.0,),
-              RaisedButton(
-                onPressed: (){
-                    Navigator.pushNamed(context, '/beranda');
-                },
-                child: Text('Masuk'),
-                color: Colors.green[800],
-                textColor: Colors.white,
-              ),
+                SizedBox(height: 10.0,),
+                TextFormField( 
+                obscureText: true,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(8.0))),
+                    hintText: 'Masukkan Password Anda',
+                  ),
+                ),
+                SizedBox(height: 16.0,),
+                RaisedButton(
+                  onPressed: (){
+                      Navigator.pushNamed(context, '/beranda');
+                  },
+                  child: Text('Masuk'),
+                  color: Colors.green[800],
+                  textColor: Colors.white,
+                ),
               ],
             ),
         ),
       ),
-      ],)
-      )
+      ],),
     );
   }
 }
