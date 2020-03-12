@@ -11,6 +11,9 @@ class _LoginState extends State<Login> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: ListView(children: <Widget>[
+        SizedBox(
+          height: 80,
+        ),
         Container(
           padding: const EdgeInsets.fromLTRB(32.0, 80.0, 32.0, 0.0),
           child: SafeArea(

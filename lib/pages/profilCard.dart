@@ -4,8 +4,7 @@ import 'package:scbforparents/pages/cardText.dart';
 class ProfilCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
+    return ListView(
       children: <Widget>[
         Card(
           child: Padding(
@@ -38,7 +37,7 @@ class ProfilCard extends StatelessWidget {
                ),
                CardText(big: 'Laki-Laki', small: 'Jenis Kelamin',),
                CardText(big: 'IX', small: 'Kelas',),
-               CardText(big: 'Asrama Putri Kamar 28', small: 'Asrama',)
+               CardText(big: 'Asrama Putri Kamar 28', small: 'Asrama',),
             ])
           )
           ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:scbforparents/pages/beranda.dart';
 import 'package:scbforparents/pages/profil.dart';
-import 'package:scbforparents/pages/listRapor.dart';
+import 'package:scbforparents/pages/opsiRapor.dart';
 
 
 class Dashboard extends StatelessWidget {
@@ -28,7 +28,7 @@ class Dashboard extends StatelessWidget {
 
             ),
             new Container(
-              child: ListRapor(),
+              child: OpsiRapor(),
             ),
             new Container(
               height: 800,
