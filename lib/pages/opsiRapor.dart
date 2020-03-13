@@ -1,130 +1,108 @@
 import 'package:flutter/material.dart';
-import 'package:scbforparents/pages/akademikPilihSmt.dart';
+import 'package:scbforparents/pages/pilihSmt.dart';
 
 
 class OpsiRapor extends StatelessWidget {
-  var pilihan = ['Akademik', 'Asrama', 'Catatan Khusus'];
-  var icon = [];
+
  @override
  Widget build(BuildContext context) {
    return Scaffold(
     body: ListView(
       children: <Widget> [
-        Container(
+        Container(  //Akademik
           padding: EdgeInsets.fromLTRB(15,15,15,0),
           height: 150,
           width: double.maxFinite,
           child: Card(
             elevation: 5,
             child: new InkWell(
-                onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>AkademikPilihSmt()));
-                },
-                child: Padding(
-                  padding: EdgeInsets.fromLTRB(15,5,15,15),
-                  child: ListView(
-                    children: <Widget>[
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          SizedBox(
-                            height: 100,
-                            width: 200,
-                            child: Text(
-                              'Akademik',
-                              style: TextStyle(
-                                fontSize: 25, height: 3,
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 90,
-                            child: Icon(
-                              Icons.school,
-                              color: Colors.green[500],
-                              size: 100,
-                            ),
-                          ),
-                        ],
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>PilihSmt("Akademik")));
+              },
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(15,5,15,15),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text(
+                      'Akademik',
+                      style: TextStyle(
+                        fontSize: 25,
                       ),
-                    ]
-                  ),
+                    ),
+                    Flexible(
+                      child: Icon(
+                        Icons.school,
+                        color: Colors.green[800],
+                        size: 80,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
         ),
-        Container(
+        Container(  //Akademik
           padding: EdgeInsets.fromLTRB(15,15,15,0),
           height: 150,
           width: double.maxFinite,
           child: Card(
             elevation: 5,
-            child: Padding(
-              padding: EdgeInsets.fromLTRB(15,5,15,15),
-              child: ListView(
-                children: <Widget>[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      SizedBox(
-                        height: 100,
-                        width: 200,
-                        child: Text(
-                          'Asrama',
-                          style: TextStyle(
-                            fontSize: 25, height: 3
-                          ),
-                        ),
+            child: new InkWell(
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>PilihSmt("Asrama")));
+              },
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(15,5,15,15),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text(
+                      'Asrama',
+                      style: TextStyle(
+                        fontSize: 25,
                       ),
-                      SizedBox(
-                        height: 90,
-                        child: Icon(
-                          Icons.home,
-                          color: Colors.green[500],
-                          size: 100,
-                        ),
-                      ),
-                    ],
-                  ),
-                ]
+                    ),
+                    Icon(
+                      Icons.home,
+                      color: Colors.green[800],
+                      size: 80,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
         ),
-        Container(
+        Container(  //Akademik
           padding: EdgeInsets.fromLTRB(15,15,15,0),
           height: 150,
           width: double.maxFinite,
           child: Card(
             elevation: 5,
-            child: Padding(
-              padding: EdgeInsets.fromLTRB(15,10,15,15),
-              child: ListView(
-                children: <Widget>[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      SizedBox(
-                        height: 100,
-                        width: 200,
-                        child: Text(
-                          'Catatan Khusus',
-                          style: TextStyle(
-                            fontSize: 25, height: 3
-                          ),
-                        ),
+            child: new InkWell(
+              onTap: (){
+                
+              },
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(15,5,15,15),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text(
+                      'Catatan Khusus',
+                      style: TextStyle(
+                        fontSize: 25,
                       ),
-                      SizedBox(
-                        height: 90,
-                        child: Icon(
-                          Icons.assignment,
-                          color: Colors.green[500],
-                          size: 100,
-                        ),
-                      ),
-                    ],
-                  ),
-                ]
+                    ),
+                    Icon(
+                      Icons.assignment,
+                      color: Colors.green[800],
+                      size: 80,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

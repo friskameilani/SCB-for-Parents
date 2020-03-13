@@ -15,13 +15,13 @@ class _LoginState extends State<Login> {
           height: 80,
         ),
         Container(
-          padding: const EdgeInsets.fromLTRB(32.0, 80.0, 32.0, 0.0),
+          padding: const EdgeInsets.fromLTRB(32.0, 20.0, 32.0, 0.0),
           child: SafeArea(
             child: Image.asset("images/Logo-SCB_Hitam.png", width:80, height: 80,),
           )
         ),
         Padding(
-        padding: const EdgeInsets.fromLTRB(32.0, 80.0, 32.0, 0.0),
+        padding: const EdgeInsets.fromLTRB(32.0, 20.0, 32.0, 0.0),
         child: SafeArea(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -61,13 +61,23 @@ class _LoginState extends State<Login> {
                   ),
                 ),
                 SizedBox(height: 16.0,),
-                RaisedButton(
-                  onPressed: (){
-                      Navigator.pushNamed(context, '/beranda');
-                  },
-                  child: Text('Masuk'),
-                  color: Colors.green[800],
-                  textColor: Colors.white,
+                Container(
+                  child: RaisedButton(
+                    onPressed: (){
+                        Navigator.pushNamed(context, '/beranda');
+                    },
+                    shape: RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(8.0),
+                    ),
+                    child: Text('Masuk',
+                      style: TextStyle(
+                        fontSize: 22,
+                      ),
+                    ),
+                    textColor: Colors.white,
+                    color: Colors.green[800],
+                  ),
+                  height: 60,
                 ),
               ],
             ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:scbforparents/pages/beranda.dart';
 import 'package:scbforparents/splash.dart';
 import 'package:scbforparents/pages/login.dart';
 import 'package:scbforparents/pages/profil.dart';
