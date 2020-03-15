@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:scbforparents/pages/news_details.dart';
+import 'package:flutter/services.dart' show rootBundle;
+import 'dart:async' show Future;
+import 'dart:convert';
 
 class KabarSeputarSCB extends StatefulWidget {
   @override
@@ -8,25 +11,31 @@ class KabarSeputarSCB extends StatefulWidget {
 }
 
 class _KabarSeputarSCBState extends State<KabarSeputarSCB> {
-  var newsList = [
-    {
-      "judul": "Jelang UNBK, SCB Cek Kesiapan Sarana dan Prasarana",
-      "picture": "images/Logo-SCB.png",
-    },
-    {
-      "judul": "Al-Yaumu Ma'al Quran SCB",
-      "picture": "images/Logo-SCB.png",
-    },
-  ];
+  List data;
+  Future<String> loadJsonData() async{
+    var jsonText= await rootBundle.loadString('assets/kabarSeputarSCB.json');
+    setState(() {
+      data = json.decode(jsonText);
+    });
+    return 'success';
+  }
+
+  @override
+  void initState(){
+    super.initState ();
+    this.loadJsonData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      itemCount: newsList.length,
+      itemCount: data.length,
       gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
       itemBuilder: (BuildContext context, int index) {
         return SingleNews(
-          newsTitle: newsList[index]['judul'],
-          newsPicture: newsList[index]['picture'],
+          newsTitle: data[index]['judul'],
+          newsPicture: data[index]['newsPhoto'],
+          newsURL: data[index]['url'],
         );
       },
     );
@@ -36,10 +45,12 @@ class _KabarSeputarSCBState extends State<KabarSeputarSCB> {
 class SingleNews extends StatelessWidget {
   final newsTitle;
   final newsPicture;
+  final newsURL;
 
   SingleNews({
     this.newsTitle,
     this.newsPicture,
+    this.newsURL,
   });
 
   @override
@@ -52,7 +63,7 @@ class SingleNews extends StatelessWidget {
               onTap: () => Navigator.of(context).push(
                   new MaterialPageRoute(
                       builder: (context) => new NewsDetails(
-                        newsDetailTitle: newsTitle,
+                        newsDetailTitle: newsTitle, 
                         newsDetailPicture: newsPicture,)
                       )),
               child: GridTile(
@@ -61,16 +72,19 @@ class SingleNews extends StatelessWidget {
                   child: ListTile(
                     leading: Text(
                       newsTitle,
-                      style: TextStyle(fontWeight: FontWeight.bold,),
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 10),
                     ),
                   ),
                 ),
-                child: Image.asset(
-                    newsPicture,
-                    fit: BoxFit.cover,),),
+                child: Image.network(
+                  newsPicture,
+                  fit: BoxFit.cover,),
+                  ),
+                ),
+              ),
             ),
-          )
-      ),
     );
   }
 }
