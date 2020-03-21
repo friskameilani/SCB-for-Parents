@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:scbforparents/components/kabarseputar_scb.dart';
 import 'package:scbforparents/pages/profilCard.dart';
 
 class Profil extends StatefulWidget {
@@ -17,10 +18,15 @@ class _ProfilState extends State<Profil> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: ProfilCard(),
-      ),
+      body: ListView(
+        scrollDirection: Axis.vertical,
+        children: <Widget>[
+          Container(
+            height: 690.0,
+            child: ProfilCard(),
+          ),
+        ],
+      )
     );
   }
 }

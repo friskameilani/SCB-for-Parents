@@ -25,8 +25,8 @@ class _BerandaState extends State<Beranda> {
         boxFit: BoxFit.cover,
         images: [
           AssetImage('images/scb news.jpg'),
-          AssetImage('images/scb news.jpg'),
-          AssetImage('images/scb news.jpg'),
+          AssetImage('images/scb news2.PNG'),
+          AssetImage('images/scb news3.PNG'),
         ],
         autoplay: true,
         animationDuration: Duration(milliseconds: 1000),

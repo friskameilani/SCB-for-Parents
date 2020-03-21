@@ -78,6 +78,25 @@ class ProfilCard extends StatelessWidget {
             ])
           )
           ),
+        Container(
+          padding: EdgeInsets.fromLTRB(50.0, 20.0, 50.0, 20.0),
+          child: RaisedButton(
+            onPressed: (){
+              Navigator.pushNamed(context, '/login');
+            },
+            shape: RoundedRectangleBorder(
+              borderRadius: new BorderRadius.circular(5.0),
+            ),
+            child: Text('Keluar',
+              style: TextStyle(
+                fontSize: 18,
+              ),
+            ),
+            textColor: Colors.white,
+            color: Colors.green[800],
+          ),
+          height: 80.0,
+        ),
        
       ]
       );
