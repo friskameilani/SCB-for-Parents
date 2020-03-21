@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:scbforparents/pages/news_details.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'dart:async' show Future;
 import 'dart:convert';
+import 'package:url_launcher/url_launcher.dart';
 
 class KabarSeputarSCB extends StatefulWidget {
   @override
@@ -53,6 +53,14 @@ class SingleNews extends StatelessWidget {
     this.newsURL,
   });
 
+  _launchURL() async {
+    if (await canLaunch(newsURL)) {
+      await launch(newsURL);
+    } else {
+      throw 'Could not launch $newsURL';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -60,12 +68,7 @@ class SingleNews extends StatelessWidget {
           tag: newsTitle,
           child: Material(
             child: InkWell(
-              onTap: () => Navigator.of(context).push(
-                  new MaterialPageRoute(
-                      builder: (context) => new NewsDetails(
-                        newsDetailTitle: newsTitle, 
-                        newsDetailPicture: newsPicture,)
-                      )),
+              onTap: _launchURL,
               child: GridTile(
                 footer: Container(
                   color: Colors.white,

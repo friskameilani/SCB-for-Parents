@@ -62,10 +62,11 @@ class _BerandaState extends State<Beranda> {
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 18,
-                ),),
+                ),
+              ),
             ),
              Container(
-               height: 320.0,
+               height: 380.0,
                child: KabarSeputarSCB(),),
           ],
         ),
