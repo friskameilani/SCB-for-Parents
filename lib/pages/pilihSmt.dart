@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'opsiRapor.dart';
+import 'nilaiAkademikSemester.dart';
 
 class PilihSmt extends StatefulWidget{
   PilihSmt(this.argument);
@@ -21,6 +22,11 @@ class PilihSmtState extends State<PilihSmt> {
     else return Icon(icons[1], size: 40, color: Colors.white);
   }
   
+  MaterialPageRoute selector(int semester){
+    if(widget.argument == arguments[0])  
+      return MaterialPageRoute(builder: (context)=>NilaiAkademikSmt(semester.toString()));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,7 +64,7 @@ class PilihSmtState extends State<PilihSmt> {
                   color: scbgreen,
                   child: new InkWell(
                     onTap: (){
-                      
+                      Navigator.push(context, selector(1));
                     },
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
