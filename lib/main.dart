@@ -14,7 +14,6 @@ class MyApp extends StatelessWidget {
       routes: <String, WidgetBuilder>{
 
         '/login' : (context)=> Login(),
-        // '/login' : (context)=> Profil(),
         '/beranda': (BuildContext context) => Dashboard(),
         '/profil': (context)=> Profil(),
         '/dashboard': (context)=>Dashboard(),
