@@ -26,6 +26,7 @@ class NilaiAkademikSmtState extends State<NilaiAkademikSmt>{
   }
   List<Widget> list = new List<Widget>();
   List<Widget> builder(){
+    print(nilai[0].matpel+" "+nilai[0].nilai.toString());
     for(int i=0; i<nilai.length; i++){
       list.add(
         Row(

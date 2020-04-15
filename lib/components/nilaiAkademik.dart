@@ -2,7 +2,7 @@ import 'dart:math';
 
 class Siswa{
   static var rng = Random();
-  static var matpel = [
+  static List<String> matpel = [
     "Pendidikan Agama Islam",
     "Pendidikan Pancasila dan Kewarganegaraan",
     "Bahasa Indonesia",
@@ -16,15 +16,20 @@ class Siswa{
     "Seni Budaya dan Keterampilan"
   ];
 
-  static List<Nilai> nilai= new List<Nilai>(matpel.length);
+  static List<Nilai> nilai= new List<Nilai>();
   
   static List<Nilai> setMap(){
     for(int i=0; i<matpel.length; i++){
-      nilai[i].nilai = rng.nextInt(100);
-      nilai[i].matpel = matpel[i];
+      Nilai a;
+      j(a);
+      a.matpel = matpel[i];
+      nilai.add(a);
     }
+    print(nilai);
     return(nilai);
   }
+
+  static int j(Nilai a) => a.nilai = rng.nextInt(100);
 }
 
 class Nilai{
