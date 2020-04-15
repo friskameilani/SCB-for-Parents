@@ -1,6 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'opsiRapor.dart';
 import 'nilaiAkademikSemester.dart';
 
 class PilihSmt extends StatefulWidget{
