@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scbforparents/pages/pilihSmt.dart';
+import 'package:scbforparents/pages/catatanKhusus.dart';
 
 
 class OpsiRapor extends StatelessWidget {
@@ -43,7 +44,7 @@ class OpsiRapor extends StatelessWidget {
             ),
           ),
         ),
-        Container(  //Akademik
+        Container(  //Asrama
           padding: EdgeInsets.fromLTRB(15,15,15,0),
           height: 150,
           width: double.maxFinite,
@@ -75,7 +76,7 @@ class OpsiRapor extends StatelessWidget {
             ),
           ),
         ),
-        Container(  //Akademik
+        Container(  //Catatan Khusus
           padding: EdgeInsets.fromLTRB(15,15,15,0),
           height: 150,
           width: double.maxFinite,
@@ -83,7 +84,7 @@ class OpsiRapor extends StatelessWidget {
             elevation: 5,
             child: new InkWell(
               onTap: (){
-                
+                Navigator.pushNamed(context, '/catatanKhusus');
               },
               child: Padding(
                 padding: EdgeInsets.fromLTRB(15,5,15,15),
