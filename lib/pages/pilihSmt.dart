@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'nilaiAkademikSemester.dart';
+import 'nilaiAsramaSemester.dart';
 
 class PilihSmt extends StatefulWidget{
   PilihSmt(this.argument);
@@ -24,6 +25,8 @@ class PilihSmtState extends State<PilihSmt> {
   MaterialPageRoute selector(int semester){
     if(widget.argument == arguments[0])  
       return MaterialPageRoute(builder: (context)=>NilaiAkademikSmt(semester.toString()));
+    else 
+      return MaterialPageRoute(builder: (context)=>NilaiAsramaSmt(semester.toString()));
   }
 
   @override
