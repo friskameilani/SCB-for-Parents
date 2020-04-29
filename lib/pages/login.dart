@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'dart:html';
+// import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:scbforparents/pages/beranda.dart';
@@ -49,19 +49,23 @@ class _LoginState extends State<Login> {
   }
 
   signIn(String email, String password) async {
-    // print('$email $password');
-    Map data = {
-      email: email,
-      password: password,
-    };
+    print('$email $password');
+    // Map data = {
+    //   email: 'user@gmail.com',
+    //   password: 'secret',
+    // };
+
     var jsonResponse = null;
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     var response = await http.post(
-      "http://localhost:8000/api/login",
+      "http://10.0.2.2:8000/api/login",
       headers: <String, String>{
-        'Accept': 'application/json',
+        'Content-Type': 'application/json; charset=UTF-8',
       },
-      body: data,
+      body: jsonEncode(<String, String>{
+        email: 'user@gmail.com',
+        password: 'secret',
+      }),
     );
     if (response.statusCode == 200) {
       jsonResponse = json.decode(response.body);
@@ -82,7 +86,7 @@ class _LoginState extends State<Login> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            content: Text('Cannot Connect'),
+            content: Text('Cannot'),
           );
         },
       );
