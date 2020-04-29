@@ -53,10 +53,12 @@ class NilaiAkademikSmtState extends State<NilaiAkademikSmt>{
     for(int i=-1; i<matpel.length; i++){
       setMap();
       String nama_matpel, nilai, verdict;
+      TextStyle style;
       if(i == -1){
         nama_matpel = "Mata Pelajaran";
         nilai = "Nilai";
         verdict = "Predikat";
+        style = TextStyle(fontWeight: FontWeight.bold);
       }
       else{
         nama_matpel = matpel[i];
@@ -76,7 +78,8 @@ class NilaiAkademikSmtState extends State<NilaiAkademikSmt>{
                 Expanded(
                   flex: 2,
                   child: Text(
-                    nama_matpel
+                    nama_matpel,
+                    style: style,
                   )
                 ),
                 Expanded(
@@ -85,10 +88,12 @@ class NilaiAkademikSmtState extends State<NilaiAkademikSmt>{
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Text(
-                        nilai
+                        nilai,
+                        style: style,
                       ),
                       Text(
-                        verdict
+                        verdict,
+                        style: style,
                       )
                     ],
                   )

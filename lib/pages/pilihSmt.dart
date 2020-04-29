@@ -17,9 +17,9 @@ class PilihSmtState extends State<PilihSmt> {
 
   Icon iconChooser(){
     if(widget.argument == arguments[0]){
-      return Icon(icons[0], size: 40, color: Colors.white);
+      return Icon(icons[0], size: 45, color: Colors.white);
     }
-    else return Icon(icons[1], size: 40, color: Colors.white);
+    else return Icon(icons[1], size: 45, color: Colors.white);
   }
   
   MaterialPageRoute selector(int semester){
@@ -39,31 +39,29 @@ class PilihSmtState extends State<PilihSmt> {
 
   Container cardBuilder(int i){
     return Container(
-      height: 60,
       child: Card(
         elevation: 5,
         color: scbgreen,
-        child: new InkWell(
-          onTap: (){
-            Navigator.push(context, selector(i+1));
-          },
-          child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                   children: <Widget>[
-                    iconChooser(),
-              SizedBox(height: 10,),
-              Text(
-                'Semester '+(i%2 + 1).toString(),
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.white
+          child: new InkWell(
+            onTap: (){
+              Navigator.push(context, selector(i+1));
+            },
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                iconChooser(),
+                SizedBox(height: 10,),
+                Text(
+                  'Semester '+(i%2 + 1).toString(),
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.white
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
-      ),
     );
   }
 
@@ -83,7 +81,7 @@ class PilihSmtState extends State<PilihSmt> {
             crossAxisSpacing: 5,
             mainAxisSpacing: 5,
             crossAxisCount: 2,
-            childAspectRatio: MediaQuery.of(context).size.height / 400,
+            childAspectRatio: MediaQuery.of(context).size.height / 600,
             physics: ScrollPhysics(),
             children: <Widget>[
               cardBuilder(i*2),
