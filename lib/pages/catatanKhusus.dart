@@ -1,7 +1,4 @@
-
 import 'package:flutter/material.dart';
-import 'opsiRapor.dart';
-import 'nilaiAkademikSemester.dart';
 
 class CatatanKhusus extends StatefulWidget {
   @override
@@ -20,8 +17,8 @@ class _CatatanKhususState extends State<CatatanKhusus> {
       scrollDirection: Axis.vertical,
       child: SingleChildScrollView(
         child: DataTable(
+          columnSpacing: 30,
           columns: [
-
             DataColumn(
               label: Text('Tanggal'),
             ),
@@ -35,12 +32,16 @@ class _CatatanKhususState extends State<CatatanKhusus> {
           rows: [
             DataRow(cells: [
               DataCell(
-                Text("10/10/2019"),
+                Text(
+                    "10/10/2019",
+                ),
               ),
               DataCell(
-                Text(
-                  "Juara II Lomba Debat Bahasa Inggris Tingkat SMP Se-Kabupaten Bogor",
-                ),
+                Container(
+                  width: 170, //SET width
+                  child: Text(
+                      "Juara II Lomba Debat Bahasa Inggris Tingkat SMP Se-Kabupaten Bogor",
+                    ),)
               ),
               DataCell(
                 Text(
@@ -59,6 +60,7 @@ class _CatatanKhususState extends State<CatatanKhusus> {
       scrollDirection: Axis.vertical,
       child: SingleChildScrollView(
         child: DataTable(
+          columnSpacing: 30,
           columns: [
             DataColumn(
               label: Text('Tanggal'),
@@ -76,9 +78,11 @@ class _CatatanKhususState extends State<CatatanKhusus> {
                 Text("15/02/2020"),
               ),
               DataCell(
-                Text(
-                  "Berantem dengan teman sekamar",
-                ),
+                Container(
+                  width: 170, //SET width
+                  child: Text(
+                    "Berantem dengan teman sekamar",
+                ),),
               ),
               DataCell(
                 Text(
