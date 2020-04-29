@@ -1,12 +1,8 @@
 import 'dart:convert';
-import 'dart:io';
-// import 'dart:html';
 import 'package:scbforparents/network_utils/api.dart';
-
 import 'package:flutter/material.dart';
 import 'package:scbforparents/pages/beranda.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:http/http.dart' as http;
 
 class Login extends StatefulWidget {
   @override
@@ -50,16 +46,18 @@ class _LoginState extends State<Login> {
     );
   }
 
+  //All Functions that are not shown inside the main app when not invoked
+  //Login Function
   void signIn(String email, String password) async {
     setState(() {
       _isLoading = true;
     });
     var data = {'email': email, 'password': password};
-
     var res = await Network().authData(data, '/login');
     var body = json.decode(res.body);
     var message = body['message'];
     print('success message is $message');
+
     if (message == 'success') {
       SharedPreferences localStorage = await SharedPreferences.getInstance();
       localStorage.setString('token', json.encode(body['token']));
@@ -82,12 +80,9 @@ class _LoginState extends State<Login> {
         },
       );
     }
-
-    setState(() {
-      _isLoading = false;
-    });
   }
 
+  //Logo
   Container loginLogo() {
     return Container(
         padding: const EdgeInsets.fromLTRB(32.0, 20.0, 32.0, 0.0),
@@ -100,9 +95,11 @@ class _LoginState extends State<Login> {
         ));
   }
 
+  //TextFormField Controllers
   final TextEditingController emailController = new TextEditingController();
   final TextEditingController passwordController = new TextEditingController();
 
+  //TextFormFields
   Container textBox(String input, String hint, textcontroller) {
     return Container(
         child: Column(
@@ -131,6 +128,7 @@ class _LoginState extends State<Login> {
         ]));
   }
 
+  //Login Button
   Container loginBtn() {
     return Container(
       child: RaisedButton(
@@ -138,6 +136,7 @@ class _LoginState extends State<Login> {
           setState(() {
             _isLoading = true;
           });
+          //Implement Login Function in Button
           signIn(emailController.text, passwordController.text);
         },
         shape: RoundedRectangleBorder(
