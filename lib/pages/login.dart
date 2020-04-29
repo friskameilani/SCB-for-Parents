@@ -1,5 +1,7 @@
 import 'dart:convert';
+import 'dart:io';
 // import 'dart:html';
+import 'package:scbforparents/network_utils/api.dart';
 
 import 'package:flutter/material.dart';
 import 'package:scbforparents/pages/beranda.dart';
@@ -48,49 +50,42 @@ class _LoginState extends State<Login> {
     );
   }
 
-  signIn(String email, String password) async {
-    print('$email $password');
-    // Map data = {
-    //   email: 'user@gmail.com',
-    //   password: 'secret',
-    // };
+  void signIn(String email, String password) async {
+    setState(() {
+      _isLoading = true;
+    });
+    var data = {'email': email, 'password': password};
 
-    var jsonResponse = null;
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    var response = await http.post(
-      "http://10.0.2.2:8000/api/login",
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: jsonEncode(<String, String>{
-        email: 'user@gmail.com',
-        password: 'secret',
-      }),
-    );
-    if (response.statusCode == 200) {
-      jsonResponse = json.decode(response.body);
-      if (jsonResponse != null) {
-        setState(() {
-          _isLoading = false;
-        });
-        sharedPreferences.setString("token", jsonResponse['token']);
-        Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (BuildContext context) => Beranda()),
-            (Route<dynamic> route) => false);
-      }
+    var res = await Network().authData(data, '/login');
+    var body = json.decode(res.body);
+    var message = body['message'];
+    print('success message is $message');
+    if (message == 'success') {
+      SharedPreferences localStorage = await SharedPreferences.getInstance();
+      localStorage.setString('token', json.encode(body['token']));
+      localStorage.setString('user', json.encode(body['user']));
+      Navigator.push(
+        context,
+        new MaterialPageRoute(builder: (context) => Beranda()),
+      );
     } else {
       setState(() {
         _isLoading = false;
       });
+      print(message);
       return showDialog(
         context: context,
         builder: (context) {
           return AlertDialog(
-            content: Text('Cannot'),
+            content: Text('$message'),
           );
         },
       );
     }
+
+    setState(() {
+      _isLoading = false;
+    });
   }
 
   Container loginLogo() {
@@ -144,18 +139,6 @@ class _LoginState extends State<Login> {
             _isLoading = true;
           });
           signIn(emailController.text, passwordController.text);
-
-          // //Testing Retrieve Texts
-          // showDialog(
-          //   context: context,
-          //   builder: (context) {
-          //     return AlertDialog(
-          //       content:
-          //           Text('${emailController.text} ${passwordController.text}'),
-          //     );
-          //   },
-          // );
-          // Navigator.pushNamed(context, '/beranda');
         },
         shape: RoundedRectangleBorder(
           borderRadius: new BorderRadius.circular(8.0),
