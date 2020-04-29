@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:scbforparents/components/kabarseputar_scb.dart';
 import 'package:scbforparents/pages/profilCard.dart';
 
 class Profil extends StatefulWidget {

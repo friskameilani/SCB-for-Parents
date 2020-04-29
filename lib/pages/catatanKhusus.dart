@@ -17,7 +17,6 @@ class _CatatanKhususState extends State<CatatanKhusus> {
       scrollDirection: Axis.vertical,
       child: SingleChildScrollView(
         child: DataTable(
-          columnSpacing: 30,
           columns: [
             DataColumn(
               label: Text('Tanggal'),
@@ -60,7 +59,6 @@ class _CatatanKhususState extends State<CatatanKhusus> {
       scrollDirection: Axis.vertical,
       child: SingleChildScrollView(
         child: DataTable(
-          columnSpacing: 30,
           columns: [
             DataColumn(
               label: Text('Tanggal'),

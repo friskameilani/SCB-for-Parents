@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:scbforparents/pages/pilihSmt.dart';
-import 'package:scbforparents/pages/catatanKhusus.dart';
 
 
 class OpsiRapor extends StatelessWidget {
