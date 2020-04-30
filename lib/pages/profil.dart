@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:scbforparents/pages/profilCard.dart';
 
 class Profil extends StatefulWidget {
   @override
@@ -7,7 +6,7 @@ class Profil extends StatefulWidget {
 }
 
 class _ProfilState extends State<Profil> {
-    hexColor (String colorhexcode) {
+  hexColor(String colorhexcode) {
     String colornew = '0xff' + colorhexcode;
     colornew = colornew.replaceAll('#', '');
     int colorint = int.parse(colornew);
@@ -17,15 +16,112 @@ class _ProfilState extends State<Profil> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
-        scrollDirection: Axis.vertical,
+        body: Container(
+      height: 690.0,
+      child: ListView(scrollDirection: Axis.vertical, children: <Widget>[
+        Card(
+            margin: EdgeInsets.all(10),
+            child: Padding(
+                padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 8.0),
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        'Data Orangtua',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 18),
+                      ),
+                      Divider(
+                        color: Colors.green[800],
+                        height: 20,
+                      ),
+                      cardText('Friska Meilani', 'Nama'),
+                      cardText('081234567890', 'Nomor Hp'),
+                      cardText('Jalan Raya Dramaga, Dramaga, Bogor, 16680',
+                          'Alamat'),
+                      cardText(
+                        'Laki-Laki',
+                        'Jenis Kelamin',
+                      ),
+                      cardText(
+                        'IX',
+                        'Kelas',
+                      ),
+                      cardText(
+                        'Asrama Putri Kamar 28',
+                        'Asrama',
+                      ),
+                    ]))),
+        Card(
+            margin: EdgeInsets.all(10),
+            child: Padding(
+                padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 8.0),
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        'Data Anak',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 18),
+                      ),
+                      Divider(
+                        color: Colors.green[800],
+                        height: 20,
+                      ),
+                      cardText('Kipli Meilani', 'Nama'),
+                      cardText('181907020', 'NIS'),
+                      cardText('0059105165', 'NISN'),
+                      cardText(
+                        'Tempat, Tanggal Lahir',
+                        'Tangerang, 10 Mei 1999',
+                      )
+                    ]))),
+        Container(
+          padding: EdgeInsets.fromLTRB(50.0, 20.0, 50.0, 20.0),
+          child: RaisedButton(
+            onPressed: () {
+              // print(data['orangtua']);
+            },
+            shape: RoundedRectangleBorder(
+              borderRadius: new BorderRadius.circular(5.0),
+            ),
+            child: Text(
+              'Keluar',
+              style: TextStyle(
+                fontSize: 18,
+              ),
+            ),
+            textColor: Colors.white,
+            color: Colors.green[800],
+          ),
+          height: 80.0,
+        ),
+      ]),
+    ));
+  }
+
+  Container cardText(String big, String small) {
+    return Container(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Container(
-            height: 690.0,
-            child: ProfilCard(),
+          Text(
+            small,
+            style: TextStyle(fontSize: 12),
+          ),
+          SizedBox(
+            height: 6,
+          ),
+          Text(
+            big,
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.w300),
+          ),
+          SizedBox(
+            height: 10,
           ),
         ],
-      )
+      ),
     );
   }
 }
