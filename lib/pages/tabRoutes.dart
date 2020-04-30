@@ -3,7 +3,7 @@ import 'package:scbforparents/pages/beranda.dart';
 import 'package:scbforparents/pages/profil.dart';
 import 'package:scbforparents/pages/opsiRapor.dart';
 
-class Dashboard extends StatelessWidget {
+class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     hexColor(String colorhexcode) {

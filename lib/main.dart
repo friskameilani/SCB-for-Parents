@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:scbforparents/pages/beranda.dart';
 import 'package:scbforparents/pages/catatanKhusus.dart';
 import 'package:scbforparents/splash.dart';
 import 'package:scbforparents/pages/login.dart';
 import 'package:scbforparents/pages/profil.dart';
-import 'package:scbforparents/pages/dashboard.dart';
+import 'package:scbforparents/pages/tabRoutes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() => runApp(MyApp());
@@ -18,11 +19,9 @@ class MyApp extends StatelessWidget {
         //Untuk sementara ubah dulu '/login': (context) => Login(), ke '/login': (context) => Dashboard(),
         //Kecuali kalian mau coba fitur login pake server lokal, rest API-nya bisa di donlot di github gw
         // '/login': (context) => Login(),
-        '/login': (context) => Dashboard(),
-        '/beranda': (BuildContext context) => Dashboard(),
+        '/login': (context) => Home(),
+        '/beranda': (BuildContext context) => Beranda(),
         '/profil': (context) => Profil(),
-        //Btw bedanya ini ama beranda apa yak?
-        '/dashboard': (context) => Dashboard(),
         '/catatanKhusus': (context) => CatatanKhusus(),
       },
     );
@@ -59,7 +58,7 @@ class _CheckAuthState extends State<CheckAuth> {
   Widget build(BuildContext context) {
     Widget child;
     if (isAuth) {
-      child = Dashboard();
+      child = Home();
     } else {
       child = Login();
     }
