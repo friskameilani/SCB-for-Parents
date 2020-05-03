@@ -13,26 +13,32 @@ class AspekAsrama{
     "Do'a dan Dzikir (Lisan)",
     "Asmaul Husna",
     "Ta'lim",
-    "Hafalan Surat Pilihan"
+    "Hafalan Surat Pilihan",
+    "Barber Shop Literasi",
+    "Tata Boga",
+    "Sol dan Aneka Sepatu dan Sandal",
+    "Pertukangan dan Elektronik",
+    "Tata Busana",
+    "Crafting, Sablon dan Grafiti"
   ];
 
-  static List<Nilai> nilai= new List<Nilai>();
-  
-  static List<Nilai> setMap(){
+  static List<NilaiAsrama> nilaiAsrama= new List<NilaiAsrama>();
+
+  static List<NilaiAsrama> setMap(){
     for(int i=0; i<aspek.length; i++){
-      Nilai a;
+      NilaiAsrama a;
       j(a);
       a.aspek = aspek[i];
-      nilai.add(a);
+      nilaiAsrama.add(a);
     }
-    print(nilai);
-    return(nilai);
+    print(nilaiAsrama);
+    return(nilaiAsrama);
   }
 
-  static int j(a) => a.nilai = rng.nextInt(100);
+  static int j(NilaiAsrama a) => a.nilaiAsrama = rng.nextInt(100);
 }
 
-class Nilai{
-  int nilai;
+class NilaiAsrama{
+  int nilaiAsrama;
   String aspek;
 }

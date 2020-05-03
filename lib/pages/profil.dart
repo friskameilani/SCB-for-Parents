@@ -6,6 +6,7 @@ class Profil extends StatefulWidget {
 }
 
 class _ProfilState extends State<Profil> {
+  var scbgreen = Color.fromRGBO(6, 123, 84, 1.0);
   hexColor(String colorhexcode) {
     String colornew = '0xff' + colorhexcode;
     colornew = colornew.replaceAll('#', '');
@@ -78,24 +79,21 @@ class _ProfilState extends State<Profil> {
                       )
                     ]))),
         Container(
-          padding: EdgeInsets.fromLTRB(50.0, 20.0, 50.0, 20.0),
+          padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
           child: RaisedButton(
-            onPressed: () {
-              // print(data['orangtua']);
-            },
             shape: RoundedRectangleBorder(
               borderRadius: new BorderRadius.circular(5.0),
             ),
+            onPressed: () {
+              // print(data['orangtua']);
+            },
+            textColor: Colors.white,
+            color: scbgreen,
             child: Text(
               'Keluar',
               style: TextStyle(
-                fontSize: 18,
-              ),
-            ),
-            textColor: Colors.white,
-            color: Colors.green[800],
+                  fontSize: 18),),
           ),
-          height: 80.0,
         ),
       ]),
     ));

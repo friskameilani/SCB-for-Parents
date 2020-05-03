@@ -19,7 +19,6 @@ class _BerandaState extends State<Beranda> {
   @override
   Widget build(BuildContext context) {
     Widget imageCarousel = new Container(
-      padding: EdgeInsets.only(top: 8.0),
       height: 200.0,
       child: new Carousel(
         boxFit: BoxFit.cover,
@@ -40,20 +39,20 @@ class _BerandaState extends State<Beranda> {
         body: new ListView(
           padding: EdgeInsets.all(8.0),
           children: <Widget>[
-            Container(
-              padding: EdgeInsets.all(5.0),
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.grey,
-                  width: 1,
-                ),
-                borderRadius: BorderRadius.circular(7.0),
-                ),
-              child: ListTile(
-                leading: Icon(Icons.person, color: Colors.green,),
-                title: Text('Selamat datang,\nOrang Tua Friska Meilani',),
-              ),
-            ),
+//            Container(
+//              padding: EdgeInsets.all(5.0),
+//              decoration: BoxDecoration(
+//                border: Border.all(
+//                  color: Colors.grey,
+//                  width: 1,
+//                ),
+//                borderRadius: BorderRadius.circular(7.0),
+//                ),
+//              child: ListTile(
+//                leading: Icon(Icons.person, color: Colors.green,),
+//                title: Text('Selamat datang,\nOrang Tua Friska Meilani',),
+//              ),
+//            ),
             imageCarousel,
             new Padding(
               padding: const EdgeInsets.fromLTRB(10.0, 20.0, 10.0, 10.0),
@@ -66,8 +65,9 @@ class _BerandaState extends State<Beranda> {
               ),
             ),
              Container(
-               height: 380.0,
-               child: KabarSeputarSCB(),),
+                 height: 530,
+                 child: KabarSeputarSCB()
+             )
           ],
         ),
     );

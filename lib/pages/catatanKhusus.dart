@@ -17,6 +17,7 @@ class _CatatanKhususState extends State<CatatanKhusus> {
       scrollDirection: Axis.vertical,
       child: SingleChildScrollView(
         child: DataTable(
+          columnSpacing: 30,
           columns: [
             DataColumn(
               label: Text('Tanggal'),
@@ -59,6 +60,7 @@ class _CatatanKhususState extends State<CatatanKhusus> {
       scrollDirection: Axis.vertical,
       child: SingleChildScrollView(
         child: DataTable(
+          columnSpacing: 30,
           columns: [
             DataColumn(
               label: Text('Tanggal'),
@@ -109,10 +111,10 @@ class _CatatanKhususState extends State<CatatanKhusus> {
 
       body: Container(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.all(20.0),
+              padding: EdgeInsets.fromLTRB(20, 10, 20, 0),
               child: TextField(
 //                controller: _firstNameController,
                 decoration: InputDecoration.collapsed(
@@ -121,10 +123,16 @@ class _CatatanKhususState extends State<CatatanKhusus> {
               ),
             ),
             Expanded(
-              child: _prestasi(),
+              flex: 0,
+              child: Card(
+                margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                child: _prestasi(),
+              ),
             ),
+
+
             Padding(
-              padding: EdgeInsets.all(20.0),
+              padding: EdgeInsets.fromLTRB(20, 30, 20, 0),
               child: TextField(
 //                controller: _lastNameController,
                 decoration: InputDecoration.collapsed(
@@ -133,7 +141,11 @@ class _CatatanKhususState extends State<CatatanKhusus> {
               ),
             ),
             Expanded(
-              child: _pelanggaran(),
+              flex: 0,
+              child: Card(
+                margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                child: _pelanggaran(),
+              ),
             ),
             ]),
     ));

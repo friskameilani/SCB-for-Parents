@@ -18,7 +18,16 @@ class Home extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          title: Text('SCB For Parents'),
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                'images/Logo-SCB_Putih.png',
+                fit: BoxFit.contain,
+                height: 32,
+              ),
+            ],
+          ),
           backgroundColor: Color(hexColor('#01532F')),
         ),
         body: TabBarView(

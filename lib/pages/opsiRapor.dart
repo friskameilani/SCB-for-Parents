@@ -16,7 +16,7 @@ class OpsiRapor extends StatelessWidget {
     }
     return Container(
       padding: EdgeInsets.fromLTRB(15,15,15,0),
-      height: 150,
+      height: 120,
       width: double.maxFinite,
       child: Card(
         elevation: 5,
@@ -32,14 +32,14 @@ class OpsiRapor extends StatelessWidget {
                 Text(
                   value,
                   style: TextStyle(
-                    fontSize: 25,
+                    fontSize: 20,
                   ),
                 ),
                 Flexible(
                   child: Icon(
                     icon,
                     color: Colors.green[800],
-                    size: 80,
+                    size: 60,
                   ),
                 ),
               ],
@@ -58,7 +58,7 @@ class OpsiRapor extends StatelessWidget {
         builder(context, "Asrama"),
         Container(  //Catatan Khusus
           padding: EdgeInsets.fromLTRB(15,15,15,0),
-          height: 150,
+          height: 120,
           width: double.maxFinite,
           child: Card(
             elevation: 5,
@@ -74,13 +74,13 @@ class OpsiRapor extends StatelessWidget {
                     Text(
                       'Catatan Khusus',
                       style: TextStyle(
-                        fontSize: 25,
+                        fontSize: 20,
                       ),
                     ),
                     Icon(
                       Icons.assignment,
                       color: Colors.green[800],
-                      size: 80,
+                      size: 60,
                     ),
                   ],
                 ),
