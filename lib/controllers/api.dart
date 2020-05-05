@@ -4,7 +4,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class Network {
   final String _url = 'http://10.0.2.2:8000/api';
-  //if you are using android studio emulator, change localhost to 10.0.2.2
+  // if you are using android studio emulator, change localhost to 10.0.2.2
+  // if you are using your phone, change localhost to 127.0.0.1
+
   var token;
 
   _getToken() async {

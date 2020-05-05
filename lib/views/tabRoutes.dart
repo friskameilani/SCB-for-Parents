@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:scbforparents/pages/beranda.dart';
-import 'package:scbforparents/pages/profil.dart';
-import 'package:scbforparents/pages/opsiRapor.dart';
+import 'package:scbforparents/views/beranda.dart';
+import 'package:scbforparents/views/profil.dart';
+import 'package:scbforparents/views/opsiRapor.dart';
 
 class Home extends StatelessWidget {
   @override
