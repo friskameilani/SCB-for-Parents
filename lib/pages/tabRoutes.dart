@@ -49,21 +49,21 @@ class Home extends StatelessWidget {
               icon: new Icon(Icons.home),
               child: Text(
                 'Beranda',
-                style: TextStyle(fontSize: 10),
+                style: TextStyle(fontSize: 12),
               ),
             ),
             Tab(
               icon: new Icon(Icons.book),
               child: Text(
                 'Rapor',
-                style: TextStyle(fontSize: 10),
+                style: TextStyle(fontSize: 12),
               ),
             ),
             Tab(
               icon: new Icon(Icons.person),
               child: Text(
                 'Profil',
-                style: TextStyle(fontSize: 10),
+                style: TextStyle(fontSize: 12),
               ),
             ),
           ],
