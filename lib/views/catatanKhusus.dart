@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:scbforparents/models/catatanKhusus.dart';
+import 'package:scbforparents/controllers/catatanKhusus.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart' show rootBundle;
@@ -14,7 +14,7 @@ class CatatanKhusus extends StatefulWidget {
 class _CatatanKhususState extends State<CatatanKhusus> {
   var scbgreen = Color.fromRGBO(6, 123, 84, 1.0);
 
-  final String url = "lib/network_utils/prestasiDanPelanggaran.json";
+  final String url = "lib/models/prestasiDanPelanggaran.json";
   List<catatan> catatanSiswa = [];
 
 
@@ -24,7 +24,7 @@ class _CatatanKhususState extends State<CatatanKhusus> {
   }
 
   Future<String> loadData() async {
-    var nis = {'nis': 'g64170089'};
+    // var nis = {'nis': 'g64170089'};
 //    http.Response jsonText= await http.post(url, body: {"jenis": "prestasi"});
     var jsonText = await rootBundle.loadString(url);
     var dataText = json.decode(jsonText);
@@ -161,7 +161,7 @@ class _CatatanKhususState extends State<CatatanKhusus> {
               flex: 0,
               child: SizedBox(
                 height: 200.0,
-                child: _pelanggaran(),
+                child: _pelanggaran(), //data prestasi dan pelanggaran belum dipisah
               ),
             ),
 
@@ -178,7 +178,7 @@ class _CatatanKhususState extends State<CatatanKhusus> {
               flex: 0,
               child: SizedBox(
                 height: 200.0,
-                child: _pelanggaran(),
+                child: _pelanggaran(), //data prestasi dan pelanggaran belum dipisah
               ),
             ),
             ]),

@@ -1,8 +1,7 @@
 // TODO Implement this library.
 import 'package:flutter/material.dart';
 import 'dart:math';
-
-import 'package:scbforparents/models/transkripAsrama.dart';
+import 'package:scbforparents/controllers/transkripAsrama.dart';
 
 class NilaiAsramaSmt extends StatefulWidget{
   NilaiAsramaSmt(this.semester);

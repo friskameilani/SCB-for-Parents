@@ -33,7 +33,7 @@ class NilaiAsramaAPI
 //    return nilaiAsramaSiswa;
 //  }
 
-  final String url = "network_utils/transkripAsrama.json";
+  final String url = "models/transkripAsrama.json";
   List data;
 
   @override

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:scbforparents/pages/beranda.dart';
-import 'package:scbforparents/pages/catatanKhusus.dart';
+import 'package:scbforparents/views/beranda.dart';
+import 'package:scbforparents/views/catatanKhusus.dart';
 import 'package:scbforparents/splash.dart';
-import 'package:scbforparents/pages/login.dart';
-import 'package:scbforparents/pages/profil.dart';
-import 'package:scbforparents/pages/tabRoutes.dart';
+import 'package:scbforparents/views/login.dart';
+import 'package:scbforparents/views/profil.dart';
+import 'package:scbforparents/views/tabRoutes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() => runApp(MyApp());

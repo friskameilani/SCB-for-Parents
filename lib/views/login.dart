@@ -1,7 +1,7 @@
 import 'dart:convert';
-import 'package:scbforparents/network_utils/api.dart';
+import 'package:scbforparents/controllers/api.dart';
 import 'package:flutter/material.dart';
-import 'package:scbforparents/pages/beranda.dart';
+import 'package:scbforparents/views/beranda.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Login extends StatefulWidget {
