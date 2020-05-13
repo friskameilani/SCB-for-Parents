@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:scbforparents/components/kabarseputar_scb.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Beranda extends StatefulWidget {
   @override
@@ -9,12 +10,7 @@ class Beranda extends StatefulWidget {
 }
 
 class _BerandaState extends State<Beranda> {
-  hexColor (String colorhexcode) {
-    String colornew = '0xff' + colorhexcode;
-    colornew = colornew.replaceAll('#', '');
-    int colorint = int.parse(colornew);
-    return colorint;
-  }
+  var scbgreen = Color.fromRGBO(6, 123, 84, 1.0);
 
   @override
   Widget build(BuildContext context) {
@@ -28,16 +24,15 @@ class _BerandaState extends State<Beranda> {
           AssetImage('images/scb news3.PNG'),
         ],
         autoplay: true,
-        animationDuration: Duration(milliseconds: 1000),
+        animationDuration: Duration(milliseconds: 3000),
         dotSize: 4.0,
         indicatorBgPadding: 3.0,
       ),
     );
 
     return Scaffold(
-
+      backgroundColor: Color.fromRGBO(242, 242, 242, 1),
         body: new ListView(
-          padding: EdgeInsets.all(8.0),
           children: <Widget>[
 //            Container(
 //              padding: EdgeInsets.all(5.0),
@@ -55,20 +50,45 @@ class _BerandaState extends State<Beranda> {
 //            ),
             imageCarousel,
             new Padding(
-              padding: const EdgeInsets.fromLTRB(10.0, 20.0, 10.0, 10.0),
-              child: new Text(
-                "Kabar Seputar SCB",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
+                padding: const EdgeInsets.fromLTRB(30, 10.0, 30, 5.0),
+                child: new Column(
+                  children: [
+                    new Text(
+                      "Kabar Seputar SCB",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    ),
+                  Divider(
+                    color: scbgreen,
+                    thickness: 3,
+                  )
+                  ],
+                )),
+            Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(5)
+                  )
                 ),
-              ),
+                margin: EdgeInsets.fromLTRB(15, 5, 15, 15),
+                padding: EdgeInsets.fromLTRB(10, 12, 10, 10),
+                height: 498,
+                child: KabarSeputarSCB()
             ),
-             Container(
-                 height: 530,
-                 child: KabarSeputarSCB()
-             )
-          ],
+            new Container(
+              padding: EdgeInsets.fromLTRB(100.0, 0, 100.0, 15.0),
+              child: FlatButton(
+                color: Colors.yellow[50],
+                splashColor: Colors.black,
+                onPressed: () => launch('https://www.cendekiabaznas.sch.id'),
+                child: Text('Show more'),
+              ),
+            )
+        ],
+
         ),
     );
   }

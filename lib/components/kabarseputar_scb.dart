@@ -11,7 +11,7 @@ class KabarSeputarSCB extends StatefulWidget {
 }
 
 class _KabarSeputarSCBState extends State<KabarSeputarSCB> {
-  List data;
+  List data = [];
 
   Future<String> loadJsonData() async{
     var jsonText= await rootBundle.loadString('assets/kabarSeputarSCB.json');
@@ -71,25 +71,30 @@ class SingleNews extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-        borderRadius: BorderRadius.circular(10.0),
+        borderRadius: BorderRadius.circular(5.0),
       child: Hero(
           tag: newsTitle,
           child: Material(
             child: InkWell(
               onTap: _launchURL,
               child: GridTile(
-                footer: Container(
-                  height: MediaQuery.of(context).size.width /7,
-                  color: Colors.white,
-                  child: ListTile(
-                    leading: Padding(
-                      padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
-                      child: Text(
-                        newsTitle,
-                        style: TextStyle(
-                            color: Colors.blueGrey,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 10.5),
+                footer: Opacity(
+                  opacity: 0.9,
+                  child: Container(
+                    height: MediaQuery.of(context).size.width /9,
+                    color: Colors.green[50],
+                    child: ListTile(
+                      leading: Padding(
+                        padding: EdgeInsets.fromLTRB(0, 0, 0, 15),
+                        child: Text(
+                          newsTitle,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12),
+                        ),
                       ),
                     ),
                   ),

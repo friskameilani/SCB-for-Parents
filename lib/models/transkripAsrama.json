@@ -1,0 +1,47 @@
+[
+  {
+    "nis" : "181907020",
+    "nama" : "melan",
+    "aspek" : {
+      "Tahsin" : 75,
+      "Tahfiz" : 80,
+      "Hafalan" : 90,
+      "Hadist (Tulis)" : 86,
+      "Hadist (Lisan)" : 89,
+      "Mufrodat" : 90,
+      "Do'a dan Dzikir (Tulis)" : 88,
+      "Do'a dan Dzikir (Lisan)" : 88,
+      "Asmaul Husna" :  69,
+      "Ta'lim" : 30,
+      "Hafalan Surat Pilihan" : 79,
+      "Barber Shop Literasi" : 89,
+      "Tata Boga" :  87,
+      "Sol dan Aneka Sepatu dan Sandal" :  84,
+      "Pertukangan dan Elektronik" :  75,
+      "Tata Busana" : 77,
+      "Crafting, Sablon dan Grafiti" : 86
+    }
+  },
+  {
+    "nis" : "181907021",
+    "aspek" : {
+      "Tahsin" : 75,
+      "Tahfiz" : 80,
+      "Hafalan" : 90,
+      "Hadist (Tulis)" : 86,
+      "Hadist (Lisan)" : 89,
+      "Mufrodat" : 90,
+      "Do'a dan Dzikir (Tulis)" : 88,
+      "Do'a dan Dzikir (Lisan)" : 88,
+      "Asmaul Husna" :  69,
+      "Ta'lim" : 30,
+      "Hafalan Surat Pilihan" : 79,
+      "Barber Shop Literasi" : 89,
+      "Tata Boga" :  87,
+      "Sol dan Aneka Sepatu dan Sandal" :  84,
+      "Pertukangan dan Elektronik" :  75,
+      "Tata Busana" : 77,
+      "Crafting, Sablon dan Grafiti" : 86
+    }
+  }
+]

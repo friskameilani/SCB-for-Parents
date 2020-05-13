@@ -38,21 +38,10 @@ class _ProfilState extends State<Profil> {
                         height: 20,
                       ),
                       cardText('Friska Meilani', 'Nama'),
+                      cardText('Ibu', 'Status'),
                       cardText('081234567890', 'Nomor Hp'),
                       cardText('Jalan Raya Dramaga, Dramaga, Bogor, 16680',
                           'Alamat'),
-                      cardText(
-                        'Laki-Laki',
-                        'Jenis Kelamin',
-                      ),
-                      cardText(
-                        'IX',
-                        'Kelas',
-                      ),
-                      cardText(
-                        'Asrama Putri Kamar 28',
-                        'Asrama',
-                      ),
                     ]))),
         Card(
             margin: EdgeInsets.all(10),
@@ -70,13 +59,19 @@ class _ProfilState extends State<Profil> {
                         color: Colors.green[800],
                         height: 20,
                       ),
-                      cardText('Kipli Meilani', 'Nama'),
+                      cardText('Kipli', 'Nama'),
                       cardText('181907020', 'NIS'),
                       cardText('0059105165', 'NISN'),
+                      cardText('Laki-laki', 'Jenis Kelamin'),
                       cardText(
-                        'Tempat, Tanggal Lahir',
                         'Tangerang, 10 Mei 1999',
-                      )
+                        'Tempat, Tanggal Lahir',
+                      ),
+                      cardText('IX', 'Kelas'),
+                      cardText(
+                        'Asrama Putra Kamar 28',
+                        'Asrama',
+                      ),
                     ]))),
         Container(
           padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),

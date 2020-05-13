@@ -1,6 +1,7 @@
 // TODO Implement this library.
 import 'package:flutter/material.dart';
 import 'dart:math';
+import 'package:scbforparents/controllers/transkripAsrama.dart';
 
 class NilaiAsramaSmt extends StatefulWidget{
   NilaiAsramaSmt(this.semester);
@@ -11,6 +12,8 @@ class NilaiAsramaSmt extends StatefulWidget{
 
 class NilaiAsramaSmtState extends State<NilaiAsramaSmt>{
   var scbgreen = Color.fromRGBO(6, 123, 84, 1.0);
+
+  NilaiAsramaAPI nilaiAsramaAPI = null;
   static var aspek = [
     " ",
     "Tahsin",
