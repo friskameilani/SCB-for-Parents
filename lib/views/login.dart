@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:scbforparents/controllers/api.dart';
 import 'package:flutter/material.dart';
 import 'package:scbforparents/views/beranda.dart';
+import 'package:scbforparents/views/tabRoutes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Login extends StatefulWidget {
@@ -133,11 +134,15 @@ class _LoginState extends State<Login> {
     return Container(
       child: RaisedButton(
         onPressed: () {
-          setState(() {
-            _isLoading = true;
-          });
+          // setState(() {
+          //   _isLoading = true;
+          // });
           //Implement Login Function in Button
-          signIn(emailController.text, passwordController.text);
+          Navigator.push(
+            context,
+            new MaterialPageRoute(builder: (context) => Home()),
+          );
+          // signIn(emailController.text, passwordController.text);
         },
         shape: RoundedRectangleBorder(
           borderRadius: new BorderRadius.circular(8.0),
