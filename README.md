@@ -8,3 +8,8 @@ flutter pub get
 ```
 flutter doctor
 ```
+3. Testing Authentication
+```
+email: melan123@gmail.com
+password: 12345678
+```

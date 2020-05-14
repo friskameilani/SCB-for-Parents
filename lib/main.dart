@@ -6,6 +6,11 @@ import 'package:scbforparents/pages/login.dart';
 import 'package:scbforparents/pages/profil.dart';
 import 'package:scbforparents/pages/tabRoutes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'dart:convert' show json, base64, ascii;
+
+const SERVER_IP = 'https://sso.kato.studio/sso/login';
+final storage = FlutterSecureStorage();
 
 void main() => runApp(MyApp());
 
@@ -18,8 +23,8 @@ class MyApp extends StatelessWidget {
       routes: <String, WidgetBuilder>{
         //Untuk sementara ubah dulu '/login': (context) => Login(), ke '/login': (context) => Dashboard(),
         //Kecuali kalian mau coba fitur login pake server lokal, rest API-nya bisa di donlot di github gw
-        // '/login': (context) => Login(),
-        '/login': (context) => Home(),
+        '/login': (context) => Login(),
+        '/home': (context) => Home(),
         '/beranda': (BuildContext context) => Beranda(),
         '/profil': (context) => Profil(),
         '/catatanKhusus': (context) => CatatanKhusus(),
