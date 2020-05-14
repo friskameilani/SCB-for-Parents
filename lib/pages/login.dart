@@ -8,6 +8,8 @@ import 'package:scbforparents/main.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' show json, base64, ascii;
 
+var appToken = "11e7aea8-4394-4393-8f45-d70f893adb8c";
+
 class Login extends StatefulWidget {
   @override
   _LoginState createState() => _LoginState();
@@ -36,8 +38,8 @@ class _LoginState extends State<Login> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        textBox('Username', 'Masukkan Usernam Anda',
-                            emailController),
+                        textBox(
+                            'Email', 'Masukkan Email Anda', emailController),
                         textBox('Password', 'Masukkan Password Anda',
                             passwordController),
                         loginBtn(),
@@ -53,13 +55,30 @@ class _LoginState extends State<Login> {
   //Attempt to Log In Function Starts Here (Asynchronous function)
   Future<String> ssoToken(String email, String password) async {
     // var ssotoken;
-    var res = await http.post("$SERVER_IP",
+    var res = await http.post("$SERVER_IP/login",
         body: {"email": email, "password": password},
         headers: {"Content-Type": "application/x-www-form-urlencoded"});
     if (res.statusCode == 200) {
       print(res.body);
       Map<String, dynamic> token = json.decode(res.body);
-      return token['token'];
+      // return token['token'];
+      print(token['token']);
+      return jwtToken(token['token']);
+    } else {
+      return null;
+    }
+  }
+
+  Future<String> jwtToken(String ssotoken) async {
+    if (ssotoken != null) {
+      var res = await http.get("$SERVER_IP/verifyToken?ssoToken=$ssotoken",
+          headers: {"Authorization": "Bearer $ssotoken"});
+      Map<String, dynamic> jwt = json.decode(res.body);
+      print(res.body);
+      // var token = jwt['token'];
+      print(jwt['token']);
+      return jwt['token'];
+      // return res.redirect(url.parse(req.url).pathname);;
     } else {
       return null;
     }
@@ -70,41 +89,6 @@ class _LoginState extends State<Login> {
         builder: (context) =>
             AlertDialog(title: Text(title), content: Text(text)),
       );
-  //All Functions that are not shown inside the main app when not invoked
-  //Login Function
-  // void signIn(String email, String password) async {
-  //   setState(() {
-  //     _isLoading = true;
-  //   });
-  //   var data = {'email': email, 'password': password};
-  //   var res = await Network().authData(data, '/login');
-  //   var body = json.decode(res.body);
-  //   var message = body['message'];
-  //   print('success message is $message');
-
-  //   if (message == 'success') {
-  //     SharedPreferences localStorage = await SharedPreferences.getInstance();
-  //     localStorage.setString('token', json.encode(body['token']));
-  //     localStorage.setString('user', json.encode(body['user']));
-  //     Navigator.push(
-  //       context,
-  //       new MaterialPageRoute(builder: (context) => Beranda()),
-  //     );
-  //   } else {
-  //     setState(() {
-  //       _isLoading = false;
-  //     });
-  //     print(message);
-  //     return showDialog(
-  //       context: context,
-  //       builder: (context) {
-  //         return AlertDialog(
-  //           content: Text('$message'),
-  //         );
-  //       },
-  //     );
-  //   }
-  // }
 
   //Logo
   Container loginLogo() {

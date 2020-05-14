@@ -9,7 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'dart:convert' show json, base64, ascii;
 
-const SERVER_IP = 'https://sso.kato.studio/sso/login';
+const SERVER_IP = 'https://sso.kato.studio/sso';
 final storage = FlutterSecureStorage();
 
 void main() => runApp(MyApp());
