@@ -7,6 +7,7 @@ class Siswa {
   String tempatTanggalLahir;
   String kelas;
   String asrama;
+  List<int> nilai;
 
   Siswa(
       {this.nama,
@@ -15,7 +16,8 @@ class Siswa {
       this.nisn,
       this.tempatTanggalLahir,
       this.kelas,
-      this.asrama});
+      this.asrama,
+      this.nilai});
 
   factory Siswa.fromJson(Map<String, dynamic> parsedJson) {
     return Siswa(
@@ -25,6 +27,7 @@ class Siswa {
         nisn: parsedJson['nisn'],
         tempatTanggalLahir: parsedJson['tempat_tanggal_lahir'],
         kelas: parsedJson['kelas'],
-        asrama: parsedJson['asrama']);
+        asrama: parsedJson['asrama'],
+        nilai: parsedJson['nilai']);
   }
 }

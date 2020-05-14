@@ -1,6 +1,8 @@
 // TODO Implement this library.
 import 'package:flutter/material.dart';
+import 'package:scbforparents/class/siswa.dart';
 import 'dart:math';
+import 'dart:convert';
 
 class NilaiAkademikSmt extends StatefulWidget{
   NilaiAkademikSmt(this.semester);
@@ -28,13 +30,13 @@ class NilaiAkademikSmtState extends State<NilaiAkademikSmt>{
 
   Map<String, int> nilai= new Map<String, int>();
   
-  void setMap(){
-    for(int i=0; i<matpel.length; i++){
-      var rng = Random();
-      nilai[matpel[i]] = rng.nextInt(100);
-    }
-    print(nilai);
-  }
+  // void setMap(){
+  //   for(int i=0; i<matpel.length; i++){
+  //     var rng = Random();
+  //     nilai[matpel[i]] = rng.nextInt(100);
+  //   }
+  //   print(nilai);
+  // }
 
   String verdict(int nilai){
     String res;
@@ -48,22 +50,21 @@ class NilaiAkademikSmtState extends State<NilaiAkademikSmt>{
     return res;
   }
 
-  ListView builder(){
+  ListView builder(var skor){
     var list = <Widget>[];
     for(int i=-1; i<matpel.length; i++){
-      setMap();
-      String nama_matpel, nilai, verdict;
+      String namaMatpel, nilai, verdict;
       TextStyle style;
       if(i == -1){
-        nama_matpel = "Mata Pelajaran";
+        namaMatpel = "Mata Pelajaran";
         nilai = "Nilai";
         verdict = "Predikat";
-        style = TextStyle(fontWeight: FontWeight.bold);
+        style = TextStyle(fontWeight: FontWeight.bold, fontSize: 16);
       }
       else{
-        nama_matpel = matpel[i];
-        nilai = this.nilai[nama_matpel].toString();
-        verdict = this.verdict(this.nilai[nama_matpel]);
+        namaMatpel = matpel[i];
+        nilai = skor[i].toString();
+        verdict = this.verdict(skor[i]);
       }
       list.add(
         Container(
@@ -78,10 +79,11 @@ class NilaiAkademikSmtState extends State<NilaiAkademikSmt>{
                 Expanded(
                   flex: 2,
                   child: Text(
-                    nama_matpel,
+                    namaMatpel,
                     style: style,
                   )
                 ),
+                SizedBox(width: 10),
                 Expanded(
                   flex: 1,
                   child: Row(
@@ -122,7 +124,26 @@ class NilaiAkademikSmtState extends State<NilaiAkademikSmt>{
         centerTitle: true,
         backgroundColor: scbgreen,
       ),
-      body: builder(),
+      body: FutureBuilder(
+                future: DefaultAssetBundle
+                    .of(context)
+                    .loadString('lib/models/anak.json'),
+                builder: (context, snapshot) {
+                  // Decode the JSON
+                  var nilai = jsonDecode(snapshot.data.toString());
+                  return nilai['nilai'][widget.semester.toString()] != null
+                  ? builder(nilai['nilai'][widget.semester.toString()])
+                  : Center(
+                    child: Text(
+                      "Belum Ada",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 18
+                      ),
+                    )
+                  );
+                }
+      )
     );
   }
 }
