@@ -31,9 +31,9 @@ class _BerandaState extends State<Beranda> {
     );
 
     return Scaffold(
-      backgroundColor: Color.fromRGBO(242, 242, 242, 1),
-        body: new ListView(
-          children: <Widget>[
+      // backgroundColor: Color.fromRGBO(242, 242, 242, 1),
+      body: new ListView(
+        children: <Widget>[
 //            Container(
 //              padding: EdgeInsets.all(5.0),
 //              decoration: BoxDecoration(
@@ -48,48 +48,44 @@ class _BerandaState extends State<Beranda> {
 //                title: Text('Selamat datang,\nOrang Tua Friska Meilani',),
 //              ),
 //            ),
-            imageCarousel,
-            new Padding(
-                padding: const EdgeInsets.fromLTRB(30, 10.0, 30, 5.0),
-                child: new Column(
-                  children: [
-                    new Text(
-                      "Kabar Seputar SCB",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                      ),
+          imageCarousel,
+          new Padding(
+              padding: const EdgeInsets.fromLTRB(30, 10.0, 30, 5.0),
+              child: new Column(
+                children: [
+                  new Text(
+                    "Kabar Seputar SCB",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
                     ),
+                  ),
                   Divider(
                     color: scbgreen,
                     thickness: 3,
                   )
-                  ],
-                )),
-            Container(
-                decoration: BoxDecoration(
+                ],
+              )),
+          Container(
+              decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(5)
-                  )
-                ),
-                margin: EdgeInsets.fromLTRB(15, 5, 15, 15),
-                padding: EdgeInsets.fromLTRB(10, 12, 10, 10),
-                height: 498,
-                child: KabarSeputarSCB()
+                  borderRadius: BorderRadius.all(Radius.circular(5))),
+              margin: EdgeInsets.fromLTRB(15, 5, 15, 15),
+              padding: EdgeInsets.fromLTRB(10, 12, 10, 10),
+              height: 498,
+              child: KabarSeputarSCB()),
+          new Container(
+            padding: EdgeInsets.fromLTRB(100.0, 0, 100.0, 15.0),
+            child: FlatButton(
+              color: scbgreen,
+              splashColor: Colors.black,
+              onPressed: () => launch('https://www.cendekiabaznas.sch.id'),
+              textColor: Colors.white,
+              child: Text('Show more'),
             ),
-            new Container(
-              padding: EdgeInsets.fromLTRB(100.0, 0, 100.0, 15.0),
-              child: FlatButton(
-                color: Colors.yellow[50],
-                splashColor: Colors.black,
-                onPressed: () => launch('https://www.cendekiabaznas.sch.id'),
-                child: Text('Show more'),
-              ),
-            )
+          )
         ],
-
-        ),
+      ),
     );
   }
 }

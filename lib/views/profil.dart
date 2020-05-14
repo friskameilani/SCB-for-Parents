@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:scbforparents/class/darkmode.dart';
 
 class Profil extends StatefulWidget {
   @override
@@ -16,6 +18,9 @@ class _ProfilState extends State<Profil> {
 
   @override
   Widget build(BuildContext context) {
+    final themeChange = Provider.of<DarkThemeProvider>(context);
+    themeChange.darkTheme;
+
     return Scaffold(
         body: Container(
       height: 690.0,
@@ -74,7 +79,28 @@ class _ProfilState extends State<Profil> {
                       ),
                     ]))),
         Container(
-          padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
+          padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
+          child: RaisedButton(
+            onPressed: () {
+              if (themeChange.darkTheme == true) {
+                themeChange.darkTheme = false;
+              } else if (themeChange.darkTheme == false) {
+                themeChange.darkTheme = true;
+              }
+            },
+            color: scbgreen,
+            textColor: Colors.white,
+            child: Text(
+              'Ganti Mode Warna',
+              style: TextStyle(fontSize: 18),
+            ),
+            shape: RoundedRectangleBorder(
+              borderRadius: new BorderRadius.circular(8.0),
+            ),
+          ),
+        ),
+        Container(
+          padding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 20.0),
           child: RaisedButton(
             shape: RoundedRectangleBorder(
               borderRadius: new BorderRadius.circular(5.0),
@@ -86,8 +112,8 @@ class _ProfilState extends State<Profil> {
             color: scbgreen,
             child: Text(
               'Keluar',
-              style: TextStyle(
-                  fontSize: 18),),
+              style: TextStyle(fontSize: 18),
+            ),
           ),
         ),
       ]),
