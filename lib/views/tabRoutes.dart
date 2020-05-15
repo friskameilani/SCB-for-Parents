@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:scbforparents/class/orangtua.dart';
 import 'package:scbforparents/views/beranda.dart';
 import 'package:scbforparents/views/profil.dart';
 import 'package:scbforparents/views/opsiRapor.dart';
 
 class Home extends StatelessWidget {
+  Home({this.user});
+  final Orangtua user;
+  
   @override
   Widget build(BuildContext context) {
     hexColor(String colorhexcode) {
@@ -33,9 +37,9 @@ class Home extends StatelessWidget {
         body: TabBarView(
           physics: NeverScrollableScrollPhysics(),
           children: [
-            new Container(child: Beranda()),
+            new Container(child: Beranda(user)),
             new Container(
-              child: OpsiRapor(),
+              child: OpsiRapor(user),
             ),
             new Container(
               height: 800,

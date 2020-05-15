@@ -1,8 +1,19 @@
-{
-    "nama": "Friska Meilani",
-    "nomor_Hp": "081234567890",
-    "alamat": "Jalan Raya Dramaga, Dramaga, Bogor, 16680",
-    "status": "Ibu",
-    "nama_anak": "Kipli"
-}
-
+[
+    {   "username": "frismel",
+        "password": "12345678",
+        "nama": "Friska Meilani",
+        "nomor_Hp": "081234567890",
+        "alamat": "Jalan Raya Dramaga, Dramaga, Bogor, 16680",
+        "status": "Ibu",
+        "nama_anak": "Kipli"
+    },
+    {
+        "username": "melfris",
+        "password": "12345678",
+        "nama": "Meilani Friska",
+        "nomor_Hp": "081234567890",
+        "alamat": "Jalan Raya Dramaga, Dramaga, Bogor, 16680",
+        "status": "Ibu",
+        "nama_anak": "Monalisa"
+    }
+]

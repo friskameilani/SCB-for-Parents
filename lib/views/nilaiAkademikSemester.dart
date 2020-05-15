@@ -1,11 +1,12 @@
 // TODO Implement this library.
 import 'package:flutter/material.dart';
-import 'package:scbforparents/class/siswa.dart';
 import 'dart:math';
+import 'package:scbforparents/class/siswa.dart';
 import 'dart:convert';
 
 class NilaiAkademikSmt extends StatefulWidget{
-  NilaiAkademikSmt(this.semester);
+  NilaiAkademikSmt(this.semester, this.siswa);
+  final Siswa siswa;
   final String semester;
   @override
   NilaiAkademikSmtState createState() => new NilaiAkademikSmtState();
@@ -29,14 +30,6 @@ class NilaiAkademikSmtState extends State<NilaiAkademikSmt>{
   ];
 
   Map<String, int> nilai= new Map<String, int>();
-  
-  // void setMap(){
-  //   for(int i=0; i<matpel.length; i++){
-  //     var rng = Random();
-  //     nilai[matpel[i]] = rng.nextInt(100);
-  //   }
-  //   print(nilai);
-  // }
 
   String verdict(int nilai){
     String res;
@@ -50,7 +43,7 @@ class NilaiAkademikSmtState extends State<NilaiAkademikSmt>{
     return res;
   }
 
-  ListView builder(var skor){
+  ListView listbuilder(var skor){
     var list = <Widget>[];
     for(int i=-1; i<matpel.length; i++){
       String namaMatpel, nilai, verdict;
@@ -124,26 +117,17 @@ class NilaiAkademikSmtState extends State<NilaiAkademikSmt>{
         centerTitle: true,
         backgroundColor: scbgreen,
       ),
-      body: FutureBuilder(
-                future: DefaultAssetBundle
-                    .of(context)
-                    .loadString('lib/models/anak.json'),
-                builder: (context, snapshot) {
-                  // Decode the JSON
-                  var nilai = jsonDecode(snapshot.data.toString());
-                  return nilai['nilai'][widget.semester.toString()] != null
-                  ? builder(nilai['nilai'][widget.semester.toString()])
-                  : Center(
-                    child: Text(
-                      "Belum Ada",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 18
-                      ),
-                    )
-                  );
-                }
-      )
+      body: (widget.siswa.nilai.l[int.parse(widget.semester)] != null)
+            ? listbuilder(widget.siswa.nilai) 
+            : Center(
+              child: Text(
+                "Belum Ada",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 18
+                ),
+              )
+            )
     );
   }
 }

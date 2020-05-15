@@ -1,16 +1,40 @@
-//PODO MODEL TO BE USED LATER IN PROFILE
 class Orangtua {
+  String username;
+  String password;
   String nama;
   String nomorHp;
   String alamat;
-  String jenisKelamin;
-  Orangtua({this.nama, this.nomorHp, this.alamat, this.jenisKelamin});
+  String status;
+  String namaAnak;
 
-  factory Orangtua.fromJson(Map<String, dynamic> parsedJson) {
-    return Orangtua(
-        nama: parsedJson['nama'],
-        nomorHp: parsedJson['nomor_Hp'],
-        alamat: parsedJson['alamat'],
-        jenisKelamin: parsedJson['jenis_kelamin']);
+  Orangtua(
+      {this.username,
+      this.password,
+      this.nama,
+      this.nomorHp,
+      this.alamat,
+      this.status,
+      this.namaAnak});
+
+  Orangtua.fromJson(Map<String, dynamic> json) {
+    username = json['username'];
+    password = json['password'];
+    nama = json['nama'];
+    nomorHp = json['nomor_Hp'];
+    alamat = json['alamat'];
+    status = json['status'];
+    namaAnak = json['nama_anak'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['username'] = this.username;
+    data['password'] = this.password;
+    data['nama'] = this.nama;
+    data['nomor_Hp'] = this.nomorHp;
+    data['alamat'] = this.alamat;
+    data['status'] = this.status;
+    data['nama_anak'] = this.namaAnak;
+    return data;
   }
 }
