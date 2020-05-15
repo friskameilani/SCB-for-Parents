@@ -11,6 +11,7 @@ class Beranda extends StatefulWidget {
 
 class _BerandaState extends State<Beranda> {
   var scbgreen = Color.fromRGBO(6, 123, 84, 1.0);
+  var backgroundColor = Color.fromRGBO(242, 242, 242, 1);
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +32,7 @@ class _BerandaState extends State<Beranda> {
     );
 
     return Scaffold(
-      backgroundColor: Color.fromRGBO(242, 242, 242, 1),
+      backgroundColor: backgroundColor,
         body: new ListView(
           children: <Widget>[
 //            Container(

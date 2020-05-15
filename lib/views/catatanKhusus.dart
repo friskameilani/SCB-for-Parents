@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:scbforparents/controllers/catatanKhusus.dart';
@@ -13,9 +14,12 @@ class CatatanKhusus extends StatefulWidget {
 
 class _CatatanKhususState extends State<CatatanKhusus> {
   var scbgreen = Color.fromRGBO(6, 123, 84, 1.0);
+  var scbgreen2 = Color.fromRGBO(1, 83, 47, 1);
 
   final String url = "lib/models/prestasiDanPelanggaran.json";
   List<catatan> catatanSiswa = [];
+  var prestasi = 0;
+  var pelanggaran = 0;
 
 
   @override
@@ -34,99 +38,129 @@ class _CatatanKhususState extends State<CatatanKhusus> {
           data['nis'], data['jenis'], data['tanggal'], data['kegiatan'], data['point']));
     }
     setState(() {});
-//    print(data["nis"]);
-    print(jsonText);
+
     return 'success';
   }
 
-//  SingleChildScrollView _prestasi() {
-//    return SingleChildScrollView(
-//      scrollDirection: Axis.vertical,
-//      child: SingleChildScrollView(
-//        child: DataTable(
-//          columnSpacing: 30,
-//          columns: [
-//            DataColumn(
-//              label: Text('Tanggal'),
-//            ),
-//            DataColumn(
-//              label: Text('Kegiatan'),
-//            ),
-//            DataColumn(
-//              label: Text('Point'),
-//            ),
-//          ],
-//          rows: [
-//            DataRow(cells: [
-//              DataCell(
-//                Text(
-//                    "10/10/2019",
-//                ),
+  Widget _prestasi(index) {
+    prestasi += 1;
+    if(prestasi==1) {
+    return Container(
+      padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Container(
+            padding: EdgeInsets.fromLTRB(20, 5, 20, 10),
+            child: Text("Prestasi", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
+          ),
+          Container(
+            color: Colors.green[50],
+            padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
+            child: Row(
+              children: [
+                Expanded(flex: 2, child: Text("Tanggal")),
+                Expanded(flex: 4, child: Text("Kegiatan")),
+                Expanded(flex: 1, child: Text("Point")),
+              ],),
+          ),
+          Container(
+            padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
+            child: Row(
+              children: [
+                Expanded(flex: 2, child: Text(catatanSiswa[index].tanggal),),
+                Expanded(flex: 4, child: Text(catatanSiswa[index].kegiatan),),
+                Expanded(flex: 1, child: Text(catatanSiswa[index].point),),
+              ],),
+          )
+        ],
+      ),
+    );
+    }
+    else {
+      return Container(
+        padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
+        child: Row(
+          children: [
+            Expanded(flex: 2, child: Text(catatanSiswa[index].tanggal),),
+            Expanded(flex: 4, child: Text(catatanSiswa[index].kegiatan),),
+            Expanded(flex: 1, child: Text(catatanSiswa[index].point),),
+          ],),
+      );
+    }
+//    ~~~~~~ JIKA TIDAK ADA DATA PELANGGARAN ~~~~~~
+//    if((index == (catatanSiswa.length-1)) && (pelanggaran == 0)){
+//      return Container(
+//        child: Column(
+//            crossAxisAlignment: CrossAxisAlignment.stretch,
+//            children: [
+//              Container(
+//              padding: EdgeInsets.fromLTRB(20, 15, 20, 10),
+//                child: Text("Pelanggaran", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
 //              ),
-//              DataCell(
-//                Container(
-//                  width: 170, //SET width
-//                  child: Text(
-//                      "Juara II Lomba Debat Bahasa Inggris Tingkat SMP Se-Kabupaten Bogor",
-//                    ),
-//                )
+//              Container(
+//                color: Colors.green[50],
+//                padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
+//                child: Row(
+//                children: [
+//                  Expanded(flex: 2, child: Text("Tanggal")),
+//                  Expanded(flex: 3, child: Text("Kegiatan")),
+//                  Expanded(flex: 1, child: Text("Point")),
+//                ],),
 //              ),
-//              DataCell(
-//                Text(
-//                  "5",
-//                ),
-//              ),
-//            ]),
-//          ],
-//          ),
-//        ),
-//      );
+//              Container(
+//                padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
+//                child:  Text ("Tidak ada data"),)
+//          ]
+//    ));
 //  }
-  Widget _pelanggaran() {
-//    return new ListView.builder(
-//        itemCount: catatanSiswa.length,
-//        itemBuilder: (_, index){
-//          print("print " + catatanSiswa[0].kegiatan);
-//          print("print " + catatanSiswa[1].kegiatan);
-//          print("print " + catatanSiswa[2].kegiatan);
-          return Container(
-                child: DataTable(
-                  columnSpacing: 30,
-                  columns: [
-                    DataColumn(
-                      label: Text('Tanggal'),
-                      numeric: false,
-                      tooltip: "",
-                    ),
-                    DataColumn(
-                      label: Text('Kegiatan'),
-                      numeric: false,
-                      tooltip: "",
-                    ),
-                    DataColumn(
-                      label: Text('Point'),
-                      numeric: false,
-                      tooltip: "",
-                    ),
-                  ],
-                  rows: catatanSiswa.map((element) =>
-                    DataRow(
-                        cells:  <DataCell> [
-                          DataCell(Text(element.tanggal)),
-                          DataCell(Container(
-                            width: 170, //SET width
-                            child: Text(
-                                element.kegiatan
-                              ),
-                          )),
-                          DataCell(Text(element.point)),
-                  ]),
-                  ).toList(),
-                ),
+  }
 
-          );
-//      }
-//    );
+  Widget _pelanggaran(index) {
+    pelanggaran += 1;
+    if(pelanggaran==1) {
+      return Container(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Container(
+              padding: EdgeInsets.fromLTRB(20, 15, 20, 10),
+              child: Text("Pelanggaran", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
+            ),
+            Container(
+              color: Colors.green[50],
+              padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
+              child: Row(
+                children: [
+                  Expanded(flex: 2, child: Text("Tanggal")),
+                  Expanded(flex: 4, child: Text("Kegiatan")),
+                  Expanded(flex: 1, child: Text("Point")),
+                ],),
+            ),
+            Container(
+              padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
+              child: Row(
+                children: [
+                  Expanded(flex: 2, child: Text(catatanSiswa[index].tanggal),),
+                  Expanded(flex: 4, child: Text(catatanSiswa[index].kegiatan),),
+                  Expanded(flex: 1, child: Text(catatanSiswa[index].point),),
+                ],),
+            )
+          ],
+        ),
+      );
+    }
+    else {
+      return Container(
+        padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
+        child: Row(
+          children: [
+            Expanded(flex: 2, child: Text(catatanSiswa[index].tanggal),),
+            Expanded(flex: 4, child: Text(catatanSiswa[index].kegiatan),),
+            Expanded(flex: 1, child: Text(catatanSiswa[index].point),),
+          ],),
+      );
+    }
   }
 
   @override
@@ -139,50 +173,17 @@ class _CatatanKhususState extends State<CatatanKhusus> {
         ),
         title: Text("Catatan Khusus"),
         centerTitle: true,
-        backgroundColor: scbgreen,
+        backgroundColor: scbgreen2,
     ),
 
-      body: catatanSiswa.length == 0
-        ? new Center(
-        child: new CircularProgressIndicator(),
-      ) : SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.fromLTRB(20, 10, 20, 0),
-              child: TextField(
-                decoration: InputDecoration.collapsed(
-                  hintText: 'Prestasi',
-                ),
-              ),
-            ),
-            Expanded(
-              flex: 0,
-              child: SizedBox(
-                height: 200.0,
-                child: _pelanggaran(), //data prestasi dan pelanggaran belum dipisah
-              ),
-            ),
+      body: ListView.builder(
+            itemCount: catatanSiswa.length,
+            itemBuilder: (_, index) {
+              return catatanSiswa[index].jenis == 'Prestasi' ?
+              Container(child: _prestasi(index))
+                  : Container(child: _pelanggaran(index));
+            })
 
-
-            Padding(
-              padding: EdgeInsets.fromLTRB(20, 30, 20, 0),
-              child: TextField(
-                decoration: InputDecoration.collapsed(
-                  hintText: 'Pelanggaran',
-                ),
-              ),
-            ),
-            Expanded(
-              flex: 0,
-              child: SizedBox(
-                height: 200.0,
-                child: _pelanggaran(), //data prestasi dan pelanggaran belum dipisah
-              ),
-            ),
-            ]),
-    )
     );
   }
 }

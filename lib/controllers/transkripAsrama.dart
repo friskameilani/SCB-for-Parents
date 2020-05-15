@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:flutter/services.dart' as rootBundle;
 import 'package:http/http.dart' as http;
 
+// ~~~~~~~INI SALAH, TAPI JANGAN DIAPUS DULU YAAA~~~~~
+
 class NilaiAsramaAPI
 {
 //  String nis;

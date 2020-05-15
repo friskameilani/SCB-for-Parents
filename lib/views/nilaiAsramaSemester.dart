@@ -1,7 +1,9 @@
 // TODO Implement this library.
 import 'package:flutter/material.dart';
-import 'dart:math';
-import 'package:scbforparents/controllers/transkripAsrama.dart';
+import 'package:scbforparents/controllers/nilaiAsrama.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+import 'package:flutter/services.dart' show rootBundle;
 
 class NilaiAsramaSmt extends StatefulWidget{
   NilaiAsramaSmt(this.semester);
@@ -13,37 +15,46 @@ class NilaiAsramaSmt extends StatefulWidget{
 class NilaiAsramaSmtState extends State<NilaiAsramaSmt>{
   var scbgreen = Color.fromRGBO(6, 123, 84, 1.0);
 
-  NilaiAsramaAPI nilaiAsramaAPI = null;
   static var aspek = [
-    " ",
     "Tahsin",
     "Tahfiz",
     "Hafalan",
-    "Hadist (Tulis)",
-    "Hadist (Lisan)",
+    "Hadist Tulis",
+    "Hadist Lisan",
     "Mufrodat",
-    "Do'a dan Dzikir (Tulis)",
-    "Do'a dan Dzikir (Lisan)",
+    "Doa dan Dzikir Tulis",
+    "Doa dan Dzikir Lisan",
     "Asmaul Husna",
     "Ta'lim",
-    "Hafalan Surat Pilihan",
-    " ",
-    "Barber Shop Literasi",
-    "Tata Boga",
-    "Sol dan Aneka Sepatu dan Sandal",
-    "Pertukangan dan Elektronik",
-    "Tata Busana",
-    "Crafting, Sablon dan Grafiti"
+    "Hafalan Surat Pilihan"
   ];
 
-  Map<String, int> nilaiAsrama = new Map<String, int>();
+  final String url = "lib/models/transkripAsrama.json";
+  List<NilaiAsrama> transkripAsrama = [];
+//  Map<String, int> nilaiAsrama = new Map<String, int>();
 
-  void setMap(){
-    for(int i=0; i<aspek.length; i++){
-      var rng = Random();
-      nilaiAsrama[aspek[i]] = rng.nextInt(100);
+  @override
+  void initState() {
+    loadData();
+    print(transkripAsrama[0]);
+  }
+
+  Future<String> loadData() async {
+//    var nis = {'nis': 'g64170089'};
+//    http.Response jsonText= await http.post(url, body: {"jenis": "prestasi"});
+    var jsonText = await rootBundle.loadString(url);
+    var dataText = json.decode(jsonText);
+    var data;
+    for (data in dataText) {
+      transkripAsrama.add(new NilaiAsrama(
+          data['nis'], data['nama'], data['aspek'], data['aspek']['tahsin'], data['aspek']['tahfiz'],
+          data['aspek']['hafalan'], data['aspek']['hadistTulis'], data['aspek']['hadistLisan'], data['aspek']['mufrodat'],
+          data['aspek']['doaDzikirTulis'], data['aspek']['doaDzikirLisan'], data['aspek']['asmaulHusna'],
+          data['aspek']['talim'], data['aspek']['hafalanSuratPilihan']));
     }
-    print(nilaiAsrama);
+    setState(() {});
+
+    return 'success';
   }
 
   String verdict(int nilai){
@@ -62,22 +73,13 @@ class NilaiAsramaSmtState extends State<NilaiAsramaSmt>{
 
   ListView builder(){
     var list = <Widget>[];
-    var namaAspek = [
-      "MATERI KEASRAMAAN",
-      "KETERAMPILAN",
-      "KEMANDIRIAN",
-      "TANGGUNG JAWAB",
-      "KEDISIPLINAN",
-      "KERAPIHAN",
-    ];
     int j=0;
     for(int i=0; i<aspek.length; i++){
-      setMap();
       String aspekPenilaian, verdict;
       TextStyle styleTitle;
-      if(i == 0 || i == 12){
-        aspekPenilaian = "ASPEK " + namaAspek[j].toString();
-        verdict = "NILAI";
+      if(i == 0){
+        aspekPenilaian = "Aspek Materi Keasramaan";
+        verdict = "Nilai";
         styleTitle = TextStyle(
             fontWeight: FontWeight.bold,
             color: scbgreen,
@@ -85,10 +87,10 @@ class NilaiAsramaSmtState extends State<NilaiAsramaSmt>{
         );
         j++;
       }
-      else{
-        aspekPenilaian = aspek[i];
-        verdict = this.verdict(this.nilaiAsrama[aspekPenilaian]);
-      }
+//      else{
+//        aspekPenilaian = aspek[i];
+//        verdict = this.verdict(transkripAsrama[0].aspek);
+//      }
       list.add(
           Container(
             decoration: BoxDecoration(

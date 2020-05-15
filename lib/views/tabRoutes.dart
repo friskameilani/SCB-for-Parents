@@ -6,12 +6,7 @@ import 'package:scbforparents/views/opsiRapor.dart';
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    hexColor(String colorhexcode) {
-      String colornew = '0xff' + colorhexcode;
-      colornew = colornew.replaceAll('#', '');
-      int colorint = int.parse(colornew);
-      return colorint;
-    }
+    var scbgreen2 = Color.fromRGBO(1, 83, 47, 1);
 
     return DefaultTabController(
       length: 3,
@@ -28,7 +23,7 @@ class Home extends StatelessWidget {
               ),
             ],
           ),
-          backgroundColor: Color(hexColor('#01532F')),
+          backgroundColor: scbgreen2,
         ),
         body: TabBarView(
           physics: NeverScrollableScrollPhysics(),
@@ -67,7 +62,7 @@ class Home extends StatelessWidget {
               ),
             ),
           ],
-          labelColor: Color(hexColor('#01532F')),
+          labelColor: scbgreen2,
           unselectedLabelColor: Colors.grey[700],
           indicatorSize: TabBarIndicatorSize.label,
           indicatorColor: Colors.blue,

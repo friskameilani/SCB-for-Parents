@@ -6,17 +6,13 @@ class Profil extends StatefulWidget {
 }
 
 class _ProfilState extends State<Profil> {
+  var backgroundColor = Color.fromRGBO(242, 242, 242, 1);
   var scbgreen = Color.fromRGBO(6, 123, 84, 1.0);
-  hexColor(String colorhexcode) {
-    String colornew = '0xff' + colorhexcode;
-    colornew = colornew.replaceAll('#', '');
-    int colorint = int.parse(colornew);
-    return colorint;
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: backgroundColor,
         body: Container(
       height: 690.0,
       child: ListView(scrollDirection: Axis.vertical, children: <Widget>[
@@ -37,14 +33,14 @@ class _ProfilState extends State<Profil> {
                         color: Colors.green[800],
                         height: 20,
                       ),
-                      cardText('Friska Meilani', 'Nama'),
+                      cardText('Rachel Vennya', 'Nama'),
                       cardText('Ibu', 'Status'),
                       cardText('081234567890', 'Nomor Hp'),
                       cardText('Jalan Raya Dramaga, Dramaga, Bogor, 16680',
                           'Alamat'),
                     ]))),
         Card(
-            margin: EdgeInsets.all(10),
+            margin: EdgeInsets.fromLTRB(10, 0, 10, 10),
             child: Padding(
                 padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 8.0),
                 child: Column(
@@ -59,7 +55,7 @@ class _ProfilState extends State<Profil> {
                         color: Colors.green[800],
                         height: 20,
                       ),
-                      cardText('Kipli', 'Nama'),
+                      cardText('Xabiru', 'Nama'),
                       cardText('181907020', 'NIS'),
                       cardText('0059105165', 'NISN'),
                       cardText('Laki-laki', 'Jenis Kelamin'),

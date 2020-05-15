@@ -2,46 +2,12 @@
   {
     "nis" : "181907020",
     "nama" : "melan",
-    "aspek" : {
-      "Tahsin" : 75,
-      "Tahfiz" : 80,
-      "Hafalan" : 90,
-      "Hadist (Tulis)" : 86,
-      "Hadist (Lisan)" : 89,
-      "Mufrodat" : 90,
-      "Do'a dan Dzikir (Tulis)" : 88,
-      "Do'a dan Dzikir (Lisan)" : 88,
-      "Asmaul Husna" :  69,
-      "Ta'lim" : 30,
-      "Hafalan Surat Pilihan" : 79,
-      "Barber Shop Literasi" : 89,
-      "Tata Boga" :  87,
-      "Sol dan Aneka Sepatu dan Sandal" :  84,
-      "Pertukangan dan Elektronik" :  75,
-      "Tata Busana" : 77,
-      "Crafting, Sablon dan Grafiti" : 86
-    }
-  },
-  {
-    "nis" : "181907021",
-    "aspek" : {
-      "Tahsin" : 75,
-      "Tahfiz" : 80,
-      "Hafalan" : 90,
-      "Hadist (Tulis)" : 86,
-      "Hadist (Lisan)" : 89,
-      "Mufrodat" : 90,
-      "Do'a dan Dzikir (Tulis)" : 88,
-      "Do'a dan Dzikir (Lisan)" : 88,
-      "Asmaul Husna" :  69,
-      "Ta'lim" : 30,
-      "Hafalan Surat Pilihan" : 79,
-      "Barber Shop Literasi" : 89,
-      "Tata Boga" :  87,
-      "Sol dan Aneka Sepatu dan Sandal" :  84,
-      "Pertukangan dan Elektronik" :  75,
-      "Tata Busana" : 77,
-      "Crafting, Sablon dan Grafiti" : 86
+    "nilai" : {
+      "1": [80, 70, 60, 70, 90, 49, 50, 10, 100, 75, 68],
+      "2": [81, 70, 66, 37, 92, 93, 60, 30, 100, 75, 68],
+      "3": [85, 76, 60, 70, 19, 99, 59, 80, 100, 75, 68],
+      "4": [48, 71, 69, 50, 91, 50, 57, 100, 100, 75, 68],
+      "5": [90, 73, 60, 70, 90, 99, 60, 70, 100, 75, 68]
     }
   }
 ]
