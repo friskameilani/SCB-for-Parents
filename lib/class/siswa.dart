@@ -53,7 +53,7 @@ class Nilai {
   Nilai.fromJson(Map<String, dynamic> json) {
     for(int i=1; i<=6; i++){
       if(json[i.toString()] != null){
-        l.add(json[i.toString()]);
+        l.add(json[i.toString()].cast<int>());
       }
     }
   }

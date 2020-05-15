@@ -6,20 +6,26 @@ import 'package:scbforparents/class/orangtua.dart';
 import 'package:scbforparents/views/pilihSmt.dart';
 import 'package:scbforparents/class/siswa.dart';
 
-class OpsiRapor extends StatelessWidget {
+class OpsiRapor extends StatefulWidget {
   OpsiRapor(this.user);
   Orangtua user;
 
-  Siswa chooser(var snapshot){
-    var listSiswa = jsonDecode(snapshot.data.toString());
+  @override
+  _OpsiRaporState createState() => _OpsiRaporState();
+}
+
+class _OpsiRaporState extends State<OpsiRapor> {
+  String chooser(var listSiswa){
     int i;
-    for(i=0; i<snapshot.length; i++){
-      if(this.user.namaAnak == listSiswa[i]['nama'])
-        return listSiswa[i];
+    for(i=0; i < (listSiswa?.length ?? 0); i++){
+      print('sebelum cek '+this.widget.user.namaAnak.toString());
+      if(this.widget.user.namaAnak == listSiswa[i]['nama'])
+        return listSiswa[i]['nis'];
     }
+    return null;
   }
 
-  Container builder(BuildContext context, var value, Siswa siswa) {
+  Container builder(BuildContext context, var value, String siswa) {
     var icon;
     if (value == "Akademik") {
       icon = Icons.school;
@@ -71,10 +77,12 @@ class OpsiRapor extends StatelessWidget {
         body: new FutureBuilder(
           future: DefaultAssetBundle.of(context).loadString('lib/models/anak.json'),
           builder: (context, snapshot) {
-            if(chooser(snapshot) != null){
+            dynamic list = jsonDecode(snapshot.data.toString());
+            String x = chooser(list);
+            if ((x != null)) {
               return ListView(children: <Widget>[
-                builder(context, "Akademik", chooser(snapshot)),
-                builder(context, "Asrama", chooser(snapshot)),
+                builder(context, "Akademik", x),
+                builder(context, "Asrama", x),
                 Container(
                   //Catatan Khusus
                   padding: EdgeInsets.fromLTRB(15, 15, 15, 0),
@@ -109,6 +117,16 @@ class OpsiRapor extends StatelessWidget {
                   ),
                 ),
               ]);
+            } else {
+              return Center(
+                    child: Text(
+                      "Error",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 18
+                      ),
+                    )
+                  );
             }
           },
         ));

@@ -1,5 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:scbforparents/class/orangtua.dart';
 import 'package:scbforparents/views/beranda.dart';
 import 'package:scbforparents/views/catatanKhusus.dart';
 import 'package:scbforparents/splash.dart';
@@ -15,7 +19,19 @@ void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   DarkThemeProvider themeChangeProvider = new DarkThemeProvider();
-
+  Orangtua user = new Orangtua(
+    nama: "Friska Meilani",
+    nomorHp: "081234567890",
+    alamat: "Jalan Raya Dramaga, Dramaga, Bogor, 16680",
+    status: "Ibu",
+    namaAnak: "Kipli"
+  );
+  Future<Orangtua> loadJson(BuildContext context) async {
+    String data = await DefaultAssetBundle.of(context).loadString('lib/models/orangtua.json');
+    final ortu = Map<String, dynamic>.from(jsonDecode(data));
+    this.user = (Orangtua.fromJson(ortu));
+    return this.user;
+  }
   @override
   void initState() {
     // super.initState();
@@ -27,6 +43,10 @@ class MyApp extends StatelessWidget {
         await themeChangeProvider.darkThemePreference.getTheme();
   }
 
+  Orangtua getter(AsyncSnapshot<Orangtua> snapshot) {
+    return snapshot.data;
+  }
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -35,19 +55,23 @@ class MyApp extends StatelessWidget {
       },
       child: Consumer<DarkThemeProvider>(
           builder: (BuildContext context, value, Widget child) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          theme: Styles.themeData(themeChangeProvider.darkTheme, context),
-          home: SplashScreen(),
-          // home: Home(),
-          routes: <String, WidgetBuilder>{
-            //Untuk sementara ubah dulu '/login': (context) => Login(), ke '/login': (context) => Dashboard(),
-            //Kecuali kalian mau coba fitur login pake server lokal, rest API-nya bisa di donlot di github gw
-            // '/login': (context) => Login(),
-            '/login': (context) => Home(),
-            '/beranda': (BuildContext context) => Beranda(),
-            '/profil': (context) => Profil(),
-            '/catatanKhusus': (context) => CatatanKhusus(),
+        return FutureBuilder(
+          builder: (context, snapshot) {
+            return MaterialApp(
+              debugShowCheckedModeBanner: false,
+              theme: Styles.themeData(themeChangeProvider.darkTheme, context),
+              home: SplashScreen(),
+              // home: Home(),
+              routes: <String, WidgetBuilder>{
+                //Untuk sementara ubah dulu '/login': (context) => Login(), ke '/login': (context) => Dashboard(),
+                //Kecuali kalian mau coba fitur login pake server lokal, rest API-nya bisa di donlot di github gw
+                // '/login': (context) => Login(),
+                '/login': (context) => Home(this.user),
+                '/beranda': (BuildContext context) => Beranda(this.user),
+                '/profil': (context) => Profil(),
+                '/catatanKhusus': (context) => CatatanKhusus(),
+              },
+            );
           },
         );
       }),
@@ -103,7 +127,6 @@ class _CheckAuthState extends State<CheckAuth> {
   Widget build(BuildContext context) {
     Widget child;
     if (isAuth) {
-      child = Home();
     } else {
       child = Login();
     }

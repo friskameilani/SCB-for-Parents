@@ -5,9 +5,9 @@ import 'nilaiAsramaSemester.dart';
 import 'package:scbforparents/class/siswa.dart';
 
 class PilihSmt extends StatefulWidget{
-  PilihSmt(this.argument, this.siswa);
+  PilihSmt(this.argument, this.nis);
   final String argument;
-  final Siswa siswa;
+  final String nis;
   @override
   PilihSmtState createState() => new PilihSmtState();
 }
@@ -26,7 +26,7 @@ class PilihSmtState extends State<PilihSmt> {
   
   MaterialPageRoute selector(int semester){
     if(widget.argument == arguments[0])  
-      return MaterialPageRoute(builder: (context)=>NilaiAkademikSmt(semester.toString(), widget.siswa));
+      return MaterialPageRoute(builder: (context)=>NilaiAkademikSmt(semester.toString(), widget.nis));
     else 
       return MaterialPageRoute(builder: (context)=>NilaiAsramaSmt(semester.toString()));
   }

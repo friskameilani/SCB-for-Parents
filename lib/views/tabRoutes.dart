@@ -5,7 +5,7 @@ import 'package:scbforparents/views/profil.dart';
 import 'package:scbforparents/views/opsiRapor.dart';
 
 class Home extends StatelessWidget {
-  Home({this.user});
+  Home(this.user);
   final Orangtua user;
   
   @override

@@ -1,7 +1,9 @@
 import 'dart:convert';
+import 'package:scbforparents/class/orangtua.dart';
 import 'package:scbforparents/controllers/api.dart';
 import 'package:flutter/material.dart';
 import 'package:scbforparents/views/beranda.dart';
+import 'package:scbforparents/views/tabRoutes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Login extends StatefulWidget {
@@ -11,7 +13,7 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   bool _isLoading = false;
-
+  Orangtua user;
   @override
   Widget build(BuildContext context) {
     //Main App
@@ -64,7 +66,7 @@ class _LoginState extends State<Login> {
       localStorage.setString('user', json.encode(body['user']));
       Navigator.push(
         context,
-        new MaterialPageRoute(builder: (context) => Beranda()),
+        new MaterialPageRoute(builder: (context) => Beranda(this.user)),
       );
     } else {
       setState(() {
@@ -139,7 +141,7 @@ class _LoginState extends State<Login> {
           //Implement Login Function in Button
           Navigator.push(
             context,
-            new MaterialPageRoute(builder: (context) => Home()),
+            new MaterialPageRoute(builder: (context) => Home(this.user)),
           );
           // signIn(emailController.text, passwordController.text);
         },

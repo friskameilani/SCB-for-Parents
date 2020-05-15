@@ -1,13 +1,12 @@
-// TODO Implement this library.
 import 'package:flutter/material.dart';
-import 'dart:math';
 import 'package:scbforparents/class/siswa.dart';
+import 'dart:math';
 import 'dart:convert';
 
 class NilaiAkademikSmt extends StatefulWidget{
-  NilaiAkademikSmt(this.semester, this.siswa);
-  final Siswa siswa;
+  NilaiAkademikSmt(this.semester, this.nis);
   final String semester;
+  final String nis;
   @override
   NilaiAkademikSmtState createState() => new NilaiAkademikSmtState();
 }
@@ -30,6 +29,14 @@ class NilaiAkademikSmtState extends State<NilaiAkademikSmt>{
   ];
 
   Map<String, int> nilai= new Map<String, int>();
+  
+  // void setMap(){
+  //   for(int i=0; i<matpel.length; i++){
+  //     var rng = Random();
+  //     nilai[matpel[i]] = rng.nextInt(100);
+  //   }
+  //   print(nilai);
+  // }
 
   String verdict(int nilai){
     String res;
@@ -43,7 +50,7 @@ class NilaiAkademikSmtState extends State<NilaiAkademikSmt>{
     return res;
   }
 
-  ListView listbuilder(var skor){
+  ListView builder(var skor){
     var list = <Widget>[];
     for(int i=-1; i<matpel.length; i++){
       String namaMatpel, nilai, verdict;
@@ -104,6 +111,15 @@ class NilaiAkademikSmtState extends State<NilaiAkademikSmt>{
     );
   }
 
+  int getIdx(var listSiswa){
+    int i;
+    for(i=0; i < (listSiswa?.length ?? 0); i++){
+      if(this.widget.nis == listSiswa[i]['nis'])
+        return i;
+    }
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -117,17 +133,27 @@ class NilaiAkademikSmtState extends State<NilaiAkademikSmt>{
         centerTitle: true,
         backgroundColor: scbgreen,
       ),
-      body: (widget.siswa.nilai.l[int.parse(widget.semester)] != null)
-            ? listbuilder(widget.siswa.nilai) 
-            : Center(
-              child: Text(
-                "Belum Ada",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 18
-                ),
-              )
-            )
+      body: FutureBuilder(
+                future: DefaultAssetBundle
+                    .of(context)
+                    .loadString('lib/models/anak.json'),
+                builder: (context, snapshot) {
+                  // Decode the JSON
+                  var nilai = jsonDecode(snapshot.data.toString());
+                  int idx = getIdx(nilai);
+                  return idx != null
+                  ? builder(nilai[idx]['nilai'][widget.semester.toString()])
+                  : Center(
+                    child: Text(
+                      "Belum Ada",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 18
+                      ),
+                    )
+                  );
+                }
+      )
     );
   }
 }
