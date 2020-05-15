@@ -15,17 +15,20 @@ class NilaiAkademikSmtState extends State<NilaiAkademikSmt>{
   var scbgreen = Color.fromRGBO(6, 123, 84, 1.0);
 
   static var matpel = [
-    "Pendidikan Agama Islam",
-    "Pendidikan Pancasila dan Kewarganegaraan",
-    "Bahasa Indonesia",
-    "Matematika",
-    "Fisika",
-    "Biologi",
-    "Kimia",
-    "Ilmu Pengetahuan Sosial",
-    "Bahasa Arab",
-    "Pendidikan Jasmani, Olahraga, dan Kesehatan",
-    "Seni Budaya dan Keterampilan"
+    'Pendidikan Agama dan Budi Pekerti',
+    'Pendidikan Kewarganegaraan' ,
+    'Bahasa dan Sastra Indonesia' ,
+    'Bahasa Inggris',
+    'Matematika',
+    'Ilmu Pengetahuan Alam',
+    'Ilmu Pengetahuan Sosial',
+    'Seni Budaya',
+    'Pendidikan Jasmani, Olahraga dan Kesehatan',
+    'Tahfiz Tahsin Quran',
+    'Teknologi Informasi dan Komunikasi',
+    'Bahasa dan Sastra Sunda',
+    'Prakarya',
+    'Bahasa Arab',
   ];
 
   Map<String, int> nilai= new Map<String, int>();
@@ -40,15 +43,16 @@ class NilaiAkademikSmtState extends State<NilaiAkademikSmt>{
 
   String verdict(int nilai){
     String res;
-    if(nilai > 80)
-      res = "Sangat Baik";
-    else if(nilai > 70)
-      res = "Baik";
-    else if (nilai > 70)
-      res = "Cukup";
-    else res = "Kurang";
+    if(nilai >= 92)
+      res = "A";
+    else if(nilai >= 82)
+      res = "B";
+    else if (nilai >= 72)
+      res = "C";
+    else res = "D";
     return res;
   }
+  
 
   ListView builder(var skor){
     var list = <Widget>[];
@@ -63,48 +67,65 @@ class NilaiAkademikSmtState extends State<NilaiAkademikSmt>{
       }
       else{
         namaMatpel = matpel[i];
-        nilai = skor[i].toString();
-        verdict = this.verdict(skor[i]);
+        nilai = null;
+        if(skor[namaMatpel] != null){  
+          nilai = skor[namaMatpel].toString();
+          verdict = this.verdict(skor[namaMatpel]);
+        }
       }
-      list.add(
-        Container(
-          decoration: BoxDecoration(
-            border: Border(bottom: BorderSide()),
-          ),
-          child: Padding(
-            padding: EdgeInsets.all(16.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Expanded(
-                  flex: 2,
-                  child: Text(
-                    namaMatpel,
-                    style: style,
+      if(nilai != null){
+        ClipOval verdictCircle = 
+          ClipOval(
+            child: Material(
+                    color: (verdict=='A')?Colors.teal
+                            :((verdict=='B')?Colors.yellow[900]
+                            :((verdict=='C')?Colors.orange[900]
+                            :Colors.red[800])), // button color
+                      child: SizedBox(
+                        width: 30,
+                        height: 30,
+                        child: Center(
+                          child: Text(verdict, 
+                            style: TextStyle(color: Colors.white,
+                                              fontWeight: FontWeight.bold),
+                          )))));
+        list.add(
+          Container(
+            decoration: BoxDecoration(
+              border: Border(bottom: BorderSide()),
+            ),
+            child: Padding(
+              padding: EdgeInsets.all(10.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Expanded(
+                    flex: 2,
+                    child: Text(
+                      namaMatpel,
+                      style: style,
+                    )
+                  ),
+                  SizedBox(width: 10),
+                  Expanded(
+                    flex: 1,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text(
+                          nilai,
+                          style: (i==-1)?style:TextStyle(fontSize: 20),
+                        ),
+                        (i!=-1)?verdictCircle:Text(verdict, style: style,)
+                      ],
+                    )
                   )
-                ),
-                SizedBox(width: 10),
-                Expanded(
-                  flex: 1,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Text(
-                        nilai,
-                        style: style,
-                      ),
-                      Text(
-                        verdict,
-                        style: style,
-                      )
-                    ],
-                  )
-                )
-              ]
-            )
-          ),
-        )
-      );
+                ]
+              )
+            ),
+          )
+        );
+      } 
     }
     return ListView(
       children: list,
@@ -141,8 +162,8 @@ class NilaiAkademikSmtState extends State<NilaiAkademikSmt>{
                   // Decode the JSON
                   var nilai = jsonDecode(snapshot.data.toString());
                   int idx = getIdx(nilai);
-                  return idx != null
-                  ? builder(nilai[idx]['nilai'][widget.semester.toString()])
+                  return (idx != null && nilai[idx]['nilaiAkademik'][widget.semester.toString()] != null) 
+                  ? builder(nilai[idx]['nilaiAkademik'][widget.semester.toString()])
                   : Center(
                     child: Text(
                       "Belum Ada",

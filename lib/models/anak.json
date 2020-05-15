@@ -7,12 +7,87 @@
         "tempat_tanggal_lahir": "Tangerang, 10 Mei 1999",
         "kelas": "IX",
         "asrama": "Asrama Putra Kamar 28",
-        "nilai": {
-            "1": [80, 70, 60, 70, 90, 49, 50, 10, 100, 75, 68],
-            "2": [81, 70, 66, 37, 92, 93, 60, 30, 100, 75, 68],
-            "3": [85, 76, 60, 70, 19, 99, 59, 80, 100, 75, 68],
-            "4": [48, 71, 69, 50, 91, 50, 57, 100, 100, 75, 68],
-            "5": [90, 73, 60, 70, 90, 99, 60, 70, 100, 75, 68]
+        "nilaiAkademik": {
+            "1": {
+                "Pendidikan Agama dan Budi Pekerti": 73,
+                "Pendidikan Kewarganegaraan": 69,
+                "Bahasa dan Sastra Indonesia": 57,
+                "Bahasa Inggris": 77,
+                "Matematika": 49,
+                "Ilmu Pengetahuan Alam": 100,
+                "Ilmu Pengetahuan Sosial": 100,
+                "Seni Budaya": 75,
+                "Pendidikan Jasmani, Olahraga dan Kesehatan": 55,
+                "Tahfiz Tahsin Quran": 96,
+                "Teknologi Informasi dan Komunikasi": 88,
+                "Bahasa dan Sastra Sunda":64,
+                "Prakarya": 76,
+                "Bahasa Arab": 82
+            },
+            "2": {
+                "Pendidikan Agama dan Budi Pekerti": 93,
+                "Pendidikan Kewarganegaraan": 64,
+                "Bahasa dan Sastra Indonesia": 87,
+                "Bahasa Inggris": 72,
+                "Matematika": 69,
+                "Ilmu Pengetahuan Alam": 60,
+                "Ilmu Pengetahuan Sosial": 90,
+                "Seni Budaya": 79,
+                "Pendidikan Jasmani, Olahraga dan Kesehatan": 85,
+                "Tahfiz Tahsin Quran": 76,
+                "Teknologi Informasi dan Komunikasi": 81,
+                "Bahasa dan Sastra Sunda":67,
+                "Prakarya": 96,
+                "Bahasa Arab": 85
+            },
+            "3": {
+                "Pendidikan Agama dan Budi Pekerti": 74,
+                "Pendidikan Kewarganegaraan": 99,
+                "Bahasa dan Sastra Indonesia": 57,
+                "Bahasa Inggris": 71,
+                "Matematika": 89,
+                "Ilmu Pengetahuan Alam": 90,
+                "Ilmu Pengetahuan Sosial": 50,
+                "Seni Budaya": 78,
+                "Pendidikan Jasmani, Olahraga dan Kesehatan": 53,
+                "Tahfiz Tahsin Quran": 91,
+                "Teknologi Informasi dan Komunikasi": 78,
+                "Bahasa dan Sastra Sunda":60,
+                "Prakarya": 71,
+                "Bahasa Arab": 72
+            },
+            "4": {
+                "Pendidikan Agama dan Budi Pekerti": 71,
+                "Pendidikan Kewarganegaraan": 61,
+                "Bahasa dan Sastra Indonesia": 47,
+                "Bahasa Inggris": 72,
+                "Matematika": 69,
+                "Ilmu Pengetahuan Alam": 88,
+                "Ilmu Pengetahuan Sosial": 100,
+                "Seni Budaya": 100,
+                "Pendidikan Jasmani, Olahraga dan Kesehatan": 79,
+                "Tahfiz Tahsin Quran": 83,
+                "Teknologi Informasi dan Komunikasi": 81,
+                "Bahasa dan Sastra Sunda":60,
+                "Prakarya": 91,
+                "Bahasa Arab": 80
+            },
+            "5": {
+                "Pendidikan Agama dan Budi Pekerti": 73,
+                "Pendidikan Kewarganegaraan": 69,
+                "Bahasa dan Sastra Indonesia": 57,
+                "Bahasa Inggris": 77,
+                "Matematika": 49,
+                "Ilmu Pengetahuan Alam": 100,
+                "Ilmu Pengetahuan Sosial": 100,
+                "Seni Budaya": 75,
+                "Pendidikan Jasmani, Olahraga dan Kesehatan": 55,
+                "Tahfiz Tahsin Quran": 96,
+                "Teknologi Informasi dan Komunikasi": 88,
+                "Bahasa dan Sastra Sunda":64,
+                "Prakarya": 76,
+                "Bahasa Arab": 82
+            }
         }
     },
     {
@@ -23,10 +98,55 @@
         "tempat_tanggal_lahir": "Tangerang, 31 Mei 1999",
         "kelas": "VIII",
         "asrama": "Asrama Putri Kamar 24",
-        "nilai": {
-            "1": [90, 40, 60, 70, 90, 49, 53, 10, 88, 85, 68],
-            "2": [81, 75, 66, 35, 92, 93, 60, 30, 100, 79, 63],
-            "3": [85, 76, 90, 67, 89, 99, 59, 80, 90, 95, 62]
+        "nilaiAkademik": {
+            "1": {
+                "Pendidikan Agama dan Budi Pekerti": 90,
+                "Pendidikan Kewarganegaraan": 40,
+                "Bahasa dan Sastra Indonesia": 60,
+                "Bahasa Inggris": 70,
+                "Matematika": 90,
+                "Ilmu Pengetahuan Alam": 100,
+                "Ilmu Pengetahuan Sosial": 50,
+                "Seni Budaya": 75,
+                "Pendidikan Jasmani, Olahraga dan Kesehatan": 88,
+                "Tahfiz Tahsin Quran": 76,
+                "Teknologi Informasi dan Komunikasi": 100,
+                "Bahasa dan Sastra Sunda":61,
+                "Prakarya": 79,
+                "Bahasa Arab": 52
+            },
+            "2": {
+                "Pendidikan Agama dan Budi Pekerti": 81,
+                "Pendidikan Kewarganegaraan": 75,
+                "Bahasa dan Sastra Indonesia": 66,
+                "Bahasa Inggris": 53,
+                "Matematika": 92,
+                "Ilmu Pengetahuan Alam": 80,
+                "Ilmu Pengetahuan Sosial": 91,
+                "Seni Budaya": 73,
+                "Pendidikan Jasmani, Olahraga dan Kesehatan": 65,
+                "Tahfiz Tahsin Quran": 100,
+                "Teknologi Informasi dan Komunikasi": 87,
+                "Bahasa dan Sastra Sunda":63,
+                "Prakarya": 98,
+                "Bahasa Arab": 75
+            },
+            "3": {
+                "Pendidikan Agama dan Budi Pekerti": 84,
+                "Pendidikan Kewarganegaraan": 79,
+                "Bahasa dan Sastra Indonesia": 67,
+                "Bahasa Inggris": 77,
+                "Matematika": 89,
+                "Ilmu Pengetahuan Alam": 91,
+                "Ilmu Pengetahuan Sosial": 53,
+                "Seni Budaya": 98,
+                "Pendidikan Jasmani, Olahraga dan Kesehatan": 83,
+                "Tahfiz Tahsin Quran": 41,
+                "Teknologi Informasi dan Komunikasi": 68,
+                "Bahasa dan Sastra Sunda":69,
+                "Prakarya": 73,
+                "Bahasa Arab": 62
+            }
         }
     }
 ]
