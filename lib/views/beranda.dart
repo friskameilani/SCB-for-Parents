@@ -1,10 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
+import 'package:scbforparents/class/orangtua.dart';
 import 'package:scbforparents/components/kabarseputar_scb.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Beranda extends StatefulWidget {
+  Beranda(this.user);
+  final Orangtua user;
   @override
   _BerandaState createState() => _BerandaState();
 }

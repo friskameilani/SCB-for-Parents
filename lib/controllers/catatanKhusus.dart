@@ -1,5 +1,3 @@
-import 'dart:convert';
-import 'package:http/http.dart' as http;
 
 class catatan {
   String nis, jenis, tanggal, kegiatan, point;

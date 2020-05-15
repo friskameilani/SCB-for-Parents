@@ -1,12 +1,12 @@
-// TODO Implement this library.
 import 'package:flutter/material.dart';
 import 'package:scbforparents/class/siswa.dart';
 import 'dart:math';
 import 'dart:convert';
 
 class NilaiAkademikSmt extends StatefulWidget{
-  NilaiAkademikSmt(this.semester);
+  NilaiAkademikSmt(this.semester, this.nis);
   final String semester;
+  final String nis;
   @override
   NilaiAkademikSmtState createState() => new NilaiAkademikSmtState();
 }
@@ -111,6 +111,15 @@ class NilaiAkademikSmtState extends State<NilaiAkademikSmt>{
     );
   }
 
+  int getIdx(var listSiswa){
+    int i;
+    for(i=0; i < (listSiswa?.length ?? 0); i++){
+      if(this.widget.nis == listSiswa[i]['nis'])
+        return i;
+    }
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -131,8 +140,9 @@ class NilaiAkademikSmtState extends State<NilaiAkademikSmt>{
                 builder: (context, snapshot) {
                   // Decode the JSON
                   var nilai = jsonDecode(snapshot.data.toString());
-                  return nilai['nilai'][widget.semester.toString()] != null
-                  ? builder(nilai['nilai'][widget.semester.toString()])
+                  int idx = getIdx(nilai);
+                  return idx != null
+                  ? builder(nilai[idx]['nilai'][widget.semester.toString()])
                   : Center(
                     child: Text(
                       "Belum Ada",
