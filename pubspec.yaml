@@ -22,6 +22,8 @@ dependencies:
   shared_preferences: ^0.5.7
   http: ^0.12.1
   flutter_secure_storage: ^3.3.1+1
+  jaguar_jwt: ^2.1.6
+  corsac_jwt: ^0.2.2
 
 
   # The following adds the Cupertino Icons font to your application.

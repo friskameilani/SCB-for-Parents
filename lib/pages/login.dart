@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:corsac_jwt/corsac_jwt.dart';
 import 'package:scbforparents/network_utils/api.dart';
 import 'package:flutter/material.dart';
 import 'package:scbforparents/pages/beranda.dart';
@@ -52,6 +53,7 @@ class _LoginState extends State<Login> {
     );
   }
 
+// ======================= SSO FUNCTION ========================================== //
   //Attempt to Log In Function Starts Here (Asynchronous function)
   Future<String> ssoToken(String email, String password) async {
     // var ssotoken;
@@ -63,7 +65,10 @@ class _LoginState extends State<Login> {
       Map<String, dynamic> token = json.decode(res.body);
       // return token['token'];
       print(token['token']);
-      return jwtToken(token['token']);
+      // return jwtToken(token['token']);
+
+      jwtToken(token['token']);
+      // return token['token'];
     } else {
       return null;
     }
@@ -75,14 +80,46 @@ class _LoginState extends State<Login> {
           headers: {"Authorization": "Bearer $ssotoken"});
       Map<String, dynamic> jwt = json.decode(res.body);
       print(res.body);
-      // var token = jwt['token'];
       print(jwt['token']);
+      parseJwt(jwt['token']);
       return jwt['token'];
-      // return res.redirect(url.parse(req.url).pathname);;
     } else {
       return null;
     }
   }
+
+  String parseJwt(String token) {
+    final parts = token.split('.');
+    if (parts.length != 3) {
+      throw Exception('invalid token');
+    }
+
+    final payload = _decodeBase64(parts[1]);
+    final payloadMap = json.decode(payload);
+    print(payloadMap['email']);
+    return payload;
+  }
+
+  String _decodeBase64(String str) {
+    String output = str.replaceAll('-', '+').replaceAll('_', '/');
+
+    switch (output.length % 4) {
+      case 0:
+        break;
+      case 2:
+        output += '==';
+        break;
+      case 3:
+        output += '=';
+        break;
+      default:
+        throw Exception('Illegal base64url string!"');
+    }
+    print('decode' + utf8.decode(base64Url.decode(output)));
+    return utf8.decode(base64Url.decode(output));
+  }
+
+  // ======================= END OF SSO FUNCTION ===================================== //
 
   void displayDialog(context, title, text) => showDialog(
         context: context,
