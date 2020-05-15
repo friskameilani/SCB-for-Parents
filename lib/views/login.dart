@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:scbforparents/controllers/api.dart';
 import 'package:flutter/material.dart';
 import 'package:scbforparents/views/beranda.dart';
-import 'package:scbforparents/views/tabRoutes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Login extends StatefulWidget {
@@ -33,7 +32,7 @@ class _LoginState extends State<Login> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        textBox('Username', 'Masukkan Usernam Anda',
+                        textBox('Username', 'Masukkan Username Anda',
                             emailController),
                         textBox('Password', 'Masukkan Password Anda',
                             passwordController),
