@@ -7,7 +7,7 @@ import 'package:scbforparents/views/opsiRapor.dart';
 class Home extends StatelessWidget {
   Home(this.user);
   final Orangtua user;
-  
+
   @override
   Widget build(BuildContext context) {
     var scbgreen2 = Color.fromRGBO(1, 83, 47, 1);
