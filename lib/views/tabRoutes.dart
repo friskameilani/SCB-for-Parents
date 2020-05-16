@@ -1,13 +1,35 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:scbforparents/class/orangtua.dart';
 import 'package:scbforparents/views/beranda.dart';
 import 'package:scbforparents/views/profil.dart';
 import 'package:scbforparents/views/opsiRapor.dart';
 
+// class Home extends StatelessWidget {
+//   Home(this.user);
+// final Orangtua user;
+
+// import 'package:scbforparents/pages/beranda.dart';
+// import 'package:scbforparents/pages/profil.dart';
+// import 'package:scbforparents/pages/opsiRapor.dart';
+// import 'package:scbforparents/models/user.dart';
+
 class Home extends StatelessWidget {
-  Home(this.user);
-  final Orangtua user;
-  
+  Orangtua user = new Orangtua(
+      nama: "Friska Meilani",
+      nomorHp: "081234567890",
+      alamat: "Jalan Raya Dramaga, Dramaga, Bogor, 16680",
+      status: "Ibu",
+      namaAnak: "Kipli");
+
+  // Home(this.jwt, this.payload);
+  // factory Home.fromBase64(String jwt) => Home(
+  //     jwt,
+  //     json.decode(
+  //         ascii.decode(base64.decode(base64.normalize(jwt.split(".")[1])))));
+  // final String jwt;
+  // final Map<String, dynamic> payload;
   @override
   Widget build(BuildContext context) {
     var scbgreen2 = Color.fromRGBO(1, 83, 47, 1);
@@ -32,7 +54,7 @@ class Home extends StatelessWidget {
         body: TabBarView(
           physics: NeverScrollableScrollPhysics(),
           children: [
-            new Container(child: Beranda(user)),
+            new Container(child: Beranda()),
             new Container(
               child: OpsiRapor(user),
             ),

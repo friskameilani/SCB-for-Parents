@@ -5,6 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:scbforparents/views/beranda.dart';
 import 'package:scbforparents/views/tabRoutes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:scbforparents/network_utils/auth.dart';
+import 'package:scbforparents/main.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -34,8 +38,8 @@ class _LoginState extends State<Login> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        textBox('Username', 'Masukkan Username Anda',
-                            emailController),
+                        textBox(
+                            'Email', 'Masukkan Email Anda', emailController),
                         textBox('Password', 'Masukkan Password Anda',
                             passwordController),
                         loginBtn(),
@@ -48,41 +52,11 @@ class _LoginState extends State<Login> {
     );
   }
 
-  //All Functions that are not shown inside the main app when not invoked
-  //Login Function
-  void signIn(String email, String password) async {
-    setState(() {
-      _isLoading = true;
-    });
-    var data = {'email': email, 'password': password};
-    var res = await Network().authData(data, '/login');
-    var body = json.decode(res.body);
-    var message = body['message'];
-    print('success message is $message');
-
-    if (message == 'success') {
-      SharedPreferences localStorage = await SharedPreferences.getInstance();
-      localStorage.setString('token', json.encode(body['token']));
-      localStorage.setString('user', json.encode(body['user']));
-      Navigator.push(
-        context,
-        new MaterialPageRoute(builder: (context) => Beranda(this.user)),
-      );
-    } else {
-      setState(() {
-        _isLoading = false;
-      });
-      print(message);
-      return showDialog(
+  void displayDialog(context, title, text) => showDialog(
         context: context,
-        builder: (context) {
-          return AlertDialog(
-            content: Text('$message'),
-          );
-        },
+        builder: (context) =>
+            AlertDialog(title: Text(title), content: Text(text)),
       );
-    }
-  }
 
   //Logo
   Container loginLogo() {
@@ -134,15 +108,27 @@ class _LoginState extends State<Login> {
   Container loginBtn() {
     return Container(
       child: RaisedButton(
-        onPressed: () {
-          // setState(() {
-          //   _isLoading = true;
-          // });
+        onPressed: () async {
+          setState(() {
+            _isLoading = true;
+          });
+          var email = emailController.text;
+          var password = passwordController.text;
+          var jwt = await Auth().ssoToken(email, password);
+
+          // await ssoToken(email, password);
+          if (jwt != null) {
+            storage.write(key: "jwt", value: jwt);
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => Home()));
+          } else {
+            displayDialog(context, "An Error Occured",
+                "No account was found matching that username and password");
+            setState(() {
+              _isLoading = false;
+            });
+          }
           //Implement Login Function in Button
-          Navigator.push(
-            context,
-            new MaterialPageRoute(builder: (context) => Home(this.user)),
-          );
           // signIn(emailController.text, passwordController.text);
         },
         shape: RoundedRectangleBorder(
