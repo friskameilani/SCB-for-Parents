@@ -15,11 +15,11 @@ class OpsiRapor extends StatefulWidget {
 }
 
 class _OpsiRaporState extends State<OpsiRapor> {
-  String chooser(var listSiswa){
+  String chooser(var listSiswa) {
     int i;
-    for(i=0; i < (listSiswa?.length ?? 0); i++){
-      print('sebelum cek '+this.widget.user.namaAnak.toString());
-      if(this.widget.user.namaAnak == listSiswa[i]['nama'])
+    for (i = 0; i < (listSiswa?.length ?? 0); i++) {
+      print('sebelum cek ' + this.widget.user.namaAnak.toString());
+      if (this.widget.user.namaAnak == listSiswa[i]['nama'])
         return listSiswa[i]['nis'];
     }
     return null;
@@ -42,8 +42,10 @@ class _OpsiRaporState extends State<OpsiRapor> {
         elevation: 5,
         child: new InkWell(
           onTap: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => PilihSmt(value, siswa)));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => PilihSmt(value, siswa)));
           },
           child: Padding(
             padding: EdgeInsets.fromLTRB(15, 5, 15, 15),
@@ -75,60 +77,57 @@ class _OpsiRaporState extends State<OpsiRapor> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: new FutureBuilder(
-          future: DefaultAssetBundle.of(context).loadString('lib/models/anak.json'),
-          builder: (context, snapshot) {
-            dynamic list = jsonDecode(snapshot.data.toString());
-            String x = chooser(list);
-            if ((x != null)) {
-              return ListView(children: <Widget>[
-                builder(context, "Akademik", x),
-                builder(context, "Asrama", x),
-                Container(
-                  //Catatan Khusus
-                  padding: EdgeInsets.fromLTRB(15, 15, 15, 0),
-                  height: 120,
-                  width: double.maxFinite,
-                  child: Card(
-                    elevation: 5,
-                    child: new InkWell(
-                      onTap: () {
-                        Navigator.pushNamed(context, '/catatanKhusus');
-                      },
-                      child: Padding(
-                        padding: EdgeInsets.fromLTRB(15, 5, 15, 15),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Text(
-                              'Catatan Khusus',
-                              style: TextStyle(
-                                fontSize: 20,
-                              ),
-                            ),
-                            Icon(
-                              Icons.assignment,
-                              color: Colors.green[800],
-                              size: 60,
-                            ),
-                          ],
+      future: DefaultAssetBundle.of(context).loadString('lib/models/anak.json'),
+      builder: (context, snapshot) {
+        dynamic list = jsonDecode(snapshot.data.toString());
+        String x = chooser(list);
+        if ((x != null)) {
+          return ListView(children: <Widget>[
+            builder(context, "Akademik", x),
+            builder(context, "Asrama", x),
+            Container(
+              //Catatan Khusus
+              padding: EdgeInsets.fromLTRB(15, 15, 15, 0),
+              height: 120,
+              width: double.maxFinite,
+              child: Card(
+                elevation: 5,
+                child: new InkWell(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/catatanKhusus');
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(15, 5, 15, 15),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text(
+                          'Catatan Khusus',
+                          style: TextStyle(
+                            fontSize: 20,
+                          ),
                         ),
-                      ),
+                        Icon(
+                          Icons.assignment,
+                          color: Colors.green[800],
+                          size: 60,
+                        ),
+                      ],
                     ),
                   ),
                 ),
-              ]);
-            } else {
-              return Center(
-                    child: Text(
-                      "Error",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 18
-                      ),
-                    )
-                  );
-            }
-          },
-        ));
+              ),
+            ),
+          ]);
+        } else {
+          return Center(
+              child: Text(
+            "Error",
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 18),
+          ));
+        }
+      },
+    ));
   }
 }

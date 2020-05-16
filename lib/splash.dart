@@ -1,13 +1,17 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:scbforparents/main.dart';
 
 class SplashScreen extends StatefulWidget {
+  final String state;
+  SplashScreen({Key key, @required this.state}) : super(key: key);
+
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  hexColor (String colorhexcode) {
+  hexColor(String colorhexcode) {
     String colornew = '0xff' + colorhexcode;
     colornew = colornew.replaceAll('#', '');
     int colorint = int.parse(colornew);
@@ -37,7 +41,11 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Image.asset("images/Logo-SCB.png", width:151, height: 168,),
+            Image.asset(
+              "images/Logo-SCB.png",
+              width: 151,
+              height: 168,
+            ),
             Padding(
               padding: EdgeInsets.only(top: 20.0),
             ),
@@ -54,4 +62,3 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 }
-
