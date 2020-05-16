@@ -38,20 +38,6 @@ class _BerandaState extends State<Beranda> {
       backgroundColor: backgroundColor,
       body: new ListView(
         children: <Widget>[
-//            Container(
-//              padding: EdgeInsets.all(5.0),
-//              decoration: BoxDecoration(
-//                border: Border.all(
-//                  color: Colors.grey,
-//                  width: 1,
-//                ),
-//                borderRadius: BorderRadius.circular(7.0),
-//                ),
-//              child: ListTile(
-//                leading: Icon(Icons.person, color: Colors.green,),
-//                title: Text('Selamat datang,\nOrang Tua Friska Meilani',),
-//              ),
-//            ),
           imageCarousel,
           new Padding(
               padding: const EdgeInsets.fromLTRB(30, 10.0, 30, 5.0),
