@@ -1,9 +1,19 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:scbforparents/pages/beranda.dart';
 import 'package:scbforparents/pages/profil.dart';
 import 'package:scbforparents/pages/opsiRapor.dart';
+import 'package:scbforparents/models/user.dart';
 
 class Home extends StatelessWidget {
+  // Home(this.jwt, this.payload);
+  // factory Home.fromBase64(String jwt) => Home(
+  //     jwt,
+  //     json.decode(
+  //         ascii.decode(base64.decode(base64.normalize(jwt.split(".")[1])))));
+  // final String jwt;
+  // final Map<String, dynamic> payload;
   @override
   Widget build(BuildContext context) {
     hexColor(String colorhexcode) {
