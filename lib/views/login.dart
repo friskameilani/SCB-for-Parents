@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'dart:io';
+import 'package:flutter/services.dart';
 import 'package:scbforparents/class/orangtua.dart';
 import 'package:scbforparents/controllers/api.dart';
 import 'package:flutter/material.dart';
@@ -17,38 +19,70 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   bool _isLoading = false;
+  bool _isHidePassword = true;
+  void _toggle() {
+    setState(() {
+      _isHidePassword = !_isHidePassword;
+    });
+  }
+
+  Future<bool> _onBackPressed() {
+    return showDialog(
+          context: context,
+          builder: (context) => new AlertDialog(
+            title: new Text('Are you sure?'),
+            content: new Text('Do you want to exit an App'),
+            actions: <Widget>[
+              new GestureDetector(
+                onTap: () => Navigator.of(context).pop(false),
+                child: Text("NO"),
+              ),
+              SizedBox(height: 16),
+              new GestureDetector(
+                onTap: () => SystemNavigator.pop(),
+                child: Text("YES"),
+              ),
+            ],
+          ),
+        ) ??
+        false;
+  }
+
   Orangtua user;
   @override
   Widget build(BuildContext context) {
     //Main App
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: _isLoading
-          ? Center(child: CircularProgressIndicator())
-          : ListView(
-              children: <Widget>[
-                SizedBox(
-                  height: 80,
-                ),
-                loginLogo(),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(32.0, 20.0, 32.0, 0.0),
-                  child: SafeArea(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        textBox(
-                            'Email', 'Masukkan Email Anda', emailController),
-                        textBox('Password', 'Masukkan Password Anda',
-                            passwordController),
-                        loginBtn(),
-                      ],
+    return WillPopScope(
+      onWillPop: _onBackPressed,
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        body: _isLoading
+            ? Center(child: CircularProgressIndicator())
+            : ListView(
+                children: <Widget>[
+                  SizedBox(
+                    height: 80,
+                  ),
+                  loginLogo(),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(32.0, 20.0, 32.0, 0.0),
+                    child: SafeArea(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          textBox(
+                              'Email', 'Masukkan Email Anda', emailController),
+                          pwBox('Password', 'Masukkan Password Anda',
+                              passwordController),
+                          loginBtn(),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
+                ],
+              ),
+      ),
     );
   }
 
@@ -102,6 +136,44 @@ class _LoginState extends State<Login> {
             height: 16.0,
           ),
         ]));
+  }
+
+  Container pwBox(String input, String hint, textcontroller) {
+    return Container(
+        child: Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          input,
+          style: TextStyle(fontSize: 16, color: Colors.grey[800]),
+        ),
+        SizedBox(
+          height: 10,
+        ),
+        TextFormField(
+          obscureText: _isHidePassword,
+          controller: textcontroller,
+          decoration: InputDecoration(
+              border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                  borderSide: BorderSide(color: Colors.green)),
+              hintText: hint,
+              suffixIcon: GestureDetector(
+                onTap: () {
+                  _toggle();
+                },
+                child: Icon(
+                  _isHidePassword ? Icons.visibility_off : Icons.visibility,
+                  color: _isHidePassword ? Colors.grey : Colors.green[800],
+                ),
+              )),
+        ),
+        SizedBox(
+          height: 16.0,
+        ),
+      ],
+    ));
   }
 
   //Login Button

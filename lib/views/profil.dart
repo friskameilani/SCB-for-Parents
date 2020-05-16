@@ -111,7 +111,7 @@ class _ProfilState extends State<Profil> {
                           print('Pressed');
                           // Auth().getName().then((value) => print(value));
                           await storage.delete(key: "jwt");
-                          Navigator.push(context,
+                          Navigator.pushReplacement(context,
                               MaterialPageRoute(builder: (context) => Login()));
                         },
                         textColor: Colors.white,
