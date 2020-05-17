@@ -43,5 +43,50 @@
               "Hafalan Surat Pilihan": 65
           }
       ]
-  }
+  },
+  {
+    "nis": "181907120",
+    "nama": "melania",
+    "nilai": [
+        {
+            "Tahsin": 80,
+            "Tahfiz": 70,
+            "Hafalan": 90,
+            "Hadist Tulis": 100,
+            "Hadist Lisan": 75,
+            "Mufrodat": 55,
+            "Doa dan Dzikir Tulis": 73,
+            "Doa dan Dzikir Lisan": 91,
+            "Asmaul Husna": 88,
+            "Talim": 90,
+            "Hafalan Surat Pilihan": 65
+        },
+        {
+            "Tahsin": 80,
+            "Tahfiz": 70,
+            "Hafalan": 90,
+            "Hadist Tulis": 100,
+            "Hadist Lisan": 75,
+            "Mufrodat": 55,
+            "Doa dan Dzikir Tulis": 73,
+            "Doa dan Dzikir Lisan": 91,
+            "Asmaul Husna": 88,
+            "Talim": 90,
+            "Hafalan Surat Pilihan": 65
+        },
+        {
+            "Tahsin": 80,
+            "Tahfiz": 70,
+            "Hafalan": 90,
+            "Hadist Tulis": 100,
+            "Hadist Lisan": 75,
+            "Mufrodat": 55,
+            "Doa dan Dzikir Tulis": 73,
+            "Doa dan Dzikir Lisan": 91,
+            "Asmaul Husna": 88,
+            "Talim": 90,
+            "Hafalan Surat Pilihan": 65
+        }
+    ]
+}
 ]
