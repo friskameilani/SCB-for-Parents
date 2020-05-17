@@ -1,10 +1,9 @@
-
-class catatan {
+class Catatan {
   String nis, jenis, tanggal, kegiatan, point;
 
-  catatan(this.nis, this.jenis, this.tanggal, this.kegiatan, this.point);
+  Catatan(this.nis, this.jenis, this.tanggal, this.kegiatan, this.point);
 
-  catatan.fromJson(Map<String, dynamic> json) {
+  Catatan.fromJson(Map<String, dynamic> json) {
     nis = json['nis'];
     jenis = json['jenis'];
     tanggal = json['tanggal'];
@@ -22,15 +21,3 @@ class catatan {
     return data;
   }
 }
-//class catatanList{
-//  List<catatan> breeds;
-//
-//  catatanList({this.breeds});
-//
-//  factory catatanList.fromJson(List<dynamic> json) {
-//    return catatanList(
-//        breeds: json
-//            .map((e) => catatan.fromJson(e as Map<String, dynamic>))
-//            .toList());
-//  }
-//}
