@@ -28,11 +28,7 @@ class _ProfilState extends State<Profil> {
 
   @override
   Widget build(BuildContext context) {
-    // final themeChange = Provider.of<DarkThemeProvider>(context);
-    // themeChange.darkTheme;
-
     return Scaffold(
-        backgroundColor: backgroundColor,
         body: Container(
             height: 690.0,
             child: FutureBuilder<User>(
@@ -122,27 +118,6 @@ class _ProfilState extends State<Profil> {
                         ),
                       ),
                     ),
-                    // Container(
-                    //   padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
-                    //   child: RaisedButton(
-                    //     onPressed: () {
-                    //       // if (themeChange.darkTheme == true) {
-                    //       //   themeChange.darkTheme = false;
-                    //       // } else if (themeChange.darkTheme == false) {
-                    //       //   themeChange.darkTheme = true;
-                    //       // }
-                    //     },
-                    //     color: scbgreen,
-                    //     textColor: Colors.white,
-                    //     child: Text(
-                    //       'Ganti Mode Warna',
-                    //       style: TextStyle(fontSize: 18),
-                    //     ),
-                    //     shape: RoundedRectangleBorder(
-                    //       borderRadius: new BorderRadius.circular(8.0),
-                    //     ),
-                    //   ),
-                    // ),
                   ]);
                 } else if (snapshot.hasError) {
                   return Text("Data tidak berhasil diambil");

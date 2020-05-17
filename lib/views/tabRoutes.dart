@@ -88,12 +88,12 @@ class Home extends StatelessWidget {
               ),
             ),
           ],
-          labelColor: scbgreen2,
+          labelColor: Colors.green[700],
           unselectedLabelColor: Colors.grey[700],
           indicatorSize: TabBarIndicatorSize.label,
-          indicatorColor: Colors.blue,
+          indicatorColor: Colors.transparent,
         ),
-        backgroundColor: Colors.white,
+        // backgroundColor: darktheme ? Colors.white : Colors.black,
       ),
     );
   }

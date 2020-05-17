@@ -109,6 +109,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        brightness: Brightness.light,
+        primaryColor: Colors.red,
+      ),
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
+        primarySwatch: Colors.red,
+        backgroundColor: Colors.black,
+      ),
       home: new FutureBuilder(
           future: jwtOrEmpty,
           builder: (context, snapshot) {
@@ -144,18 +153,6 @@ class MyApp extends StatelessWidget {
         '/profil': (context) => Profil(),
         '/catatanKhusus': (context) => CatatanKhusus(),
       },
-
-      // home: SplashScreen(),
-      // // home: CheckAuth(),
-      // routes: <String, WidgetBuilder>{
-      //   //Untuk sementara ubah dulu '/login': (context) => Login(), ke '/login': (context) => Dashboard(),
-      //   //Kecuali kalian mau coba fitur login pake server lokal, rest API-nya bisa di donlot di github gw
-      //   '/login': (context) => Login(),
-      //   '/home': (context) => Home(),
-      //   '/beranda': (BuildContext context) => Beranda(),
-      //   '/profil': (context) => Profil(),
-      //   '/catatanKhusus': (context) => CatatanKhusus(),
-      // },
     );
   }
 }
