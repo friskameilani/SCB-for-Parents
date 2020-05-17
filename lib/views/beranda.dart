@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:scbforparents/class/orangtua.dart';
 import 'package:scbforparents/components/kabarseputar_scb.dart';
+import 'package:scbforparents/models/user.dart';
+import 'package:scbforparents/network_utils/auth.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Beranda extends StatefulWidget {
@@ -15,6 +17,16 @@ class Beranda extends StatefulWidget {
 class _BerandaState extends State<Beranda> {
   var scbgreen = Color.fromRGBO(6, 123, 84, 1.0);
   var backgroundColor = Color.fromRGBO(242, 242, 242, 1);
+
+  Future<User> futureuser;
+
+  @override
+  void initState() {
+    //Initialize User State
+    super.initState();
+    //fetchUser function from Auth class
+    futureuser = Auth().fetchUser();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,24 +49,34 @@ class _BerandaState extends State<Beranda> {
     return Scaffold(
       body: new ListView(
         children: <Widget>[
-          Container(
-            padding: EdgeInsets.all(5.0),
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.grey,
-                width: 1,
-              ),
-              borderRadius: BorderRadius.circular(7.0),
-            ),
-            child: ListTile(
-              leading: Icon(
-                Icons.person,
-                color: Colors.green[600],
-              ),
-              title: Text(
-                'Selamat datang,\nOrang Tua Friska Meilani',
-              ),
-            ),
+          FutureBuilder<User>(
+            future: futureuser,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return Container(
+                  padding: EdgeInsets.all(5.0),
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.grey,
+                      width: 1,
+                    ),
+                    borderRadius: BorderRadius.circular(7.0),
+                  ),
+                  child: ListTile(
+                    leading: Icon(
+                      Icons.person,
+                      color: Colors.green[600],
+                    ),
+                    title: Text(
+                      'Selamat datang,\nOrang Tua ${snapshot.data.name}',
+                    ),
+                  ),
+                );
+              } else if (snapshot.hasError) {
+                return Text("Data tidak berhasil diambil");
+              }
+              return CircularProgressIndicator();
+            },
           ),
           imageCarousel,
           new Padding(
