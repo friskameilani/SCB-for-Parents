@@ -92,7 +92,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         brightness: Brightness.light,
-        primaryColor: Colors.red,
+        primaryColor: Colors.green,
       ),
       darkTheme: ThemeData(
         brightness: Brightness.dark,

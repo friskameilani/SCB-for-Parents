@@ -2,9 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:scbforparents/components/kabarseputar_scb.dart';
+import 'package:scbforparents/models/humasItems.dart';
 import 'package:scbforparents/models/user.dart';
 import 'package:scbforparents/controllers/auth.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:scbforparents/controllers/humasApi.dart';
 
 class Beranda extends StatefulWidget {
   // Beranda(this.user);
@@ -109,7 +111,10 @@ class _BerandaState extends State<Beranda> {
             child: FlatButton(
               color: scbgreen,
               splashColor: Colors.black,
-              onPressed: () => launch('https://www.cendekiabaznas.sch.id'),
+              // onPressed: () => launch('https://www.cendekiabaznas.sch.id'),
+              onPressed: () {
+                HumasApi().getBlogPost();
+              },
               child: Text('Show more'),
               textColor: Colors.white,
             ),
