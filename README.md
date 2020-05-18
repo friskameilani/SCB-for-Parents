@@ -13,3 +13,8 @@ flutter doctor
 email: melan123@gmail.com
 password: 12345678
 ```
+atau
+```
+email: kip123@gmail.com
+password: 12345678
+```
