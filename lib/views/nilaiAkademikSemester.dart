@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:scbforparents/class/siswa.dart';
 import 'dart:math';
 import 'dart:convert';
+import 'package:syncfusion_flutter_pdf/pdf.dart';
+import 'dart:io';
+import 'package:open_file/open_file.dart';
+import 'package:path_provider/path_provider.dart';
 
 class NilaiAkademikSmt extends StatefulWidget{
   NilaiAkademikSmt(this.semester, this.nis);
@@ -12,6 +17,40 @@ class NilaiAkademikSmt extends StatefulWidget{
 }
 
 class NilaiAkademikSmtState extends State<NilaiAkademikSmt>{
+  
+  Future<void> _createPDF() async {
+    //Create a new PDF document
+    PdfDocument document = PdfDocument();
+
+    //Add a new page and draw text
+    document.pages.add().graphics.drawString(
+      'Hello World!', PdfStandardFont(PdfFontFamily.helvetica, 20),
+      brush: PdfSolidBrush(PdfColor(0, 0, 0)),
+      bounds: Rect.fromLTWH(0, 0, 500, 50));
+
+    //Save the document
+    List<int> bytes = document.save();
+
+    //Dispose the document
+    document.dispose();
+
+    //Get external storage directory
+    final directory = await getExternalStorageDirectory();
+
+    //Get directory path
+    final path = directory.path;
+
+    //Create an empty file to write PDF data
+    File file = File('$path/Output.pdf');
+
+    //Write PDF data
+    await file.writeAsBytes(bytes, flush: true);
+
+    //Open the PDF document in mobile
+    OpenFile.open('$path/Output.pdf');
+
+  }
+
   var scbgreen = Color.fromRGBO(6, 123, 84, 1.0);
 
   static var matpel = [
@@ -174,7 +213,12 @@ class NilaiAkademikSmtState extends State<NilaiAkademikSmt>{
                     )
                   );
                 }
-      )
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _createPDF,
+        child: Text('Cetak'),
+        backgroundColor: scbgreen,
+      ),
     );
   }
 }
