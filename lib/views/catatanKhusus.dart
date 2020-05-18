@@ -146,34 +146,41 @@ class _CatatanKhususState extends State<CatatanKhusus> {
                       itemCount: 1,
                       itemBuilder: (_, index) {
                         return data != null
-                            ? Container(
-                                decoration: BoxDecoration(
-                                    color: Colors.green[50],
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(15))),
+                            ? Card(
+                                // decoration: BoxDecoration(
+                                //     // color: Colors.green[50],
+                                //     borderRadius:
+                                //         BorderRadius.all(Radius.circular(15))
+                                //         ),
                                 margin: EdgeInsets.fromLTRB(15, 15, 15, 15),
-                                padding: EdgeInsets.fromLTRB(0, 15, 0, 20),
-                                child: Column(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.stretch,
-                                  children: [
-                                    Container(
-                                        padding:
-                                            EdgeInsets.fromLTRB(20, 0, 20, 0),
-                                        child: Text(
-                                          "Kebaikan",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 18),
-                                        )),
-                                    _kebaikan(index)
-                                  ],
+                                // padding: EdgeInsets.fromLTRB(0, 15, 0, 20),
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(0, 15, 0, 20),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.stretch,
+                                    children: [
+                                      Container(
+                                          padding:
+                                              EdgeInsets.fromLTRB(20, 0, 20, 0),
+                                          child: Text(
+                                            "Kebaikan",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 18),
+                                          )),
+                                      _kebaikan(index)
+                                    ],
+                                  ),
                                 ))
-                            : Container(
-                                margin: EdgeInsets.fromLTRB(15, 100, 15, 15),
-                                child: Text("Tidak ada data",
-                                    textAlign: TextAlign.center),
-                              );
+                            :
+                            // Container(
+                            //     margin: EdgeInsets.fromLTRB(15, 100, 15, 15),
+                            //     child: Text("Tidak ada data",
+                            //         textAlign: TextAlign.center),
+                            //   );
+                            CircularProgressIndicator();
                       });
                 } else if (snapshot.hasError) {
                   return Text("Data tidak berhasil diambil");
