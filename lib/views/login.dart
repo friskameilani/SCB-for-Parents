@@ -1,15 +1,9 @@
-import 'dart:convert';
-import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:scbforparents/class/orangtua.dart';
-import 'package:scbforparents/controllers/api.dart';
 import 'package:flutter/material.dart';
-import 'package:scbforparents/views/beranda.dart';
 import 'package:scbforparents/views/tabRoutes.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:scbforparents/network_utils/auth.dart';
+import 'package:scbforparents/controllers/auth.dart';
 import 'package:scbforparents/main.dart';
 
 class Login extends StatefulWidget {
@@ -118,7 +112,7 @@ class _LoginState extends State<Login> {
             children: <Widget>[
           Text(
             input,
-            style: TextStyle(fontSize: 16, color: Colors.grey[800]),
+            style: TextStyle(fontSize: 16),
           ),
           SizedBox(
             height: 10,
@@ -146,7 +140,7 @@ class _LoginState extends State<Login> {
       children: [
         Text(
           input,
-          style: TextStyle(fontSize: 16, color: Colors.grey[800]),
+          style: TextStyle(fontSize: 16),
         ),
         SizedBox(
           height: 10,

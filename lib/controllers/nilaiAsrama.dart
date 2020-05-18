@@ -1,13 +1,34 @@
-import 'dart:convert';
-import 'package:http/http.dart' as http;
-
 class NilaiAsrama {
-  String nis, nama, aspek, tahsin, tahfiz, hafalan, hadistTulis,
-      hadistLisan, mufrodat, doaDzikirTulis, doaDzikirLisan, asmaulHusna, talim, hafalanSuratPilihan;
+  String nis,
+      nama,
+      aspek,
+      tahsin,
+      tahfiz,
+      hafalan,
+      hadistTulis,
+      hadistLisan,
+      mufrodat,
+      doaDzikirTulis,
+      doaDzikirLisan,
+      asmaulHusna,
+      talim,
+      hafalanSuratPilihan;
 
-  NilaiAsrama(this.nis, this.nama, this.aspek,
-      this.tahsin, this.tahfiz, this.hafalan, this.hadistTulis, this.hadistLisan, this.mufrodat,
-      this.doaDzikirTulis, this.doaDzikirLisan, this.asmaulHusna, this.talim, this.hafalanSuratPilihan);
+  NilaiAsrama(
+      this.nis,
+      this.nama,
+      this.aspek,
+      this.tahsin,
+      this.tahfiz,
+      this.hafalan,
+      this.hadistTulis,
+      this.hadistLisan,
+      this.mufrodat,
+      this.doaDzikirTulis,
+      this.doaDzikirLisan,
+      this.asmaulHusna,
+      this.talim,
+      this.hafalanSuratPilihan);
 
   NilaiAsrama.fromJson(Map<String, dynamic> json) {
     nis = json['nis'];

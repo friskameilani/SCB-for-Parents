@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:scbforparents/class/darkmode.dart';
-import 'package:scbforparents/network_utils/auth.dart';
+import 'package:scbforparents/controllers/auth.dart';
 import 'package:scbforparents/models/user.dart';
 import 'package:scbforparents/main.dart';
 import 'package:scbforparents/views/login.dart';

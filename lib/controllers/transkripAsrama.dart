@@ -1,12 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:flutter/services.dart' as rootBundle;
 import 'package:http/http.dart' as http;
 
 // ~~~~~~~INI SALAH, TAPI JANGAN DIAPUS DULU YAAA~~~~~
 
-class NilaiAsramaAPI
-{
+class NilaiAsramaAPI {
 //  String nis;
 //  String aspek;
 //
@@ -39,11 +37,11 @@ class NilaiAsramaAPI
   List data;
 
   @override
-  void initState(){
+  void initState() {
     this.getJsonData();
   }
 
-  Future<NilaiAsramaAPI> getJsonData() async{
+  Future<NilaiAsramaAPI> getJsonData() async {
     var response = await http.get(url);
     data = jsonDecode(response.body);
     var dataAsrama = (data as Map<String, dynamic>)['aspek'];

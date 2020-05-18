@@ -1,6 +1,6 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert' show ascii, base64, base64Url, json, utf8;
+import 'dart:convert' show base64Url, json, utf8;
 import 'package:scbforparents/models/user.dart';
 
 class Auth {

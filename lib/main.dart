@@ -1,21 +1,13 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
 import 'package:scbforparents/class/orangtua.dart';
 import 'package:scbforparents/views/beranda.dart';
 import 'package:scbforparents/views/catatanKhusus.dart';
-import 'package:scbforparents/splash.dart';
 import 'package:scbforparents/views/login.dart';
 import 'package:scbforparents/views/profil.dart';
 import 'package:scbforparents/views/tabRoutes.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'dart:convert' show json, base64, ascii;
-import 'class/darkmode.dart';
-import 'class/themedata.dart';
-import 'network_utils/auth.dart';
+import 'controllers/auth.dart';
 
 const SERVER_IP = 'https://sso.kato.studio/sso';
 final storage = FlutterSecureStorage();
@@ -23,7 +15,6 @@ final storage = FlutterSecureStorage();
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  DarkThemeProvider themeChangeProvider = new DarkThemeProvider();
   // Orangtua user = new Orangtua(
   //   nama: "Friska Meilani",
   //   nomorHp: "081234567890",
@@ -38,16 +29,6 @@ class MyApp extends StatelessWidget {
   //   return this.user;
   // }
   @override
-  void initState() {
-    // super.initState();
-    getCurrentAppTheme();
-  }
-
-  void getCurrentAppTheme() async {
-    themeChangeProvider.darkTheme =
-        await themeChangeProvider.darkThemePreference.getTheme();
-  }
-
   Orangtua getter(AsyncSnapshot<Orangtua> snapshot) {
     return snapshot.data;
   }
@@ -138,6 +119,12 @@ class MyApp extends StatelessWidget {
                 //SplashScreen-nya mengarah ke home
                 // return SplashScreen(state: 'home');
               } else {
+                //========================================================================//
+                //HAVEN'T BEEN TESTED SO IDK IF WE CAN USE THIS YET
+                if (storage.read(key: "jwt") != null) {
+                  storage.delete(key: "jwt");
+                }
+                //=======================================================================//
                 return Login();
                 //SplashScreen-nya mengarah ke login
                 // return SplashScreen(state: 'login');
