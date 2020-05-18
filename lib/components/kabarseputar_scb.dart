@@ -4,6 +4,65 @@ import 'package:flutter/services.dart' show rootBundle;
 import 'dart:async' show Future;
 import 'dart:convert';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
+
+//class KabarSeputarSCB extends StatelessWidget {
+//  final String query = r"""
+//                    query ($skip: Int!, $limit:Int!) {
+//                      allContentfulBlogPost(
+//                      sort: {fields: title, order: DESC}
+//                      skip : $skip
+//                      limit: $limit
+//                      ) {
+//                        edges {
+//                          node {
+//                            id
+//                            title
+//                            slug
+//                            publishedDate
+//                            gambarArtikel{
+//                              file{url}
+//                            }
+//                          }
+//                        }
+//                      }
+//                    }
+//                  """;
+//  @override
+//  Widget build(BuildContext context) {
+//    return Scaffold(
+//        appBar: AppBar(
+//        title: Text("GraphlQL Client"),
+//    ),
+//    body:
+//    Query(
+//        options: QueryOptions(
+//          documentNode: gql(query),),
+//      builder: (
+//          QueryResult result, {
+//            VoidCallback refetch,
+//          }) {
+//        if (result.loading) {
+//          return Center(child: CircularProgressIndicator());
+//        }
+//        if (result.data == null) {
+//          return Text("No Data Found !");
+//        }
+//        return ListView.builder(
+//          itemBuilder: (BuildContext context, int index) {
+//            return ListTile(
+//              title:
+//              Text(result.data['edges']['node'][index]['title']),
+//            );
+//          },
+//          itemCount: result.data['edges']['node'].length,
+//        );
+//      },
+//    )
+//    );
+//  }
+//}
+
 
 class KabarSeputarSCB extends StatefulWidget {
   @override

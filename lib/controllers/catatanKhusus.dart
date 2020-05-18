@@ -1,23 +1,21 @@
 class Catatan {
-  String nis, jenis, tanggal, kegiatan, point;
+  String id, jenis, keterangan, poin;
 
-  Catatan(this.nis, this.jenis, this.tanggal, this.kegiatan, this.point);
+  Catatan(this.id, this.jenis, this.keterangan, this.poin);
 
   Catatan.fromJson(Map<String, dynamic> json) {
-    nis = json['nis'];
-    jenis = json['jenis'];
-    tanggal = json['tanggal'];
-    kegiatan = json['kegiatan'];
-    point = json['point'];
+    id = json['data']['id'];
+    jenis = json['data']['jenis'];
+    keterangan = json['data']['keterangan'];
+    poin = json['poin'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['nis'] = this.nis;
-    data['jenis'] = this.jenis;
-    data['tanggal'] = this.tanggal;
-    data['kegiatan'] = this.kegiatan;
-    data['point'] = this.point;
+    data['data']['nis'] = this.id;
+    data['data']['jenis'] = this.jenis;
+    data['data']['kegiatan'] = this.keterangan;
+    data['data']['point'] = this.poin;
     return data;
   }
 }

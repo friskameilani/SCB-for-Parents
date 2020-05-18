@@ -4,8 +4,8 @@ import 'package:flutter/rendering.dart';
 import 'package:scbforparents/controllers/catatanKhusus.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:flutter/services.dart' show rootBundle;
-
+import 'package:scbforparents/models/user.dart';
+import 'package:scbforparents/network_utils/auth.dart';
 
 class CatatanKhusus extends StatefulWidget {
   @override
@@ -15,45 +15,49 @@ class CatatanKhusus extends StatefulWidget {
 class _CatatanKhususState extends State<CatatanKhusus> {
   var scbgreen = Color.fromRGBO(6, 123, 84, 1.0);
   var scbgreen2 = Color.fromRGBO(1, 83, 47, 1);
+  static var id;
 
-  final String url = "lib/models/prestasiDanPelanggaran.json";
-  List<Catatan> catatanSiswa = [];
-  var prestasiList = [];
-  var pelanggaranList = [];
+  Future<User> futureuser;
 
   @override
   void initState() {
+    //Initialize User State
+    super.initState();
+    //fetchUser function from Auth class
+    futureuser = Auth().fetchUser();
     loadData();
   }
 
+  final String url = "http://asrama.systemof.fail/api/poinSiswa/" + id.toString();
+  List data;
+  var kebaikanList = [];
+  var keburukanList = [];
+
   Future<String> loadData() async {
-    // var nis = {'nis': 'g64170089'};
-//    http.Response jsonText= await http.post(url, body: {"jenis": "prestasi"});
-    var jsonText = await rootBundle.loadString(url);
-    var dataText = json.decode(jsonText);
-    print(dataText);
-    var data;
-    for (data in dataText) {
-      catatanSiswa.add(new Catatan(
-          data['nis'], data['jenis'], data['tanggal'], data['kegiatan'], data['point']));
-    }
+    var response = await http.get(Uri.encodeFull(url));
+    setState(() {
+      var toJsonData = json.decode(response.body);
+      data = toJsonData['data'];
+    });
+
+    print(data);
+    print(data.length);
     var item;
-    for(item in dataText){
-      if (item['jenis'] == 'Prestasi') {
-        prestasiList.add(item);
+    for(item in data){
+      if (item['jenis'] == 'kebaikan') {
+        kebaikanList.add(item);
       }
       else {
-        pelanggaranList.add(item);
+        keburukanList.add(item);
       }
     }
-    print(prestasiList);
-    print(pelanggaranList);
-    setState(() {});
+    print(kebaikanList);
+    print(keburukanList);
 
     return 'success';
   }
 
-  Widget _prestasi(index) {
+  Widget _kebaikan(index) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -61,42 +65,36 @@ class _CatatanKhususState extends State<CatatanKhusus> {
             columnSpacing: 20,
             columns: [
               DataColumn(
-                label: Text('Tanggal'),
+                label: Text('Keterangan'),
               ),
               DataColumn(
-                label: Text('Kegiatan'),
-              ),
-              DataColumn(
-                label: Text('Point'),
-//              numeric: false,
-//              tooltip: "",
+                label: Text('Poin'),
               ),
             ],
-            rows: prestasiList.map((element) =>
+            rows: kebaikanList.map((element) =>
                 DataRow(
                     cells: <DataCell> [
-                      DataCell(Text(element['tanggal'])),
                       DataCell(Container(
-                        width: 190, //SET WIDTH
+                        width: 240, //SET WIDTH
                         child: Text(
-                            element['kegiatan']
+                            element['keterangan']
                         ),
                       )),
-                      DataCell(Text(element['point'])),
+                      DataCell(Text(element['poin'].toString())),
                     ]),).toList(),
           ),
-          _pelanggaran(1)
+          _keburukan(1)
         ],
         );
     }
 
-  Widget _pelanggaran(index) {
+  Widget _keburukan(index) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Container(
             padding: EdgeInsets.fromLTRB(20, 50, 20, 0),
-            child: Text("Pelanggaran",
+            child: Text("Keburukan",
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),)
         ),
         Container(
@@ -104,96 +102,26 @@ class _CatatanKhususState extends State<CatatanKhusus> {
               columnSpacing: 20,
               columns: [
                 DataColumn(
-                  label: Text('Tanggal'),
+                  label: Text('Keterangan'),
                 ),
                 DataColumn(
-                  label: Text('Kegiatan'),
-                ),
-                DataColumn(
-                  label: Text('Point'),
+                  label: Text('Poin'),
                 ),
               ],
-              rows: pelanggaranList.map((element) =>
+              rows: keburukanList.map((element) =>
                   DataRow(
                       cells: <DataCell> [
-                        DataCell(Text(element['tanggal'])),
                         DataCell(Container(
-                          width: 190, //SET width
+                          width: 240, //SET width
                           child: Text(
-                              element['kegiatan']
+                              element['keterangan']
                           ),
                         )),
-                        DataCell(Text(element['point'])),
+                        DataCell(Text(element['poin'].toString())),
                       ]),).toList(),
             ),
         )
     ]
-    );
-  }
-
-//  Widget _pelanggaran(index) {
-//    pelanggaran += 1;
-//    if(pelanggaran==1) {
-//      return Container(
-//        child: Column(
-//          crossAxisAlignment: CrossAxisAlignment.stretch,
-//          children: [
-//            Container(
-//              padding: EdgeInsets.fromLTRB(20, 15, 20, 10),
-//              child: Text("Pelanggaran", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
-//            ),
-//            Container(
-//              color: Colors.green[50],
-//              padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
-//              child: Row(
-//                children: [
-//                  Expanded(flex: 2, child: Text("Tanggal")),
-//                  Expanded(flex: 4, child: Text("Kegiatan")),
-//                  Expanded(flex: 1, child: Text("Point")),
-//                ],),
-//            ),
-//            Container(
-//              padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
-//              child: Row(
-//                children: [
-//                  Expanded(flex: 2, child: Text(catatanSiswa[index].tanggal),),
-//                  Expanded(flex: 4, child: Text(catatanSiswa[index].kegiatan),),
-//                  Expanded(flex: 1, child: Text(catatanSiswa[index].point),),
-//                ],),
-//            )
-//          ],
-//        ),
-//      );
-//    }
-//    else {
-//      return Container(
-//        padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
-//        child: Row(
-//          children: [
-//            Expanded(flex: 2, child: Text(catatanSiswa[index].tanggal),),
-//            Expanded(flex: 4, child: Text(catatanSiswa[index].kegiatan),),
-//            Expanded(flex: 1, child: Text(catatanSiswa[index].point),),
-//          ],),
-//      );
-//    }
-//  }
-  fungsiX(jenis, fungsi){
-    Container(
-        decoration: BoxDecoration(
-            color: Colors.green[50],
-            borderRadius: BorderRadius.all(Radius.circular(15))),
-        margin: EdgeInsets.fromLTRB(15, 5, 15, 15),
-        padding: EdgeInsets.fromLTRB(0, 15, 0, 20),
-        child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-              padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-              child: Text("$jenis",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),)
-              ),
-              fungsi,
-            ])
     );
   }
 
@@ -210,34 +138,46 @@ class _CatatanKhususState extends State<CatatanKhusus> {
         backgroundColor: scbgreen2,
     ),
 
-      body: ListView.builder(
-            itemCount: 1,
-            itemBuilder: (_, index) {
-              return catatanSiswa.length != 0?
-              Container(
-                decoration: BoxDecoration(
-                    color: Colors.green[50],
-                    borderRadius: BorderRadius.all(Radius.circular(15))),
-                margin: EdgeInsets.fromLTRB(15, 15, 15, 15),
-                padding: EdgeInsets.fromLTRB(0, 15, 0, 20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Container(
-                        padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-                        child: Text("Prestasi",
-                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),)
-                      ),
-                      _prestasi(index)
-                    ],
-                  ))
-                  : Container(
-                    margin: EdgeInsets.fromLTRB(15, 100, 15, 15),
+      body: Container(
+        child: FutureBuilder<User>(
+          future: futureuser,
+            builder: (context, snapshot){
+            if(snapshot.hasData){
+              id = snapshot.data.name;
+              print(id);
+              return ListView.builder(
+                  itemCount: 1,
+                  itemBuilder: (_, index) {
+                    return data != null?
+                    Container(
+                        decoration: BoxDecoration(
+                            color: Colors.green[50],
+                            borderRadius: BorderRadius.all(Radius.circular(15))),
+                        margin: EdgeInsets.fromLTRB(15, 15, 15, 15),
+                        padding: EdgeInsets.fromLTRB(0, 15, 0, 20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            Container(
+                                padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                                child: Text("Kebaikan",
+                                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),)
+                            ),
+                            _kebaikan(index)
+                          ],
+                        ))
+                    : Container(
+                        margin: EdgeInsets.fromLTRB(15, 100, 15, 15),
                         child: Text("Tidak ada data",
                             textAlign: TextAlign.center),
-                    );
+                      );
+                    });
+            } else if (snapshot.hasError) {
+                return Text("Data tidak berhasil diambil");
+                }
+                return id;
             })
-
+      ),
     );
   }
 }
