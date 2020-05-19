@@ -1,9 +1,18 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:scbforparents/main.dart';
+
+void main() => runApp(new MaterialApp(
+  home: new SplashScreen(),
+  routes: <String, WidgetBuilder>{
+    '/main': (BuildContext context) => new MyApp()
+  },
+)
+);
 
 class SplashScreen extends StatefulWidget {
-  final String state;
-  SplashScreen({Key key, @required this.state}) : super(key: key);
+//  final String state;
+//  SplashScreen({Key key, @required this.state}) : super(key: key);
 
   @override
   _SplashScreenState createState() => _SplashScreenState();
@@ -23,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void navigationPage() {
-    Navigator.of(context).pushReplacementNamed('/login');
+    Navigator.of(context).pushReplacementNamed('/main');
   }
 
   @override

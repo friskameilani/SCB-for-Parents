@@ -63,7 +63,7 @@ class _ProfilState extends State<Profil> {
                                       'Alamat'),
                                 ]))),
                     Card(
-                        margin: EdgeInsets.all(10),
+                        margin: EdgeInsets.fromLTRB(10, 0, 10, 10),
                         child: Padding(
                             padding: const EdgeInsets.fromLTRB(
                                 20.0, 20.0, 20.0, 8.0),

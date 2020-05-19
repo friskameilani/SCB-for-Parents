@@ -175,11 +175,19 @@ class _CatatanKhususState extends State<CatatanKhusus> {
                                   ),
                                 ))
                             :
-                             Card(
-                                 margin: EdgeInsets.fromLTRB(15, 100, 15, 15),
-                                 child: Text("Tidak ada data",
-                                     textAlign: TextAlign.center),
-                               );
+                             Container(
+                               height: 200,
+                               child: Card(
+                                 margin: EdgeInsets.all(15),
+                                 child: Column(
+                                   mainAxisAlignment: MainAxisAlignment.center,
+                                   children: [
+                                     Text("Tidak ada data",
+                                         textAlign: TextAlign.center),
+                                   ],
+                                 ),
+                               )
+                             );
 //                            CircularProgressIndicator();
                       });
                 } else if (snapshot.hasError) {
