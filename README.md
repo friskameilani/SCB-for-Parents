@@ -25,7 +25,34 @@ Orang tua dapat download nilai akademik dan non akademik siswa dalam bentuk pdf
 Fitur dark mode responsif ketika setting handphone user malam hari. 
 
 ### Konsep OOP yang digunakan
+#### Encapsulation
+```
+class Auth {
+  var storage = FlutterSecureStorage();
 
+  Future<User> fetchUser() async {
+    var token = await storage.read(key: "jwt");
+    var data = parseJwt(token);
+    return User.fromJson(data);
+  }
+
+  get getEmail async {
+    var token = await storage.read(key: "jwt");
+    var data = parseJwt(token);
+    var email = data['email'];
+    return email;
+  }
+
+  get getName async {
+    var token = await storage.read(key: "jwt");
+    var data = parseJwt(token);
+    var name = data['name'];
+    return name;
+  }
+...
+} 
+```
+Pada class Auth kita variabel membuat getter untuk 
 ### Tipe Desain Pengembangan yang digunakan
 Pada aplikasi SCB-For-Parents kami menggunakan tiga design pattern dalam pengembangan yaitu:
 1. MVC (Model View Controller)
