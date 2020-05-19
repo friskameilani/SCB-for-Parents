@@ -25,6 +25,12 @@ Orang tua dapat download nilai akademik dan non akademik siswa dalam bentuk pdf
 Fitur dark mode responsif ketika setting handphone user malam hari. 
 
 ### Konsep OOP yang digunakan
+#### Abstraction
+
+#### Polymorphism
+
+#### Inheritance
+
 #### Encapsulation
 ```
 class Auth {
