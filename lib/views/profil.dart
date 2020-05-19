@@ -95,35 +95,35 @@ class _ProfilState extends State<Profil> {
                                     'Asrama',
                                   ),
                                 ]))),
-                    Container(
-                      padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
-                      child: RaisedButton(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(5.0),
-                        ),
-                        onPressed: () async {
-                          // print(data['orangtua']);
-                          print('Pressed');
-                          // Auth().getnis().then((value) => print(value));
-                          await storage.delete(key: "jwt");
-                          Navigator.pushReplacement(context,
-                              MaterialPageRoute(builder: (context) => Login()));
-                        },
-                        textColor: Colors.white,
-                        color: scbgreen,
-                        child: Text(
-                          'Keluar',
-                          style: TextStyle(fontSize: 18),
+                      Container(
+                        padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
+                        child: RaisedButton(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(5.0),
+                          ),
+                          onPressed: () async {
+                            // print(data['orangtua']);
+                            print('Pressed');
+                            // Auth().getnis().then((value) => print(value));
+                            await storage.delete(key: "jwt");
+                            Navigator.pushReplacement(context,
+                                MaterialPageRoute(builder: (context) => Login()));
+                          },
+                          textColor: Colors.white,
+                          color: scbgreen,
+                          child: Text(
+                            'Keluar',
+                            style: TextStyle(fontSize: 18),
+                          ),
                         ),
                       ),
-                    ),
-                  ]);
-                } else if (snapshot.hasError) {
-                  return Text("Data tidak berhasil diambil");
-                }
-                return CircularProgressIndicator();
-              },
-            )));
+                    ]);
+                  } else if (snapshot.hasError) {
+                    return Text("Data tidak berhasil diambil");
+                  }
+                  return CircularProgressIndicator();
+                },
+              )));
   }
 
   Container cardText(String big, String small) {
