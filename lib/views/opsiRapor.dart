@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:scbforparents/class/orangtua.dart';
+import 'package:scbforparents/views/catatanKhusus.dart';
 import 'package:scbforparents/views/pilihSmt.dart';
 import 'package:scbforparents/class/siswa.dart';
 
@@ -94,7 +95,9 @@ class _OpsiRaporState extends State<OpsiRapor> {
                 elevation: 5,
                 child: new InkWell(
                   onTap: () {
-                    Navigator.pushNamed(context, '/catatanKhusus');
+                    Navigator.push(context, 
+                      MaterialPageRoute(builder: (context)=>CatatanKhususPage(x)));
+                    print(x);
                   },
                   child: Padding(
                     padding: EdgeInsets.fromLTRB(15, 5, 15, 15),
