@@ -81,7 +81,7 @@ class NilaiAsramaSmtState extends State<NilaiAsramaSmt> {
         page: document.pages.add(), bounds: const Rect.fromLTWH(0, 0, 0, 0));
 
     //Menyimpan file PDF
-    //File('Rapor Non-Akademik.pdf').writeAsBytes(document.save());
+    //File('Rapor Asrama.pdf').writeAsBytes(document.save());
     List<int> bytes = document.save();
 
     document.dispose();
@@ -92,13 +92,13 @@ class NilaiAsramaSmtState extends State<NilaiAsramaSmt> {
     final path = directory.path;
 
     //Membuat file kosong untuk menyimpan file PDF
-    File file = File('$path/Nilai Non-Akademik.pdf');
+    File file = File('$path/Nilai Asrama.pdf');
 
     //Menyimpan file PDF
     await file.writeAsBytes(bytes, flush: true);
 
     //Membuka file PDF
-    OpenFile.open('$path/Nilai Non-Akademik.pdf');
+    OpenFile.open('$path/Nilai Asrama.pdf');
   }
   var scbgreen = Color.fromRGBO(6, 123, 84, 1.0);
 

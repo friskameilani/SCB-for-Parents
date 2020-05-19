@@ -63,7 +63,7 @@ class _ProfilState extends State<Profil> {
                                       'Alamat'),
                                 ]))),
                     Card(
-                        margin: EdgeInsets.all(10),
+                        margin: EdgeInsets.fromLTRB(10, 0, 10, 10),
                         child: Padding(
                             padding: const EdgeInsets.fromLTRB(
                                 20.0, 20.0, 20.0, 8.0),
@@ -82,7 +82,7 @@ class _ProfilState extends State<Profil> {
                                   ),
                                   cardText('Melan', 'Nama'),
                                   cardText(snapshot.data.email, 'Email'),
-                                  cardText(snapshot.data.name, 'NIS'),
+                                  cardText(snapshot.data.nis, 'NIS'),
                                   cardText('0059105165', 'NISN'),
                                   cardText('Perempuan', 'Jenis Kelamin'),
                                   cardText(
@@ -104,7 +104,7 @@ class _ProfilState extends State<Profil> {
                         onPressed: () async {
                           // print(data['orangtua']);
                           print('Pressed');
-                          // Auth().getName().then((value) => print(value));
+                          // Auth().getnis().then((value) => print(value));
                           await storage.delete(key: "jwt");
                           Navigator.pushReplacement(context,
                               MaterialPageRoute(builder: (context) => Login()));

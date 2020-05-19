@@ -186,7 +186,7 @@ class _LoginState extends State<Login> {
           if (jwt != null) {
             storage.write(key: "jwt", value: jwt);
             Navigator.push(
-                context, MaterialPageRoute(builder: (context) => Home()));
+                context, MaterialPageRoute(builder: (context) => Home(jwt)));
           } else {
             displayDialog(context, "An Error Occured",
                 "No account was found matching that username and password");

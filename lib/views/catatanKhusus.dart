@@ -147,11 +147,11 @@ class _CatatanKhususState extends State<CatatanKhusus> {
                       itemBuilder: (_, index) {
                         return data != null
                             ? Card(
-//                                 decoration: BoxDecoration(
-//                                     // color: Colors.green[50],
-//                                     borderRadius:
-//                                         BorderRadius.all(Radius.circular(15))
-//                                         ),
+                                // decoration: BoxDecoration(
+                                //     // color: Colors.green[50],
+                                //     borderRadius:
+                                //         BorderRadius.all(Radius.circular(15))
+                                //         ),
                                 margin: EdgeInsets.fromLTRB(15, 15, 15, 15),
                                 // padding: EdgeInsets.fromLTRB(0, 15, 0, 20),
                                 child: Padding(
@@ -175,17 +175,17 @@ class _CatatanKhususState extends State<CatatanKhusus> {
                                   ),
                                 ))
                             :
-                             Card(
-                                 margin: EdgeInsets.fromLTRB(15, 100, 15, 15),
-                                 child: Text("Tidak ada data",
-                                     textAlign: TextAlign.center),
-                               );
-//                            CircularProgressIndicator();
+                            // Container(
+                            //     margin: EdgeInsets.fromLTRB(15, 100, 15, 15),
+                            //     child: Text("Tidak ada data",
+                            //         textAlign: TextAlign.center),
+                            //   );
+                            CircularProgressIndicator();
                       });
                 } else if (snapshot.hasError) {
                   return Text("Data tidak berhasil diambil");
                 }
-                return id;
+                return Text("Data is NULL");
               })),
     );
   }
