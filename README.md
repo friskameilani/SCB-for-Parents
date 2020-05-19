@@ -25,40 +25,38 @@ Orang tua dapat download nilai akademik dan non akademik siswa dalam bentuk pdf
 Fitur dark mode responsif ketika setting handphone user malam hari. 
 
 ### Konsep OOP yang digunakan
+
 #### Abstraction
-
 #### Polymorphism
-
 #### Inheritance
 
 #### Encapsulation
 ```
-class Auth {
-  var storage = FlutterSecureStorage();
+class MyApp extends StatelessWidget {
 
-  Future<User> fetchUser() async {
-    var token = await storage.read(key: "jwt");
-    var data = parseJwt(token);
-    return User.fromJson(data);
-  }
+  Future<String> get jwtOrEmpty async {
+    var jwt = await storage.read(key: "jwt");
+    if (jwt == null) return "";
+    return jwt;
 
-  get getEmail async {
-    var token = await storage.read(key: "jwt");
-    var data = parseJwt(token);
-    var email = data['email'];
-    return email;
-  }
-
-  get getName async {
-    var token = await storage.read(key: "jwt");
-    var data = parseJwt(token);
-    var name = data['name'];
-    return name;
-  }
-...
-} 
+  @override
+  Widget build(BuildContext context) {
+   ...
+      home: new FutureBuilder(
+          future: jwtOrEmpty,
+          builder: (context, snapshot) {
+            print(snapshot.hasData);
+            if (!snapshot.hasData) {
+              return CircularProgressIndicator();
+            }
+       ...
+       }
+       ..
+    )
+  ...
 ```
-Pada class Auth kita variabel membuat getter untuk 
+Membuat sebuah getter di class MyApp dan digunakan lagi sebagai kondisi saat membuat sebuah Future Builder yang baru.
+
 ### Tipe Desain Pengembangan yang digunakan
 Pada aplikasi SCB-For-Parents kami menggunakan tiga design pattern dalam pengembangan yaitu:
 1. MVC (Model View Controller)
