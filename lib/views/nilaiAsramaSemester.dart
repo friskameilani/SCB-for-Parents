@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:syncfusion_flutter_pdf/pdf.dart';
+import 'package:intl/intl.dart';
 import 'dart:io';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
@@ -17,68 +18,54 @@ class NilaiAsramaSmt extends StatefulWidget {
 }
 
 class NilaiAsramaSmtState extends State<NilaiAsramaSmt> {
+  
+  var table = <DataRow>[];
+
   Future<void> _createPDF() async {
     //Membuat file PDF
     PdfDocument document = PdfDocument();
 
+    PdfPage page = document.pages.add();
+    DateTime now = DateTime.now();
     //Mebuat tabel nilai
     DataTable dataTable = DataTable(columns: const <DataColumn>[
-      DataColumn(label: Text('Aspek Materi Keasramaan')),
-      DataColumn(label: Text('Nilai')),
-    ], rows: const <DataRow>[
-      DataRow(cells: <DataCell>[
-        DataCell(Text('Tahsin')),
-        DataCell(Text('B'))
-      ]),
-      DataRow(cells: <DataCell>[
-        DataCell(Text('Tahfiz')),
-        DataCell(Text('C'))
-      ]),
-      DataRow(cells: <DataCell>[
-        DataCell(Text('Hafalan')),
-        DataCell(Text('A'))
-      ]),
-        DataRow(cells: <DataCell>[
-        DataCell(Text('Hadist Tulis')),
-        DataCell(Text('A'))
-      ]),
-        DataRow(cells: <DataCell>[
-        DataCell(Text('Hadist Lisan')),
-        DataCell(Text('C'))
-      ]),
-        DataRow(cells: <DataCell>[
-        DataCell(Text('Mufrodat')),
-        DataCell(Text('E'))
-      ]),
-        DataRow(cells: <DataCell>[
-        DataCell(Text('Doa dan Dzikir Tulis')),
-        DataCell(Text('C'))
-      ]),
-        DataRow(cells: <DataCell>[
-        DataCell(Text('Doa dan Dzikir Lisan')),
-        DataCell(Text('A'))
-      ]),
-        DataRow(cells: <DataCell>[
-        DataCell(Text('Asmaul Husna')),
-        DataCell(Text('A'))
-      ]),
-        DataRow(cells: <DataCell>[
-        DataCell(Text('Ta`lim')),
-        DataCell(Text('A'))
-      ]),
-        DataRow(cells: <DataCell>[
-        DataCell(Text('Hafalan Surat Pilihan')),
-        DataCell(Text('D'))
-      ]),
-    ]);
+      DataColumn(label: Text('Aspek Materi Keasramaan', style: TextStyle(fontWeight: FontWeight.bold))),
+      DataColumn(label: Text('Predikat', style: TextStyle(fontWeight: FontWeight.bold),)),
+      ], rows: this.table
+    );
 
     //Membuat PdfGrid
     PdfGrid grid = PdfGrid();
-
+    PdfGridStyle gridStyle = PdfGridStyle(
+      cellSpacing: 2,
+      cellPadding: PdfPaddings(left: 2, right: 3, top: 4, bottom: 5),
+      font: PdfStandardFont(PdfFontFamily.helvetica, 12),
+    );
+    grid.rows.applyStyle(gridStyle);
     grid.dataSource = dataTable;
-
+    grid.columns[1].width = 70;
+    grid.style.cellPadding = PdfPaddings(left: 5, top: 5, right: 5, bottom: 5);
     grid.draw(
-        page: document.pages.add(), bounds: const Rect.fromLTWH(0, 0, 0, 0));
+        page: page, bounds: const Rect.fromLTWH(0, 0, 0, 0));
+
+    String text = """
+    Bogor, ${DateFormat('dd MMM yyyy').format(now)},
+
+
+
+
+
+    Kepala Sekolah SMP Cendekia BAZNAS
+    """;
+    page.graphics.drawString(
+      text, PdfStandardFont(PdfFontFamily.helvetica, 12),
+      brush: PdfBrushes.black,
+      bounds: Rect.fromLTWH(
+          0, 550, page.getClientSize().width, page.getClientSize().height),
+      format: PdfStringFormat(
+          alignment: PdfTextAlignment.right,
+          paragraphIndent: 35));
+
 
     //Menyimpan file PDF
     //File('Rapor Asrama.pdf').writeAsBytes(document.save());
@@ -193,6 +180,12 @@ class NilaiAsramaSmtState extends State<NilaiAsramaSmt> {
      else{
        aspekPenilaian = (aspek[i] != 'Talim')?aspek[i]:"Ta'lim";
        verdict = verdicts[i];
+       this.table.add(
+          DataRow(cells: <DataCell>[
+          DataCell(Text(aspekPenilaian)),
+          DataCell(Text(verdict))
+        ]),
+      );
      }
       list.add(Container(
         decoration: BoxDecoration(
