@@ -115,7 +115,7 @@ class MyApp extends StatelessWidget {
               print(DateTime.fromMillisecondsSinceEpoch(payload['exp'] * 1000));
               if (DateTime.fromMillisecondsSinceEpoch(payload['exp'] * 1000)
                   .isAfter(DateTime.now())) {
-                return Home(jwt);
+                return Home();
                 //SplashScreen-nya mengarah ke home
                 // return SplashScreen(state: 'home');
               } else {
