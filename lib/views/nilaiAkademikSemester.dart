@@ -19,36 +19,114 @@ class NilaiAkademikSmt extends StatefulWidget{
 class NilaiAkademikSmtState extends State<NilaiAkademikSmt>{
   
   Future<void> _createPDF() async {
-    //Create a new PDF document
+    //Membuat file PDF
     PdfDocument document = PdfDocument();
 
-    //Add a new page and draw text
-    document.pages.add().graphics.drawString(
-      'Hello World!', PdfStandardFont(PdfFontFamily.helvetica, 20),
-      brush: PdfSolidBrush(PdfColor(0, 0, 0)),
-      bounds: Rect.fromLTWH(0, 0, 500, 50));
+    //Mebuat tabel nilai
+    DataTable dataTable = DataTable(columns: const <DataColumn>[
+      DataColumn(label: Text('Mata Pelajaran')),
+      DataColumn(label: Text('Nilai')),
+      DataColumn(label: Text('Predikat')),
+    ], rows: const <DataRow>[
+      DataRow(cells: <DataCell>[
+        DataCell(Text('Pendidikan Agama dan Budi Pekerti')),
+        DataCell(Text('73')),
+        DataCell(Text('C'))
+      ]),
+      DataRow(cells: <DataCell>[
+        DataCell(Text('Pendidikan Kewarganegaraan')),
+        DataCell(Text('69')),
+        DataCell(Text('D'))
+      ]),
+      DataRow(cells: <DataCell>[
+        DataCell(Text('Bahasa dan Sastra Indonesia')),
+        DataCell(Text('57')),
+        DataCell(Text('D'))
+      ]),
+        DataRow(cells: <DataCell>[
+        DataCell(Text('Bahasa Inggris')),
+        DataCell(Text('77')),
+        DataCell(Text('C'))
+      ]),
+        DataRow(cells: <DataCell>[
+        DataCell(Text('Matematika')),
+        DataCell(Text('49')),
+        DataCell(Text('D'))
+      ]),
+        DataRow(cells: <DataCell>[
+        DataCell(Text('Ilmu Pengetahuan Alam')),
+        DataCell(Text('100')),
+        DataCell(Text('A'))
+      ]),
+        DataRow(cells: <DataCell>[
+        DataCell(Text('Ilmu Pengetahuan Sosial')),
+        DataCell(Text('100')),
+        DataCell(Text('A'))
+      ]),
+        DataRow(cells: <DataCell>[
+        DataCell(Text('Seni Budaya')),
+        DataCell(Text('75')),
+        DataCell(Text('C'))
+      ]),
+        DataRow(cells: <DataCell>[
+        DataCell(Text('Pendidikan Jasmani, Olahraga, dan Kesehatan')),
+        DataCell(Text('55')),
+        DataCell(Text('D'))
+      ]),
+        DataRow(cells: <DataCell>[
+        DataCell(Text('Tahfiz Tahsin Quran')),
+        DataCell(Text('96')),
+        DataCell(Text('A'))
+      ]),
+        DataRow(cells: <DataCell>[
+        DataCell(Text('Teknologi Informasi dan Komunikasi')),
+        DataCell(Text('88')),
+        DataCell(Text('B'))
+      ]),
+        DataRow(cells: <DataCell>[
+        DataCell(Text('Bahasa dan Sastra Sunda')),
+        DataCell(Text('64')),
+        DataCell(Text('D'))
+      ]),
+        DataRow(cells: <DataCell>[
+        DataCell(Text('Prakarya')),
+        DataCell(Text('76')),
+        DataCell(Text('C'))
+      ]),
+        DataRow(cells: <DataCell>[
+        DataCell(Text('Bahasa Arab')),
+        DataCell(Text('82')),
+        DataCell(Text('B'))
+      ]),
+    ]);
 
-    //Save the document
+    //Membuat PdfGrid
+    PdfGrid grid = PdfGrid();
+
+    grid.dataSource = dataTable;
+
+    grid.draw(
+        page: document.pages.add(), bounds: const Rect.fromLTWH(0, 0, 0, 0));
+
+    //Menyimpan file PDF
+    //File('Rapor Akademik.pdf').writeAsBytes(document.save());
     List<int> bytes = document.save();
 
-    //Dispose the document
     document.dispose();
 
-    //Get external storage directory
+    //Mengakses penyimpanan eksternal
     final directory = await getExternalStorageDirectory();
 
-    //Get directory path
     final path = directory.path;
 
-    //Create an empty file to write PDF data
-    File file = File('$path/Output.pdf');
+    //Membuat file kosong untuk menyimpan file PDF
+    File file = File('$path/Nilai Akademik.pdf');
 
-    //Write PDF data
+    //Menyimpan file PDF
     await file.writeAsBytes(bytes, flush: true);
 
-    //Open the PDF document in mobile
-    OpenFile.open('$path/Output.pdf');
-
+    //Membuka file PDF
+    OpenFile.open('$path/Nilai Akademik.pdf');
   }
 
   var scbgreen = Color.fromRGBO(6, 123, 84, 1.0);
@@ -192,6 +270,14 @@ class NilaiAkademikSmtState extends State<NilaiAkademikSmt>{
         title: Text("Rapor Semester "+widget.semester),
         centerTitle: true,
         backgroundColor: scbgreen,
+
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.file_download),
+            tooltip: 'Simpan',
+            onPressed: _createPDF,
+          )
+        ],
       ),
       body: FutureBuilder(
                 future: DefaultAssetBundle
@@ -214,11 +300,11 @@ class NilaiAkademikSmtState extends State<NilaiAkademikSmt>{
                   );
                 }
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _createPDF,
-        child: Text('Cetak'),
-        backgroundColor: scbgreen,
-      ),
+      //floatingActionButton: FloatingActionButton(
+        //onPressed: _createPDF,
+        //child: Text('Cetak'),
+        //backgroundColor: scbgreen,
+      //),
     );
   }
 }

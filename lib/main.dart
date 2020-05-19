@@ -135,9 +135,9 @@ class MyApp extends StatelessWidget {
           }),
       routes: <String, WidgetBuilder>{
         '/login': (context) => Login(),
-        '/home': (context) => Home(),
         '/beranda': (BuildContext context) => Beranda(),
         '/profil': (context) => Profil(),
+        '/catatanKhusus': (context) => CatatanKhusus(),
       },
     );
   }

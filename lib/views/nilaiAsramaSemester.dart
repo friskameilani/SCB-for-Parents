@@ -4,6 +4,10 @@ import 'package:scbforparents/controllers/nilaiAsrama.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:syncfusion_flutter_pdf/pdf.dart';
+import 'dart:io';
+import 'package:open_file/open_file.dart';
+import 'package:path_provider/path_provider.dart';
 
 class NilaiAsramaSmt extends StatefulWidget {
   NilaiAsramaSmt(this.semester);
@@ -13,6 +17,89 @@ class NilaiAsramaSmt extends StatefulWidget {
 }
 
 class NilaiAsramaSmtState extends State<NilaiAsramaSmt> {
+  Future<void> _createPDF() async {
+    //Membuat file PDF
+    PdfDocument document = PdfDocument();
+
+    //Mebuat tabel nilai
+    DataTable dataTable = DataTable(columns: const <DataColumn>[
+      DataColumn(label: Text('Aspek Materi Keasramaan')),
+      DataColumn(label: Text('Nilai')),
+    ], rows: const <DataRow>[
+      DataRow(cells: <DataCell>[
+        DataCell(Text('Tahsin')),
+        DataCell(Text('B'))
+      ]),
+      DataRow(cells: <DataCell>[
+        DataCell(Text('Tahfiz')),
+        DataCell(Text('C'))
+      ]),
+      DataRow(cells: <DataCell>[
+        DataCell(Text('Hafalan')),
+        DataCell(Text('A'))
+      ]),
+        DataRow(cells: <DataCell>[
+        DataCell(Text('Hadist Tulis')),
+        DataCell(Text('A'))
+      ]),
+        DataRow(cells: <DataCell>[
+        DataCell(Text('Hadist Lisan')),
+        DataCell(Text('C'))
+      ]),
+        DataRow(cells: <DataCell>[
+        DataCell(Text('Mufrodat')),
+        DataCell(Text('E'))
+      ]),
+        DataRow(cells: <DataCell>[
+        DataCell(Text('Doa dan Dzikir Tulis')),
+        DataCell(Text('C'))
+      ]),
+        DataRow(cells: <DataCell>[
+        DataCell(Text('Doa dan Dzikir Lisan')),
+        DataCell(Text('A'))
+      ]),
+        DataRow(cells: <DataCell>[
+        DataCell(Text('Asmaul Husna')),
+        DataCell(Text('A'))
+      ]),
+        DataRow(cells: <DataCell>[
+        DataCell(Text('Ta`lim')),
+        DataCell(Text('A'))
+      ]),
+        DataRow(cells: <DataCell>[
+        DataCell(Text('Hafalan Surat Pilihan')),
+        DataCell(Text('D'))
+      ]),
+    ]);
+
+    //Membuat PdfGrid
+    PdfGrid grid = PdfGrid();
+
+    grid.dataSource = dataTable;
+
+    grid.draw(
+        page: document.pages.add(), bounds: const Rect.fromLTWH(0, 0, 0, 0));
+
+    //Menyimpan file PDF
+    //File('Rapor Asrama.pdf').writeAsBytes(document.save());
+    List<int> bytes = document.save();
+
+    document.dispose();
+
+    //Mengakses penyimpanan eksternal
+    final directory = await getExternalStorageDirectory();
+
+    final path = directory.path;
+
+    //Membuat file kosong untuk menyimpan file PDF
+    File file = File('$path/Nilai Asrama.pdf');
+
+    //Menyimpan file PDF
+    await file.writeAsBytes(bytes, flush: true);
+
+    //Membuka file PDF
+    OpenFile.open('$path/Nilai Asrama.pdf');
+  }
   var scbgreen = Color.fromRGBO(6, 123, 84, 1.0);
 
   static var aspek = [
@@ -153,6 +240,14 @@ class NilaiAsramaSmtState extends State<NilaiAsramaSmt> {
         title: Text("Rapor Semester " + widget.semester),
         centerTitle: true,
         backgroundColor: scbgreen,
+
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.file_download),
+            tooltip: 'Simpan',
+            onPressed: _createPDF,
+          )
+        ],
       ),
       body: FutureBuilder(
               future: DefaultAssetBundle.of(context).loadString("lib/models/transkripAsrama.json"),

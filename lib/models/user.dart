@@ -1,12 +1,12 @@
 class User {
-  final String nis;
+  final String name;
   final String role;
   final String email;
 
-  User({this.nis, this.role, this.email});
+  User({this.name, this.role, this.email});
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
-      nis: json['nis'],
+      name: json['name'],
       email: json['email'],
       role: json['role'],
     );

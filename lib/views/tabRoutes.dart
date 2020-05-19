@@ -16,6 +16,8 @@ import 'package:scbforparents/views/opsiRapor.dart';
 // import 'package:scbforparents/models/user.dart';
 
 class Home extends StatelessWidget {
+  Home(this.jwt);
+  final String jwt;
   Orangtua user = new Orangtua(
       nama: "Friska Meilani",
       nomorHp: "081234567890",

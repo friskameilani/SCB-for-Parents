@@ -1,47 +1,21 @@
-class CatatanKhusus {
-  List<Data> data;
+class Catatan {
+  String id, jenis, keterangan, poin;
 
-  CatatanKhusus({this.data});
+  Catatan(this.id, this.jenis, this.keterangan, this.poin);
 
-  CatatanKhusus.fromJson(Map<String, dynamic> json) {
-    if (json['data'] != null) {
-      data = new List<Data>();
-      json['data'].forEach((v) {
-        data.add(new Data.fromJson(v));
-      });
-    }
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.data != null) {
-      data['data'] = this.data.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
-}
-
-class Data {
-  int id;
-  int poin;
-  String jenis;
-  String keterangan;
-
-  Data({this.id, this.poin, this.jenis, this.keterangan});
-
-  Data.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+  Catatan.fromJson(Map<String, dynamic> json) {
+    id = json['data']['id'];
+    jenis = json['data']['jenis'];
+    keterangan = json['data']['keterangan'];
     poin = json['poin'];
-    jenis = json['jenis'];
-    keterangan = json['keterangan'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['poin'] = this.poin;
-    data['jenis'] = this.jenis;
-    data['keterangan'] = this.keterangan;
+    data['data']['nis'] = this.id;
+    data['data']['jenis'] = this.jenis;
+    data['data']['kegiatan'] = this.keterangan;
+    data['data']['point'] = this.poin;
     return data;
   }
 }
