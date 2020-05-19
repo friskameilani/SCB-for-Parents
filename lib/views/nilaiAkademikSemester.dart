@@ -37,7 +37,6 @@ class NilaiAkademikSmtState extends State<NilaiAkademikSmt>{
 
     //Membuat PdfGrid
     PdfGrid grid = PdfGrid();
-    grid.columns[1].width = 50;
     PdfGridStyle gridStyle = PdfGridStyle(
       cellSpacing: 2,
       cellPadding: PdfPaddings(left: 2, right: 3, top: 4, bottom: 5),
@@ -45,6 +44,8 @@ class NilaiAkademikSmtState extends State<NilaiAkademikSmt>{
     );
     grid.rows.applyStyle(gridStyle);
     grid.dataSource = dataTable;
+    grid.columns[1].width = 50;
+    grid.columns[2].width = 90;
     grid.style.cellPadding = PdfPaddings(left: 5, top: 5, right: 5, bottom: 5);
     grid.draw(
         page: page, bounds: const Rect.fromLTWH(0, 0, 0, 0));

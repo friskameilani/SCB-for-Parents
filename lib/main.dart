@@ -12,7 +12,7 @@ import 'controllers/auth.dart';
 const SERVER_IP = 'https://sso.kato.studio/sso';
 final storage = FlutterSecureStorage();
 
-//void main() => runApp(MyApp());
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   // Orangtua user = new Orangtua(
