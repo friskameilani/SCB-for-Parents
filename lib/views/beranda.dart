@@ -102,7 +102,6 @@ class _BerandaState extends State<Beranda> {
               margin: EdgeInsets.fromLTRB(15, 5, 15, 15),
               padding: EdgeInsets.fromLTRB(10, 12, 10, 10),
               height: 498,
-//              child: GraphQL()),
               child: KabarSeputarSCB()),
           new Container(
             padding: EdgeInsets.fromLTRB(100.0, 0, 100.0, 15.0),
