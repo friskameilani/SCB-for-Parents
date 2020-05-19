@@ -138,7 +138,6 @@ class MyApp extends StatelessWidget {
         '/home': (context) => Home(),
         '/beranda': (BuildContext context) => Beranda(),
         '/profil': (context) => Profil(),
-        '/catatanKhusus': (context) => CatatanKhusus(),
       },
     );
   }
