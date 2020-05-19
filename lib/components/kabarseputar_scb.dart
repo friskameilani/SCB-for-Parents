@@ -16,7 +16,8 @@ class KabarSeputarSCB extends StatefulWidget {
 class _KabarSeputarSCBState extends State<KabarSeputarSCB> {
   List data = [];
   final String url =
-      'https://cdn.contentful.com/spaces/n2o2oyh78lcv/environments/master/';
+      'https://cdn.contentful.com/spaces/n2o2oyh78lcv/environments/master';
+  final String spaceId = 'n2o2oyh78lcv';
   final String accessToken = 'yNw9k6la9B3Q06h04menoajN6zNllx-ifEK1E8Ia5GU';
 
   Future<String> loadJsonData() async {
@@ -32,11 +33,21 @@ class _KabarSeputarSCBState extends State<KabarSeputarSCB> {
     List<Items> list = [];
     var fullUrl =
 //        '${url}entries?select=fields.title&content_type=blogPost&access_token=${accessToken}';
-    '${url}entries?select=fields.title&content_type=blogPost&access_token=${accessToken}';
+        '${url}/entries?select=fields.title,fields.gambarArtikel,fields.slug&content_type=blogPost&access_token=${accessToken}';
     var response = await http.get(fullUrl);
     var decoded = json.decode(response.body);
     var items = decoded['items'];
     print(items[0]['fields']['title']);
+
+    var image_id = 'Ini nanti id image dari gambarArtikel';
+    //Di image data ini rada susah ngegetnya karena gabisa di filter di link ini.
+    var imageData =
+        await http.get('${url}/assets/${image_id}?access_token=${accessToken}');
+
+    var imageUrl = 'nanti ambil iamge url dari imageData di file.url';
+    var singleImage = await http.get(imageUrl, headers: {
+      'Authorization': 'Bearer $accessToken',
+    });
     // print(items);
     // var test = items.map((json) => print(json)).toList();
     // print('test');
@@ -174,15 +185,16 @@ class _KabarSeputarSCBState extends State<KabarSeputarSCB> {
 //            ),
 //          )
 //=========================KODE TAMBAHAN JOSEP===========================//
-                return FutureBuilder(
-                future: getBlogPost(),
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    return listViewWidget(snapshot.data);
-                 } else
-          //============       }
-                  return CircularProgressIndicator();});
-          //=============KODE TAMBAHAN JOSEP===========================/
+    return FutureBuilder(
+        future: getBlogPost(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return listViewWidget(snapshot.data);
+          } else
+            //============       }
+            return CircularProgressIndicator();
+        });
+    //=============KODE TAMBAHAN JOSEP===========================/
 //          ,
 //        ),
 //      ),
@@ -190,28 +202,29 @@ class _KabarSeputarSCBState extends State<KabarSeputarSCB> {
   }
 
   Widget listViewWidget(List<Items> article) {
-      return Container(
-        child: ListView.builder(
-            physics: new NeverScrollableScrollPhysics(),
-            itemCount: 4,
-            padding: const EdgeInsets.all(2.0),
-            itemBuilder: (context, position) {
-              return Card(
-                  child: ListTile(
-                title: Text(
-                  '${article[position].fields.title}',
-                  style: TextStyle(
-                      fontSize: 18.0,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold),
-                ), onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => NewsItem(),
-                      ),
-                    );
-                  },
+    return Container(
+      child: ListView.builder(
+          physics: new NeverScrollableScrollPhysics(),
+          itemCount: 4,
+          padding: const EdgeInsets.all(2.0),
+          itemBuilder: (context, position) {
+            return Card(
+                child: ListTile(
+              title: Text(
+                '${article[position].fields.title}',
+                style: TextStyle(
+                    fontSize: 18.0,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold),
+              ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => NewsItem(),
+                  ),
+                );
+              },
 //                   leading: Padding(
 //                     padding: const EdgeInsets.all(8.0),
 //                     child: SizedBox(
@@ -226,8 +239,8 @@ class _KabarSeputarSCBState extends State<KabarSeputarSCB> {
 //                   ),
 //                   onTap: () => _onTapItem(context, article[position]),
 //                 ),
-              ));
-            }),
-      );
-    }
+            ));
+          }),
+    );
+  }
 }
