@@ -96,7 +96,7 @@ class _OpsiRaporState extends State<OpsiRapor> {
                 child: new InkWell(
                   onTap: () {
                     Navigator.push(context, 
-                      MaterialPageRoute(builder: (context)=>CatatanKhususPage(x)));
+                      MaterialPageRoute(builder: (context)=>CatatanKhusus()));
                     print(x);
                   },
                   child: Padding(

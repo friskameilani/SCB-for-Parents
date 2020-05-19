@@ -7,122 +7,120 @@ import 'package:http/http.dart' as http;
 import 'package:scbforparents/models/user.dart';
 import 'package:scbforparents/controllers/auth.dart';
 
-class CatatanKhususPage extends StatefulWidget {
-  CatatanKhususPage(this.nis);
-  final String nis;
+class CatatanKhusus extends StatefulWidget {
   @override
-  _CatatanKhususPageState createState() => _CatatanKhususPageState();
+  _CatatanKhususState createState() => _CatatanKhususState();
 }
 
-class _CatatanKhususPageState extends State<CatatanKhususPage> {
+class _CatatanKhususState extends State<CatatanKhusus> {
   var scbgreen = Color.fromRGBO(6, 123, 84, 1.0);
   var scbgreen2 = Color.fromRGBO(1, 83, 47, 1);
   static var id;
 
-  Future<CatatanKhusus> futureCat;
+  Future<User> futureuser;
 
+  @override
   void initState() {
     //Initialize User State
     super.initState();
     //fetchUser function from Auth class
-    futureCat = fetchCatatanKhusus();
-    // loadData();
+    futureuser = Auth().fetchUser();
+    loadData();
   }
 
-  final String url ="http://asrama.systemof.fail/api/poinSiswa/";
+  final String url =
+      "http://asrama.systemof.fail/api/poinSiswa/" + id.toString();
   List data;
   var kebaikanList = [];
   var keburukanList = [];
 
-  // Future<String> loadData() async {
-  //   var response = await http.get(Uri.encodeFull(url));
-  //   setState(() {
-  //     var toJsonData = json.decode(response.body);
-  //     data = toJsonData['data'];
-  //   });
+  Future<String> loadData() async {
+    var response = await http.get(Uri.encodeFull(url));
+    setState(() {
+      var toJsonData = json.decode(response.body);
+      data = toJsonData['data'];
+    });
 
-  //   print(data);
-  //   print(data.length);
-  //   var item;
-  //   for (item in data) {
-  //     if (item['jenis'] == 'kebaikan') {
-  //       kebaikanList.add(item);
-  //     } else {
-  //       keburukanList.add(item);
-  //     }
-  //   }
-  //   print(kebaikanList);
-  //   print(keburukanList);
-
-  //   return 'success';
-  // }
-
-  Future<CatatanKhusus> fetchCatatanKhusus() async {
-    print(widget.nis);
-    final response = await http.get(url+widget.nis.toString());
-    print(response.body.toString());
-    if (response.statusCode == 200) {
-      // If the server did return a 200 OK response,
-      // then parse the JSON.
-      // print("DAPET RESPONSNYA!");
-      CatatanKhusus c = new CatatanKhusus.fromJson(json.decode(response.body));
-      for(int i=0; i<4; i++)
-        print(c.data[i].id.toString()+'\t'+c.data[i].jenis+'\t'+c.data[i].keterangan);
-      return c;
-    } else {
-      // If the server did not return a 200 OK response,
-      // then throw an exception.
-      throw Exception('Failed to load CatatanKhusus');
+    print(data);
+    print(data.length);
+    var item;
+    for (item in data) {
+      if (item['jenis'] == 'kebaikan') {
+        kebaikanList.add(item);
+      } else {
+        keburukanList.add(item);
+      }
     }
+    print(kebaikanList);
+    print(keburukanList);
+
+    return 'success';
   }
 
-  ListView builder(CatatanKhusus c){
-    var list = <Widget>[];
-    for(int i=-1; i<c.data.length; i++){
-      String id, kategori, keterangan;
-      TextStyle style;
-      if(i == -1){
-        id = "NO.";
-        kategori = "KATEGORI";
-        keterangan = "PREDIKAT";
-        style = TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: scbgreen2);
-      }
-      else{
-        id = c.data[i].id.toString();
-        kategori = c.data[i].jenis;
-        keterangan = c.data[i].keterangan;
-      }
-        list.add(
-          Container(
-            decoration: BoxDecoration(
-              border: Border(bottom: BorderSide()),
+  Widget _kebaikan(index) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        DataTable(
+          columnSpacing: 20,
+          columns: [
+            DataColumn(
+              label: Text('Keterangan'),
             ),
-            child: Padding(
-              padding: EdgeInsets.all(10.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Text(
-                    id,
-                    style: style,
-                  ),
-                  Text(
-                    kategori,
-                    style: style
-                  ),
-                  Text(
-                    keterangan,
-                    style: style
-                  ),
-                ]
+            DataColumn(
+              label: Text('Poin'),
+            ),
+          ],
+          rows: kebaikanList
+              .map(
+                (element) => DataRow(cells: <DataCell>[
+                  DataCell(Container(
+                    width: 240, //SET WIDTH
+                    child: Text(element['keterangan']),
+                  )),
+                  DataCell(Text(element['poin'].toString())),
+                ]),
               )
-            ),
-          )
-        ); 
-    }
-    return ListView(
-      children: list,
+              .toList(),
+        ),
+        _keburukan(1)
+      ],
     );
+  }
+
+  Widget _keburukan(index) {
+    return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+      Container(
+          padding: EdgeInsets.fromLTRB(20, 50, 20, 0),
+          child: Text(
+            "Keburukan",
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+          )),
+      Container(
+        child: DataTable(
+          columnSpacing: 20,
+          columns: [
+            DataColumn(
+              label: Text('Keterangan'),
+            ),
+            DataColumn(
+              label: Text('Poin'),
+            ),
+          ],
+          rows: keburukanList
+              .map(
+                (element) => DataRow(cells: <DataCell>[
+                  DataCell(Container(
+                    width: 240, //SET width
+                    child: Text(element['keterangan']),
+                  )),
+                  DataCell(Text(element['poin'].toString())),
+                ]),
+              )
+              .toList(),
+        ),
+      )
+    ]);
   }
 
   @override
@@ -138,21 +136,57 @@ class _CatatanKhususPageState extends State<CatatanKhususPage> {
         backgroundColor: scbgreen2,
       ),
       body: Container(
-          child: FutureBuilder<CatatanKhusus>(
-              future: futureCat,
+          child: FutureBuilder<User>(
+              future: futureuser,
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
-                  CatatanKhusus c = snapshot.data;
-                  return builder(c);
+                  id = snapshot.data.name;
+                  print(id);
+                  return ListView.builder(
+                      itemCount: 1,
+                      itemBuilder: (_, index) {
+                        return data != null
+                            ? Card(
+                                // decoration: BoxDecoration(
+                                //     // color: Colors.green[50],
+                                //     borderRadius:
+                                //         BorderRadius.all(Radius.circular(15))
+                                //         ),
+                                margin: EdgeInsets.fromLTRB(15, 15, 15, 15),
+                                // padding: EdgeInsets.fromLTRB(0, 15, 0, 20),
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(0, 15, 0, 20),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.stretch,
+                                    children: [
+                                      Container(
+                                          padding:
+                                              EdgeInsets.fromLTRB(20, 0, 20, 0),
+                                          child: Text(
+                                            "Kebaikan",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 18),
+                                          )),
+                                      _kebaikan(index)
+                                    ],
+                                  ),
+                                ))
+                            :
+                            // Container(
+                            //     margin: EdgeInsets.fromLTRB(15, 100, 15, 15),
+                            //     child: Text("Tidak ada data",
+                            //         textAlign: TextAlign.center),
+                            //   );
+                            CircularProgressIndicator();
+                      });
+                } else if (snapshot.hasError) {
+                  return Text("Data tidak berhasil diambil");
                 }
-                else{
-                  return Center(
-                    child: Text('Terjadi Kesalahan!'),
-                  );
-                }
-              }
-          )
-      )
+                return Text("Data is NULL");
+              })),
     );
   }
 }
