@@ -8,23 +8,23 @@ import 'package:scbforparents/views/pilihSmt.dart';
 import 'package:scbforparents/class/siswa.dart';
 
 class OpsiRapor extends StatefulWidget {
-  OpsiRapor(this.user);
-  Orangtua user;
+  OpsiRapor(this.nis);
+  String nis;
 
   @override
   _OpsiRaporState createState() => _OpsiRaporState();
 }
 
 class _OpsiRaporState extends State<OpsiRapor> {
-  String chooser(var listSiswa) {
-    int i;
-    for (i = 0; i < (listSiswa?.length ?? 0); i++) {
-      print('sebelum cek ' + this.widget.user.namaAnak.toString());
-      if (this.widget.user.namaAnak == listSiswa[i]['nama'])
-        return listSiswa[i]['nis'];
-    }
-    return null;
-  }
+  // String chooser(var listSiswa) {
+  //   int i;
+  //   for (i = 0; i < (listSiswa?.length ?? 0); i++) {
+  //     print('sebelum cek ' + this.widget.user.namaAnak.toString());
+  //     if (this.widget.user.namaAnak == listSiswa[i]['nama'])
+  //       return listSiswa[i]['nis'];
+  //   }
+  //   return null;
+  // }
 
   Container builder(BuildContext context, var value, String siswa) {
     var icon;
@@ -81,7 +81,7 @@ class _OpsiRaporState extends State<OpsiRapor> {
       future: DefaultAssetBundle.of(context).loadString('lib/models/anak.json'),
       builder: (context, snapshot) {
         dynamic list = jsonDecode(snapshot.data.toString());
-        String x = chooser(list);
+        String x = widget.nis;
         if ((x != null)) {
           return ListView(children: <Widget>[
             builder(context, "Akademik", x),
