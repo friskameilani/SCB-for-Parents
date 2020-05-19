@@ -4,7 +4,7 @@ class Items {
   Items({this.fields});
 
   factory Items.fromJson(Map<String, dynamic> json) {
-    print('This items: ');
+//    print('This items: ');
     return new Items(
       fields: Fields.fromJson(json['fields']),
     );
@@ -13,13 +13,15 @@ class Items {
 }
 
 class Fields {
-  String title;
-  Fields({this.title});
+  String title, slug, gambarArtikel;
+  Fields({this.title, this.slug, this.gambarArtikel});
 
   factory Fields.fromJson(Map<String, dynamic> json) {
-    print(json['title']);
+//    print(json['gambarArtikel']);
     return Fields(
       title: json['title'].toString(),
+      slug: json['slug'].toString(),
+      gambarArtikel: json['gambarArtikel'].toString(),
     );
   }
 }

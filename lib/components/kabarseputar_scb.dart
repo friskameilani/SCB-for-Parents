@@ -15,10 +15,14 @@ class KabarSeputarSCB extends StatefulWidget {
 
 class _KabarSeputarSCBState extends State<KabarSeputarSCB> {
   List data = [];
+  List items;
+  var index;
   final String url =
       'https://cdn.contentful.com/spaces/n2o2oyh78lcv/environments/master';
   final String spaceId = 'n2o2oyh78lcv';
   final String accessToken = 'yNw9k6la9B3Q06h04menoajN6zNllx-ifEK1E8Ia5GU';
+  List image_id;
+  List imageUrl;
 
   Future<String> loadJsonData() async {
     var jsonText = await rootBundle.loadString('assets/kabarSeputarSCB.json');
@@ -37,18 +41,18 @@ class _KabarSeputarSCBState extends State<KabarSeputarSCB> {
     var response = await http.get(fullUrl);
     var decoded = json.decode(response.body);
     var items = decoded['items'];
-    print(items[0]['fields']['title']);
-
-    var image_id = 'Ini nanti id image dari gambarArtikel';
-    //Di image data ini rada susah ngegetnya karena gabisa di filter di link ini.
-    var imageData =
-        await http.get('${url}/assets/${image_id}?access_token=${accessToken}');
-
-    var imageUrl = 'nanti ambil iamge url dari imageData di file.url';
-    var singleImage = await http.get(imageUrl, headers: {
-      'Authorization': 'Bearer $accessToken',
-    });
-    // print(items);
+//    for (var i in items){
+//    image_id = items[i]['fields']['gambarArtikel']['sys']['id'];
+//    var imageData =
+//        await http.get('${url}/assets/${image_id}?access_token=${accessToken}');
+////
+//    var decode = json.decode(imageData.body);
+//    var image = decode['fields'];
+//    imageUrl = image['file']['url'];}
+//    print(imageUrl);
+//    var singleImage = await http.get(imageUrl, headers: {
+//      'Authorization': 'Bearer $accessToken',
+//    });
     // var test = items.map((json) => print(json)).toList();
     // print('test');
     // print(test);
@@ -57,7 +61,7 @@ class _KabarSeputarSCBState extends State<KabarSeputarSCB> {
     for (Map i in items) {
       list.add(Items.fromJson(i));
     }
-    // print("List: ${list}");
+     print("List: ${list[1].fields.gambarArtikel}");
     return list;
   }
   //=================KODE JOSEP BELOM KELAR =================//
@@ -139,7 +143,7 @@ class _KabarSeputarSCBState extends State<KabarSeputarSCB> {
 //    this.newsURL,
 //  });
 //
-//  _launchURL() async {
+//  _launchURL(position) async {
 //    if (await canLaunch(newsURL)) {
 //      await launch(newsURL);
 //    } else {
@@ -209,20 +213,18 @@ class _KabarSeputarSCBState extends State<KabarSeputarSCB> {
           padding: const EdgeInsets.all(2.0),
           itemBuilder: (context, position) {
             return Card(
-                child: ListTile(
-              title: Text(
-                '${article[position].fields.title}',
-                style: TextStyle(
-                    fontSize: 18.0,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold),
-              ),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => NewsItem(),
-                  ),
+              child: InkWell(
+                  child: ListTile(
+                    onTap: () {launch('https://nezuko.cendekiabaznas.sch.id/kabarterkini/' + '${article[position].fields.slug}' +'/');},
+                  title: Text(
+                    '${article[position].fields.title}',
+                    style: TextStyle(
+                        fontSize: 18.0,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                    ),
+              ), 
+                  ),)
                 );
               },
 //                   leading: Padding(
@@ -240,7 +242,7 @@ class _KabarSeputarSCBState extends State<KabarSeputarSCB> {
 //                   onTap: () => _onTapItem(context, article[position]),
 //                 ),
             ));
-          }),
-    );
+//          }),
+//    );
   }
 }

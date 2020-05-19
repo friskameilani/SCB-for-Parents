@@ -67,7 +67,7 @@ class _BerandaState extends State<Beranda> {
                       color: Colors.green[600],
                     ),
                     title: Text(
-                      'Selamat datang,\nOrang Tua ${snapshot.data.name}',
+                      'Selamat datang,\nOrang Tua Melan',
                     ),
                   ),
                 );
