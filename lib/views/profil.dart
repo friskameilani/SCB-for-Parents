@@ -34,8 +34,9 @@ class _ProfilState extends State<Profil> {
               future: futureuser,
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
-                  return ListView(scrollDirection: Axis.vertical, children: <
-                      Widget>[
+                  return ListView(
+                    scrollDirection: Axis.vertical, 
+                    children: <Widget>[
                     Card(
                         margin: EdgeInsets.all(10),
                         child: Padding(
@@ -82,7 +83,7 @@ class _ProfilState extends State<Profil> {
                                   ),
                                   cardText('Melan', 'Nama'),
                                   cardText(snapshot.data.email, 'Email'),
-                                  cardText(snapshot.data.nis, 'NIS'),
+                                  cardText(snapshot.data.name, 'NIS'),
                                   cardText('0059105165', 'NISN'),
                                   cardText('Perempuan', 'Jenis Kelamin'),
                                   cardText(

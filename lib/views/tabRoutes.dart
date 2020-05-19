@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:scbforparents/class/orangtua.dart';
+import 'package:scbforparents/controllers/auth.dart';
+import 'package:scbforparents/models/user.dart';
 import 'package:scbforparents/views/beranda.dart';
 import 'package:scbforparents/views/profil.dart';
 import 'package:scbforparents/views/opsiRapor.dart';
@@ -12,12 +14,25 @@ import 'package:scbforparents/views/opsiRapor.dart';
 
 // import 'package:scbforparents/pages/beranda.dart';
 // import 'package:scbforparents/pages/profil.dart';
-// import 'package:scbforparents/pages/opsiRapor.dart';
+// import 'package:scbforparents/pages/opsRapor.dart';
 // import 'package:scbforparents/models/user.dart';
 
-class Home extends StatelessWidget {
-  Home(this.jwt);
-  final String jwt;
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  Future<User> futureuser;
+
+  @override
+  void initState() {
+    //Initialize User State
+    super.initState();
+    //fetchUser function from Auth class
+    futureuser = Auth().fetchUser();
+  }
+
   Orangtua user = new Orangtua(
       nama: "Friska Meilani",
       nomorHp: "081234567890",
@@ -25,13 +40,6 @@ class Home extends StatelessWidget {
       status: "Ibu",
       namaAnak: "Kipli");
 
-  // Home(this.jwt, this.payload);
-  // factory Home.fromBase64(String jwt) => Home(
-  //     jwt,
-  //     json.decode(
-  //         ascii.decode(base64.decode(base64.normalize(jwt.split(".")[1])))));
-  // final String jwt;
-  // final Map<String, dynamic> payload;
   @override
   Widget build(BuildContext context) {
     var scbgreen2 = Color.fromRGBO(1, 83, 47, 1);
@@ -53,19 +61,24 @@ class Home extends StatelessWidget {
           ),
           backgroundColor: scbgreen2,
         ),
-        body: TabBarView(
-          physics: NeverScrollableScrollPhysics(),
-          children: [
-            new Container(child: Beranda()),
-            new Container(
-              child: OpsiRapor(user),
+        body: FutureBuilder<User>(
+              future: futureuser,
+              builder: (context, snapshot) {
+                return (snapshot.hasData) ? TabBarView(
+                  physics: NeverScrollableScrollPhysics(),
+                  children: [
+                    new Container(child: Beranda()),
+                    new Container(
+                      child: OpsiRapor(snapshot.data.name),
+                    ),
+                    new Container(
+                      height: 800,
+                      child: Profil(),
+                    ),
+                  ],
+                ):Center(child: Text("Terjadi Kesalahan: "+snapshot.data.name),);
+              }
             ),
-            new Container(
-              height: 800,
-              child: Profil(),
-            ),
-          ],
-        ),
         bottomNavigationBar: new TabBar(
           tabs: [
             Tab(
