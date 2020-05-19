@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:flutter/services.dart';
 import 'package:scbforparents/class/siswa.dart';
 import 'dart:math';
@@ -18,95 +19,53 @@ class NilaiAkademikSmt extends StatefulWidget{
 
 class NilaiAkademikSmtState extends State<NilaiAkademikSmt>{
   
+  var table = <DataRow>[];
+
   Future<void> _createPDF() async {
     //Membuat file PDF
     PdfDocument document = PdfDocument();
 
+    PdfPage page = document.pages.add();
+    DateTime now = DateTime.now();
     //Mebuat tabel nilai
     DataTable dataTable = DataTable(columns: const <DataColumn>[
       DataColumn(label: Text('Mata Pelajaran')),
       DataColumn(label: Text('Nilai')),
       DataColumn(label: Text('Predikat')),
-    ], rows: const <DataRow>[
-      DataRow(cells: <DataCell>[
-        DataCell(Text('Pendidikan Agama dan Budi Pekerti')),
-        DataCell(Text('73')),
-        DataCell(Text('C'))
-      ]),
-      DataRow(cells: <DataCell>[
-        DataCell(Text('Pendidikan Kewarganegaraan')),
-        DataCell(Text('69')),
-        DataCell(Text('D'))
-      ]),
-      DataRow(cells: <DataCell>[
-        DataCell(Text('Bahasa dan Sastra Indonesia')),
-        DataCell(Text('57')),
-        DataCell(Text('D'))
-      ]),
-        DataRow(cells: <DataCell>[
-        DataCell(Text('Bahasa Inggris')),
-        DataCell(Text('77')),
-        DataCell(Text('C'))
-      ]),
-        DataRow(cells: <DataCell>[
-        DataCell(Text('Matematika')),
-        DataCell(Text('49')),
-        DataCell(Text('D'))
-      ]),
-        DataRow(cells: <DataCell>[
-        DataCell(Text('Ilmu Pengetahuan Alam')),
-        DataCell(Text('100')),
-        DataCell(Text('A'))
-      ]),
-        DataRow(cells: <DataCell>[
-        DataCell(Text('Ilmu Pengetahuan Sosial')),
-        DataCell(Text('100')),
-        DataCell(Text('A'))
-      ]),
-        DataRow(cells: <DataCell>[
-        DataCell(Text('Seni Budaya')),
-        DataCell(Text('75')),
-        DataCell(Text('C'))
-      ]),
-        DataRow(cells: <DataCell>[
-        DataCell(Text('Pendidikan Jasmani, Olahraga, dan Kesehatan')),
-        DataCell(Text('55')),
-        DataCell(Text('D'))
-      ]),
-        DataRow(cells: <DataCell>[
-        DataCell(Text('Tahfiz Tahsin Quran')),
-        DataCell(Text('96')),
-        DataCell(Text('A'))
-      ]),
-        DataRow(cells: <DataCell>[
-        DataCell(Text('Teknologi Informasi dan Komunikasi')),
-        DataCell(Text('88')),
-        DataCell(Text('B'))
-      ]),
-        DataRow(cells: <DataCell>[
-        DataCell(Text('Bahasa dan Sastra Sunda')),
-        DataCell(Text('64')),
-        DataCell(Text('D'))
-      ]),
-        DataRow(cells: <DataCell>[
-        DataCell(Text('Prakarya')),
-        DataCell(Text('76')),
-        DataCell(Text('C'))
-      ]),
-        DataRow(cells: <DataCell>[
-        DataCell(Text('Bahasa Arab')),
-        DataCell(Text('82')),
-        DataCell(Text('B'))
-      ]),
-    ]);
+      ], rows: this.table
+    );
 
     //Membuat PdfGrid
     PdfGrid grid = PdfGrid();
-
+    grid.columns[1].width = 50;
+    PdfGridStyle gridStyle = PdfGridStyle(
+      cellSpacing: 2,
+      cellPadding: PdfPaddings(left: 2, right: 3, top: 4, bottom: 5),
+      font: PdfStandardFont(PdfFontFamily.helvetica, 12),
+    );
+    grid.rows.applyStyle(gridStyle);
     grid.dataSource = dataTable;
-
+    grid.style.cellPadding = PdfPaddings(left: 5, top: 5, right: 5, bottom: 5);
     grid.draw(
-        page: document.pages.add(), bounds: const Rect.fromLTWH(0, 0, 0, 0));
+        page: page, bounds: const Rect.fromLTWH(0, 0, 0, 0));
+
+    String text = """
+    Bogor, ${DateFormat('dd MMM yyyy').format(now)},
+
+
+
+
+
+    Kepala Sekolah SMP Cendekia BAZNAS
+    """;
+    page.graphics.drawString(
+      text, PdfStandardFont(PdfFontFamily.helvetica, 12),
+      brush: PdfBrushes.black,
+      bounds: Rect.fromLTWH(
+          0, 550, page.getClientSize().width, page.getClientSize().height),
+      format: PdfStringFormat(
+          alignment: PdfTextAlignment.right,
+          paragraphIndent: 35));
 
     //Menyimpan file PDF
     //File('Rapor Akademik.pdf').writeAsBytes(document.save());
@@ -242,6 +201,14 @@ class NilaiAkademikSmtState extends State<NilaiAkademikSmt>{
             ),
           )
         );
+        if (nilai != 'Nilai')
+          this.table.add(
+              DataRow(cells: <DataCell>[
+              DataCell(Text(namaMatpel)),
+              DataCell(Text(nilai)),
+              DataCell(Text(verdict))
+            ]),
+          );
       } 
     }
     return ListView(
