@@ -7,6 +7,12 @@ SCB For Parents merupakan aplikasi mobile yang mengambil inspirasi dari IPB For 
 Aplikasi SCB for Parents dibangun menggunakan hybrid framework flutter yang dapat dijalankan dalam mobile dengan sistem operasi Android dengan versi minimum 4.1 dan sistem operasi iOS dengan versi minimum 8.0.
 
 ### Diagram
+#### Use Case Diagram
+![alt text](https://github.com/friskameilani/SCB-for-Parents/blob/kabar/use%20case%20diagram.png)
+#### Class Diagram
+![alt text](https://github.com/friskameilani/SCB-for-Parents/blob/kabar/PSBO%20Class%20Diagram.jpeg)
+#### Activity Diagram
+![alt text](https://github.com/friskameilani/SCB-for-Parents/blob/kabar/Activity%20Diagram.png)
 
 ### Fitur Secara Umum 
 1. **SSO Login:**
