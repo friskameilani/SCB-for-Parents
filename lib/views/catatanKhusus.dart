@@ -175,12 +175,14 @@ class _CatatanKhususState extends State<CatatanKhusus> {
                                   ),
                                 ))
                             :
-                            // Container(
-                            //     margin: EdgeInsets.fromLTRB(15, 100, 15, 15),
-                            //     child: Text("Tidak ada data",
-                            //         textAlign: TextAlign.center),
-                            //   );
-                            CircularProgressIndicator();
+                             Container(
+                                 margin: EdgeInsets.fromLTRB(15, 150, 15, 15),
+                                 child: Text("Tidak ada data",
+                                     textAlign: TextAlign.center,
+                                   style: TextStyle(fontSize: 18)
+                                 ),
+                               );
+//                            CircularProgressIndicator();
                       });
                 } else if (snapshot.hasError) {
                   return Text("Data tidak berhasil diambil");
