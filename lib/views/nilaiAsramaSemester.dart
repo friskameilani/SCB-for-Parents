@@ -255,7 +255,7 @@ class NilaiAsramaSmtState extends State<NilaiAsramaSmt> {
                 }
                 print(nilai);
                 int idx = 0;
-                return (snapshot.hasData) 
+                return (int.parse(widget.semester) < this.transkripAsrama.length) 
                 ? builder()
                 : Center(
                     child: Text(

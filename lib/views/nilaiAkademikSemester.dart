@@ -26,6 +26,31 @@ class NilaiAkademikSmtState extends State<NilaiAkademikSmt>{
     PdfDocument document = PdfDocument();
 
     PdfPage page = document.pages.add();
+    PdfPageTemplateElement header = PdfPageTemplateElement(
+      Rect.fromLTWH(0, 0, document.pages[0].getClientSize().width, 100));
+
+    String head = """SMP Cendekia BAZNAS
+    Alamat: Jl. Cirangkong No.14, Cemplang, 
+            Kec. Cibungbulang, Bogor, Jawa Barat 16630
+    Telepon: (0251) 8591072
+
+
+    Nama: Melan
+    NIS : ${widget.nis.toString()}
+    """;
+    //Create the composite field with date field
+    PdfCompositeField compositefields = PdfCompositeField(
+        font: PdfStandardFont(PdfFontFamily.helvetica, 13),
+        brush: PdfSolidBrush(PdfColor(0, 0, 0)),
+        text: head,);
+
+    //Add composite field in header
+    compositefields.draw(header.graphics,
+        Offset(0, 50 - PdfStandardFont(PdfFontFamily.helvetica, 40).height));
+
+    //Add the header at top of the document
+    document.template.top = header;
+
     DateTime now = DateTime.now();
     //Mebuat tabel nilai
     DataTable dataTable = DataTable(columns: const <DataColumn>[
@@ -48,7 +73,7 @@ class NilaiAkademikSmtState extends State<NilaiAkademikSmt>{
     grid.columns[2].width = 90;
     grid.style.cellPadding = PdfPaddings(left: 5, top: 5, right: 5, bottom: 5);
     grid.draw(
-        page: page, bounds: const Rect.fromLTWH(0, 0, 0, 0));
+        page: page, bounds: const Rect.fromLTWH(0, 50, 0, 0));
 
     String text = """
     Bogor, ${DateFormat('dd MMM yyyy').format(now)},
