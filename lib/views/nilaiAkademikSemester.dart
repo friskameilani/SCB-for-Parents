@@ -94,6 +94,14 @@ class NilaiAkademikSmtState extends State<NilaiAkademikSmt>{
           alignment: PdfTextAlignment.right,
           paragraphIndent: 35));
 
+    page.graphics.drawString(
+      "Created at ${now.toString()}", PdfStandardFont(PdfFontFamily.helvetica, 10),
+      brush: PdfBrushes.black,
+      bounds: Rect.fromLTWH(
+          0, 650, page.getClientSize().width, page.getClientSize().height),
+      format: PdfStringFormat(
+          alignment: PdfTextAlignment.left,));
+
     //Menyimpan file PDF
     //File('Rapor Akademik.pdf').writeAsBytes(document.save());
     List<int> bytes = document.save();

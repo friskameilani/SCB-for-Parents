@@ -163,7 +163,7 @@ class NilaiAsramaSmtState extends State<NilaiAsramaSmt> {
 
   ListView builder() {
     var list = <Widget>[];
-    List<String> verdicts = this.verdictGenerator(transkripAsrama[0].nilai[int.parse(widget.semester)]);
+    List<String> verdicts = this.verdictGenerator(transkripAsrama[0].nilai[int.parse(widget.semester)-1]);
     print(verdicts);
     for (int i = -1; i < aspek.length; i++) {
       String aspekPenilaian, verdict;
@@ -255,7 +255,8 @@ class NilaiAsramaSmtState extends State<NilaiAsramaSmt> {
                 }
                 print(nilai);
                 int idx = 0;
-                return (int.parse(widget.semester) < this.transkripAsrama.length) 
+                print((int.parse(widget.semester)-1).toString()+"  "+transkripAsrama[0].nilai.length.toString());
+                return (int.parse(widget.semester)-1 < this.transkripAsrama[0].nilai.length) 
                 ? builder()
                 : Center(
                     child: Text(
