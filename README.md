@@ -21,7 +21,7 @@ Orang tua dapat menggunakan email dan password yang diberikan oleh pihak Sekolah
 Orang tua dapat melihat nilai akademik siswa dari kelas 7, 8 dan 9 (jika ada). Data dan API yang digunakan adalah data dari SIMAK Sekolah Cendekia Baznas. 
 3. **Nilai asrama siswa:**
 Orang tua dapat melihat nilai asrama siswa dari kelas 7,8 dan 9 (jika ada). Data dan API yang diungakan adalah data dari Asrama Sekolah Cendekia Baznas.
-4. **Pelanggaran dan prestasi siswa:**
+4. **Poin kebaikan dan keburukan siswa:**
 Orang tua dapat melihat aktivitas dan pelanggaran yang dilakukan oleh anak di sekolah. Data dan API yang digunakan adalah data dari Asrama SCB.
 5. **News dan update terbaru Sekolah Cendekia Baznas:**
 Orang tua dapat melihat kabar terbaru dan artikel-artikel seputar Sekolah Cendekia Baznas. Data dan API yang digunakan adalah data dari Humas Sekolah Cendekia Baznas Cendekia Baznas. 

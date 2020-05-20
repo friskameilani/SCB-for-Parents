@@ -7,7 +7,7 @@ class Catatan {
     id = json['data']['id'];
     jenis = json['data']['jenis'];
     keterangan = json['data']['keterangan'];
-    poin = json['poin'];
+    poin = json['data']['poin'];
   }
 
   Map<String, dynamic> toJson() {
