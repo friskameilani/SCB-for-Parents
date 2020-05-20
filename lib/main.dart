@@ -12,7 +12,7 @@ import 'controllers/auth.dart';
 const SERVER_IP = 'https://sso.kato.studio/sso';
 final storage = FlutterSecureStorage();
 
-//void main() => runApp(MyApp());
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   // Orangtua user = new Orangtua(
@@ -29,9 +29,9 @@ class MyApp extends StatelessWidget {
   //   return this.user;
   // }
   @override
-  Orangtua getter(AsyncSnapshot<Orangtua> snapshot) {
-    return snapshot.data;
-  }
+  // Orangtua getter(AsyncSnapshot<Orangtua> snapshot) {
+  //   return snapshot.data;
+  // }
 
   Future<String> get jwtOrEmpty async {
     var jwt = await storage.read(key: "jwt");

@@ -74,9 +74,9 @@ class PilihSmtState extends State<PilihSmt> {
   }
 
   ListView builder() {
-    var a = <Widget>[];
+    var widgets = <Widget>[];
     for (int i = 0; i < 3; i++) {
-      a.add(Container(
+      widgets.add(Container(
           padding: EdgeInsets.fromLTRB(20, 15, 20, 0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -94,7 +94,7 @@ class PilihSmtState extends State<PilihSmt> {
               )
             ],
           )));
-      a.add(
+      widgets.add(
         GridView.count(
           shrinkWrap: true,
           padding: const EdgeInsets.fromLTRB(15, 0, 15, 15),
@@ -110,7 +110,7 @@ class PilihSmtState extends State<PilihSmt> {
         ),
       );
     }
-    return ListView(children: a);
+    return ListView(children: widgets);
   }
 
   @override

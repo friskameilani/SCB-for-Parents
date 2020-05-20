@@ -5,7 +5,8 @@
         "nomor_Hp": "081234567890",
         "alamat": "Jalan Raya Dramaga, Dramaga, Bogor, 16680",
         "status": "Ibu",
-        "nama_anak": "Kipli"
+        "nama_anak": "Kipli",
+        "nis": "11110"
     },
     {
         "username": "melfris",
@@ -14,6 +15,7 @@
         "nomor_Hp": "081234567890",
         "alamat": "Jalan Raya Dramaga, Dramaga, Bogor, 16680",
         "status": "Ibu",
-        "nama_anak": "Monalisa"
+        "nama_anak": "Melan",
+        "nis": "11111"
     }
 ]

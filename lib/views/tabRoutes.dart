@@ -33,13 +33,6 @@ class _HomeState extends State<Home> {
     futureuser = Auth().fetchUser();
   }
 
-  Orangtua user = new Orangtua(
-      nama: "Friska Meilani",
-      nomorHp: "081234567890",
-      alamat: "Jalan Raya Dramaga, Dramaga, Bogor, 16680",
-      status: "Ibu",
-      namaAnak: "Kipli");
-
   @override
   Widget build(BuildContext context) {
     var scbgreen2 = Color.fromRGBO(1, 83, 47, 1);
