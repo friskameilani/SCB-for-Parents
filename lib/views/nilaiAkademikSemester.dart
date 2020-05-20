@@ -8,6 +8,7 @@ import 'package:syncfusion_flutter_pdf/pdf.dart';
 import 'dart:io';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:indonesia/indonesia.dart';
 
 class NilaiAkademikSmt extends StatefulWidget{
   NilaiAkademikSmt(this.semester, this.nis);
@@ -76,7 +77,7 @@ class NilaiAkademikSmtState extends State<NilaiAkademikSmt>{
         page: page, bounds: const Rect.fromLTWH(0, 50, 0, 0));
 
     String text = """
-    Bogor, ${DateFormat('dd MMM yyyy').format(now)},
+    Bogor, ${tanggal(now)},
 
 
 
