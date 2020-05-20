@@ -220,7 +220,7 @@ class _KabarSeputarSCBState extends State<KabarSeputarSCB> {
                     '${article[position].fields.title}',
                     style: TextStyle(
                         fontSize: 18.0,
-                        color: Colors.black,
+                        color: Colors.white,
                         fontWeight: FontWeight.bold,
                     ),
               ), 

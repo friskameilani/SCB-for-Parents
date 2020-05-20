@@ -82,10 +82,11 @@ class PilihSmtState extends State<PilihSmt> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
-                'Kelas ' + classChooser(i),
+                'KELAS ' + classChooser(i),
                 textAlign: TextAlign.left,
                 style: TextStyle(
-                  color: Colors.black87,
+                  color: Colors.greenAccent,
+                  fontWeight: FontWeight.bold
                 ),
               ),
               Divider(
