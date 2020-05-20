@@ -21,10 +21,10 @@ class _KabarSeputarSCBState extends State<KabarSeputarSCB> {
   final String accessToken = 'yNw9k6la9B3Q06h04menoajN6zNllx-ifEK1E8Ia5GU';
   List data;
   List items;
-  var imageId;
-  List imageUrl;
-  List newsItem;
-  List newsUrl;
+  List imageId;
+//  List imageUrl;
+  var  newsItem = [];
+//  List newsUrl;
 
 //  Future<String> loadJsonData() async {
 //    var jsonText = await rootBundle.loadString('assets/kabarSeputarSCB.json');
