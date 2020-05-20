@@ -33,8 +33,33 @@ Fitur dark mode responsif ketika setting handphone user malam hari.
 ### Konsep OOP yang digunakan
 
 #### Abstraction
+
 #### Polymorphism
+
+```
+class MyApp extends StatelessWidget {
+  ...
+  @override
+    Widget build(BuildContext context) {
+    ...
+```
+
+Dalam membangun *widget* pada flutter, digunakan konsep [_inheritance_](#inheritance)
+dalam pembuatan _widget_ baru. Dalam _superclass_-nya (StatefulWidget atau StatelessWidget),
+sudah terdapat fungsi `build()` sebagai _template_. Adanya `@override` dalam potongan kode
+di atas merupakan implementasi dari *Polymorphism*, yakni *function overriding* yang kemudian
+memungkinkan kita untuk menggunakan fungsi tersebut dengan implementasi yang berbeda dari superclassnya.
+
 #### Inheritance
+
+```
+class MyApp extends StatelessWidget {
+```
+
+Dalam membangun *widget* pada flutter, sebuah kelas akan dibangun dan
+melakukan *extends* dari widget yang sudah ada dalam *package* dalam 
+flutter, yang berarti setiap pembuatan *widget*/*page* baru, kita membuat
+turunan (*inheritance*) dari superclassnya.
 
 #### Encapsulation
 ```

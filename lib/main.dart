@@ -29,9 +29,9 @@ class MyApp extends StatelessWidget {
   //   return this.user;
   // }
   @override
-  Orangtua getter(AsyncSnapshot<Orangtua> snapshot) {
-    return snapshot.data;
-  }
+  // Orangtua getter(AsyncSnapshot<Orangtua> snapshot) {
+  //   return snapshot.data;
+  // }
 
   Future<String> get jwtOrEmpty async {
     var jwt = await storage.read(key: "jwt");
