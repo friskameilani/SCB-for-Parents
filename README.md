@@ -36,7 +36,7 @@ Fitur dark mode responsif ketika setting handphone user malam hari.
 
 #### Polymorphism
 
-```
+```dart
 class MyApp extends StatelessWidget {
   ...
   @override
@@ -52,7 +52,7 @@ memungkinkan kita untuk menggunakan fungsi tersebut dengan implementasi yang ber
 
 #### Inheritance
 
-```
+```dart
 class MyApp extends StatelessWidget {
 ```
 
@@ -62,7 +62,7 @@ flutter, yang berarti setiap pembuatan *widget*/*page* baru, kita membuat
 turunan (*inheritance*) dari superclassnya.
 
 #### Encapsulation
-```
+```dart
 class MyApp extends StatelessWidget {
 
   Future<String> get jwtOrEmpty async {
