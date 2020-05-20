@@ -108,7 +108,7 @@ class _BerandaState extends State<Beranda> {
             child: FlatButton(
               color: scbgreen,
               splashColor: Colors.black,
-              onPressed: () => launch('https://www.cendekiabaznas.sch.id'),
+              onPressed: () => launch('https://nezuko.cendekiabaznas.sch.id/kabarterkini/'),
               child: Text('Show more'),
               textColor: Colors.white,
             ),

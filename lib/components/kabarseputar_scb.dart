@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/services.dart' show rootBundle;
@@ -14,235 +15,198 @@ class KabarSeputarSCB extends StatefulWidget {
 }
 
 class _KabarSeputarSCBState extends State<KabarSeputarSCB> {
-  List data = [];
-  List items;
-  var index;
   final String url =
       'https://cdn.contentful.com/spaces/n2o2oyh78lcv/environments/master';
   final String spaceId = 'n2o2oyh78lcv';
   final String accessToken = 'yNw9k6la9B3Q06h04menoajN6zNllx-ifEK1E8Ia5GU';
-  List image_id;
+  List data;
+  List items;
+  var imageId;
   List imageUrl;
+  List newsItem;
+  List newsUrl;
 
-  Future<String> loadJsonData() async {
-    var jsonText = await rootBundle.loadString('assets/kabarSeputarSCB.json');
-    setState(() {
-      data = json.decode(jsonText);
-    });
-    return 'success';
-  }
+//  Future<String> loadJsonData() async {
+//    var jsonText = await rootBundle.loadString('assets/kabarSeputarSCB.json');
+//    setState(() {
+//      data = json.decode(jsonText);
+//    });
+//    return 'success';
+//  }
 
-//=================KODE JOSEP BELOM KELAR =================//
-  Future getBlogPost() async {
+  Future<String> getBlogPost() async {
     List<Items> list = [];
     var fullUrl =
-//        '${url}entries?select=fields.title&content_type=blogPost&access_token=${accessToken}';
         '${url}/entries?select=fields.title,fields.gambarArtikel,fields.slug&content_type=blogPost&access_token=${accessToken}';
     var response = await http.get(fullUrl);
-    var decoded = json.decode(response.body);
-    var items = decoded['items'];
-//    for (var i in items){
-//    image_id = items[i]['fields']['gambarArtikel']['sys']['id'];
-//    var imageData =
-//        await http.get('${url}/assets/${image_id}?access_token=${accessToken}');
-////
-//    var decode = json.decode(imageData.body);
-//    var image = decode['fields'];
-//    imageUrl = image['file']['url'];}
-//    print(imageUrl);
-//    var singleImage = await http.get(imageUrl, headers: {
-//      'Authorization': 'Bearer $accessToken',
-//    });
-    // var test = items.map((json) => print(json)).toList();
-    // print('test');
-    // print(test);
-    // print(items.map((json) => Items.fromJson(json)).toList());
-    // list = items.map<Items>((json) => Items.fromJson(json)).toList();
-    for (Map i in items) {
-      list.add(Items.fromJson(i));
+    setState(() {
+      var decoded = json.decode(response.body);
+      data = decoded['items'];
+    });
+    var item;
+    for (item in data) {
+      newsItem.add(item);
     }
-     print("List: ${list[1].fields.gambarArtikel}");
-    return list;
+
+//    for (var i in newsItem){
+//      imageId = newsItem[i]['fields']['gambarArtikel']['sys']['id'];
+//      var imageData =
+//      await http.get('${url}/assets/${imageId}?access_token=${accessToken}');
+//      var decode = json.decode(imageData.body);
+//      var image = decode['fields'];
+//      imageUrl = image['file']['url'];
+//
+//      newsUrl.add(imageUrl);
+//      print(newsUrl);
+//    }
+
+    return 'success';
   }
-  //=================KODE JOSEP BELOM KELAR =================//
 
   @override
   void initState() {
     super.initState();
-    loadJsonData();
     getBlogPost();
   }
 
   @override
   Widget build(BuildContext context) {
-//    return GridView.builder(
-//      physics: new NeverScrollableScrollPhysics(),
-//      itemCount: data.length,
-//      gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
-//        crossAxisCount: 2,
-//        crossAxisSpacing: 10,
-//        mainAxisSpacing: 10,
-//        childAspectRatio: 1.1,
-//      ),
-//      itemBuilder: (BuildContext context, int index) {
-//        return SingleNews(
-//          newsTitle: data[index]['judul'],
-//          newsPicture: data[index]['newsPhoto'],
-//          newsURL: data[index]['url'],
-//        );
-//      },
-//    );
-//  }
-//}
-
-//=================KODE JOSEP BELOM KELAR =================//
-//  Widget listViewWidget(List<Items> article) {
-//      return Container(
-//        child: ListView.builder(
-//            itemCount: 4,
-//            padding: const EdgeInsets.all(2.0),
-//            itemBuilder: (context, position) {
-//              return Card(
-//                  child: ListTile(
-//                title: Text(
-//                  '${article[position].fields}',
-//                  style: TextStyle(
-//                      fontSize: 18.0,
-//                      color: Colors.black,
-//                      fontWeight: FontWeight.bold),
-//                ),
-//                //   leading: Padding(
-//                //     padding: const EdgeInsets.all(8.0),
-//                //     child: SizedBox(
-//                //       child: article[position].urlToImage == null
-//                //           ? Image(
-//                //               image: AssetImage('images/no_image_available.png'),
-//                //             )
-//                //           : Image.network('${article[position].urlToImage}'),
-//                //       height: 100.0,
-//                //       width: 100.0,
-//                //     ),
-//                //   ),
-//                //   onTap: () => _onTapItem(context, article[position]),
-//                // ),
-//              ));
-//            }),
-//      );
-//    }
-
-//=================KODE JOSEP BELOM KELAR =================//
-
-//class SingleNews extends StatelessWidget {
-//  final newsTitle;
-//  final newsPicture;
-//  final newsURL;
-//
-//  SingleNews({
-//    this.newsTitle,
-//    this.newsPicture,
-//    this.newsURL,
-//  });
-//
-//  _launchURL(position) async {
-//    if (await canLaunch(newsURL)) {
-//      await launch(newsURL);
-//    } else {
-//      throw 'Could not launch $newsURL';
-//    }
-//  }
-//
-//  @override
-//  Widget build(BuildContext context) {
-//    return ClipRRect(
-//      borderRadius: BorderRadius.circular(5.0),
-//      child: Hero(
-//        tag: newsTitle,
-//        child: Material(
-//          child: InkWell(
-//            onTap: _launchURL,
-//            child: GridTile(
-//              footer: Opacity(
-//                opacity: 0.9,
-//                child: Container(
-//                  height: MediaQuery.of(context).size.width / 9,
-//                  color: Colors.green[50],
-//                  child: ListTile(
-//                    leading: Padding(
-//                      padding: EdgeInsets.fromLTRB(0, 0, 0, 15),
-//                      child: Text(
-//                        newsTitle,
-//                        maxLines: 2,
-//                        overflow: TextOverflow.ellipsis,
-//                        style: TextStyle(
-//                            color: Colors.black,
-//                            fontWeight: FontWeight.bold,
-//                            fontSize: 12),
-//                      ),
-//                    ),
-//                  ),
-//                ),
-//              ),
-//              child: Image.network(
-//                newsPicture,
-//                fit: BoxFit.cover,
-//              ),
-//            ),
-//          )
-//=========================KODE TAMBAHAN JOSEP===========================//
     return FutureBuilder(
         future: getBlogPost(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return listViewWidget(snapshot.data);
+            return listViewWidget();
           } else
-            //============       }
             return CircularProgressIndicator();
         });
-    //=============KODE TAMBAHAN JOSEP===========================/
-//          ,
-//        ),
-//      ),
-//    );
   }
 
-  Widget listViewWidget(List<Items> article) {
-    return Container(
-      child: ListView.builder(
-          physics: new NeverScrollableScrollPhysics(),
-          itemCount: 4,
-          padding: const EdgeInsets.all(2.0),
-          itemBuilder: (context, position) {
-            return Card(
-              child: InkWell(
-                  child: ListTile(
-                    onTap: () {launch('https://nezuko.cendekiabaznas.sch.id/kabarterkini/' + '${article[position].fields.slug}' +'/');},
-                  title: Text(
-                    '${article[position].fields.title}',
-                    style: TextStyle(
-                        fontSize: 18.0,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                    ),
-              ), 
-                  ),)
-                );
-              },
-//                   leading: Padding(
-//                     padding: const EdgeInsets.all(8.0),
-//                     child: SizedBox(
-//                       child: article[position].urlToImage == null
-//                           ? Image(
-//                               image: AssetImage('images/no_image_available.png'),
-//                             )
-//                           : Image.network('${article[position].urlToImage}'),
-//                       height: 100.0,
-//                       width: 100.0,
-//                     ),
-//                   ),
-//                   onTap: () => _onTapItem(context, article[position]),
-//                 ),
-            ));
-//          }),
-//    );
+
+  Widget listViewWidget() {
+    return GridView.builder(
+        physics: new NeverScrollableScrollPhysics(),
+        itemCount: 6,
+        gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
+          childAspectRatio: 1.1,),
+        itemBuilder: (context, position) {
+//          if (newsUrl[position] != null){
+//          return ClipRRect(
+//              borderRadius: BorderRadius.circular(5.0),
+//              child: Hero(
+//                  tag: Text(
+//                      '${newsItem[position]['fields']['title']}'),
+//                  child: Material(
+//                      child: InkWell(
+//                        onTap: () {
+//                          launch(
+//                              'https://nezuko.cendekiabaznas.sch.id/kabarterkini/' +
+//                                  '${newsItem[position]['fields']['slug']}' +
+//                                  '/');
+//                        },
+//                        child: GridTile(
+//                          footer: Opacity(
+//                            opacity: 0.9,
+//                            child: Container(
+//                              height: MediaQuery
+//                                  .of(context)
+//                                  .size
+//                                  .width / 9,
+//                              color: Colors.green[50],
+//                              child: ListTile(
+//                                leading: Padding(
+//                                  padding: EdgeInsets.fromLTRB(0, 0, 0, 15),
+//                                  child: Text(
+//                                    '${newsItem[position]['fields']['title']}',
+//                                    maxLines: 2,
+//                                    overflow: TextOverflow.ellipsis,
+//                                    style: TextStyle(
+//                                        color: Colors.black,
+//                                        fontWeight: FontWeight.bold,
+//                                        fontSize: 12),
+//                                  ),
+//                                ),
+//                              ),
+//                            ),
+//                          ),
+//                          child: Image.network(
+//                            '${newsUrl[position]}',
+//                            fit: BoxFit.cover,
+//                          ),
+//                        ),
+//                      )
+//                  )));
+//                  } else
+                    return ClipRRect(
+                        borderRadius: BorderRadius.circular(5.0),
+                        child: Hero(
+                            tag: Text(
+                                '${newsItem[position]['fields']['title']}'),
+                            child: Material(
+                                child: InkWell(
+                                  onTap: () {
+                                    launch(
+                                        'https://nezuko.cendekiabaznas.sch.id/kabarterkini/' +
+                                            '${newsItem[position]['fields']['slug']}' +
+                                            '/');
+                                  },
+                                  child: GridTile(
+                                    footer: Opacity(
+                                      opacity: 0.9,
+                                      child: Container(
+                                        height: MediaQuery
+                                            .of(context)
+                                            .size
+                                            .width / 9,
+                                        color: Colors.green[50],
+                                        child: ListTile(
+                                          leading: Padding(
+                                            padding: EdgeInsets.fromLTRB(0, 0, 0, 15),
+                                            child: Text(
+                                              '${newsItem[position]['fields']['title']}',
+                                              maxLines: 2,
+                                              overflow: TextOverflow.ellipsis,
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 12),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    child: Image(image: AssetImage('images/Logo-SCB.png'),
+//                            '${url}/assets/${itemBerita[position]['fields']['gambarArtikel']['sys']['id']}?access_token=${accessToken}',
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                )
+                            )));
+        });
   }
 }
+//      Container(
+//      child: ListView.builder(
+//          physics: new NeverScrollableScrollPhysics(),
+//          itemCount: 4,
+//          padding: const EdgeInsets.all(2.0),
+//          itemBuilder: (context, position) {
+//            return Card(
+//              child: InkWell(
+//                  child: ListTile(
+//                    onTap: () {launch('https://nezuko.cendekiabaznas.sch.id/kabarterkini/' + '${itemBerita[position]['fields']['slug']}' +'/');},
+//                  title: Text(
+//                    '${itemBerita[position]['fields']['title']}',
+//                    style: TextStyle(
+//                        fontSize: 18.0,
+//                        color: Colors.black,
+//                        fontWeight: FontWeight.bold,
+//                    ),
+//              ),
+//                  ),)
+//                );
+//              },
+//            ));
+
