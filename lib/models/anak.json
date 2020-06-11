@@ -7,8 +7,8 @@
         "tempat_tanggal_lahir": "Tangerang, 10 Mei 1999",
         "kelas": "IX",
         "asrama": "Asrama Putra Kamar 28",
-        "nilaiAkademik": {
-            "1": {
+        "nilaiAkademik": [
+            {
                 "Pendidikan Agama dan Budi Pekerti": 73,
                 "Pendidikan Kewarganegaraan": 69,
                 "Bahasa dan Sastra Indonesia": 57,
@@ -20,11 +20,11 @@
                 "Pendidikan Jasmani, Olahraga dan Kesehatan": 55,
                 "Tahfiz Tahsin Quran": 96,
                 "Teknologi Informasi dan Komunikasi": 88,
-                "Bahasa dan Sastra Sunda":64,
+                "Bahasa dan Sastra Sunda": 64,
                 "Prakarya": 76,
                 "Bahasa Arab": 82
             },
-            "2": {
+            {
                 "Pendidikan Agama dan Budi Pekerti": 93,
                 "Pendidikan Kewarganegaraan": 64,
                 "Bahasa dan Sastra Indonesia": 87,
@@ -36,11 +36,11 @@
                 "Pendidikan Jasmani, Olahraga dan Kesehatan": 85,
                 "Tahfiz Tahsin Quran": 76,
                 "Teknologi Informasi dan Komunikasi": 81,
-                "Bahasa dan Sastra Sunda":67,
+                "Bahasa dan Sastra Sunda": 67,
                 "Prakarya": 96,
                 "Bahasa Arab": 85
             },
-            "3": {
+            {
                 "Pendidikan Agama dan Budi Pekerti": 74,
                 "Pendidikan Kewarganegaraan": 99,
                 "Bahasa dan Sastra Indonesia": 57,
@@ -52,11 +52,11 @@
                 "Pendidikan Jasmani, Olahraga dan Kesehatan": 53,
                 "Tahfiz Tahsin Quran": 91,
                 "Teknologi Informasi dan Komunikasi": 78,
-                "Bahasa dan Sastra Sunda":60,
+                "Bahasa dan Sastra Sunda": 60,
                 "Prakarya": 71,
                 "Bahasa Arab": 72
             },
-            "4": {
+            {
                 "Pendidikan Agama dan Budi Pekerti": 71,
                 "Pendidikan Kewarganegaraan": 61,
                 "Bahasa dan Sastra Indonesia": 47,
@@ -68,11 +68,11 @@
                 "Pendidikan Jasmani, Olahraga dan Kesehatan": 79,
                 "Tahfiz Tahsin Quran": 83,
                 "Teknologi Informasi dan Komunikasi": 81,
-                "Bahasa dan Sastra Sunda":60,
+                "Bahasa dan Sastra Sunda": 60,
                 "Prakarya": 91,
                 "Bahasa Arab": 80
             },
-            "5": {
+            {
                 "Pendidikan Agama dan Budi Pekerti": 73,
                 "Pendidikan Kewarganegaraan": 69,
                 "Bahasa dan Sastra Indonesia": 57,
@@ -84,11 +84,11 @@
                 "Pendidikan Jasmani, Olahraga dan Kesehatan": 55,
                 "Tahfiz Tahsin Quran": 96,
                 "Teknologi Informasi dan Komunikasi": 88,
-                "Bahasa dan Sastra Sunda":64,
+                "Bahasa dan Sastra Sunda": 64,
                 "Prakarya": 76,
                 "Bahasa Arab": 82
             }
-        }
+        ]
     },
     {
         "nama": "Melani",
@@ -98,8 +98,8 @@
         "tempat_tanggal_lahir": "Tangerang, 31 Mei 1999",
         "kelas": "VIII",
         "asrama": "Asrama Putri Kamar 24",
-        "nilaiAkademik": {
-            "1": {
+        "nilaiAkademik": [
+            {
                 "Pendidikan Agama dan Budi Pekerti": 90,
                 "Pendidikan Kewarganegaraan": 40,
                 "Bahasa dan Sastra Indonesia": 60,
@@ -111,11 +111,11 @@
                 "Pendidikan Jasmani, Olahraga dan Kesehatan": 88,
                 "Tahfiz Tahsin Quran": 76,
                 "Teknologi Informasi dan Komunikasi": 100,
-                "Bahasa dan Sastra Sunda":61,
+                "Bahasa dan Sastra Sunda": 61,
                 "Prakarya": 79,
                 "Bahasa Arab": 52
             },
-            "2": {
+            {
                 "Pendidikan Agama dan Budi Pekerti": 81,
                 "Pendidikan Kewarganegaraan": 75,
                 "Bahasa dan Sastra Indonesia": 66,
@@ -127,11 +127,11 @@
                 "Pendidikan Jasmani, Olahraga dan Kesehatan": 65,
                 "Tahfiz Tahsin Quran": 100,
                 "Teknologi Informasi dan Komunikasi": 87,
-                "Bahasa dan Sastra Sunda":63,
+                "Bahasa dan Sastra Sunda": 63,
                 "Prakarya": 98,
                 "Bahasa Arab": 75
             },
-            "3": {
+            {
                 "Pendidikan Agama dan Budi Pekerti": 84,
                 "Pendidikan Kewarganegaraan": 79,
                 "Bahasa dan Sastra Indonesia": 67,
@@ -143,10 +143,10 @@
                 "Pendidikan Jasmani, Olahraga dan Kesehatan": 83,
                 "Tahfiz Tahsin Quran": 41,
                 "Teknologi Informasi dan Komunikasi": 68,
-                "Bahasa dan Sastra Sunda":69,
+                "Bahasa dan Sastra Sunda": 69,
                 "Prakarya": 73,
                 "Bahasa Arab": 62
             }
-        }
+        ]
     }
 ]

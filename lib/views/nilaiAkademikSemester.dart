@@ -31,8 +31,7 @@ class NilaiAkademikSmtState extends State<NilaiAkademikSmt>{
       Rect.fromLTWH(0, 0, document.pages[0].getClientSize().width, 100));
 
     String head = """SMP Cendekia BAZNAS
-    Alamat: Jl. Cirangkong No.14, Cemplang, 
-            Kec. Cibungbulang, Bogor, Jawa Barat 16630
+    Alamat: Jl. Cirangkong No.14, Cemplang, Kec. Cibungbulang, Bogor, Jawa Barat 16630
     Telepon: (0251) 8591072
 
 
@@ -142,16 +141,6 @@ class NilaiAkademikSmtState extends State<NilaiAkademikSmt>{
     'Bahasa Arab',
   ];
 
-  Map<String, int> nilai= new Map<String, int>();
-  
-  // void setMap(){
-  //   for(int i=0; i<matpel.length; i++){
-  //     var rng = Random();
-  //     nilai[matpel[i]] = rng.nextInt(100);
-  //   }
-  //   print(nilai);
-  // }
-
   String verdict(int nilai){
     String res;
     if(nilai >= 92)
@@ -181,6 +170,7 @@ class NilaiAkademikSmtState extends State<NilaiAkademikSmt>{
         nilai = null;
         if(skor[namaMatpel] != null){  
           nilai = skor[namaMatpel].toString();
+          print(nilai);
           verdict = this.verdict(skor[namaMatpel]);
         }
       }
@@ -289,8 +279,13 @@ class NilaiAkademikSmtState extends State<NilaiAkademikSmt>{
                   // Decode the JSON
                   var nilai = jsonDecode(snapshot.data.toString());
                   int idx = getIdx(nilai);
-                  return (idx != null && nilai[idx]['nilaiAkademik'][widget.semester.toString()] != null) 
-                  ? builder(nilai[idx]['nilaiAkademik'][widget.semester.toString()])
+                  Siswa s = (idx != null)?new Siswa.fromJson(nilai[idx] as Map<String, dynamic>):null;
+                  print(idx);
+                  print(s.nilaiAkademik[int.parse(widget.semester)].nilai);
+                  print("sempet disini");
+                  return (idx != null && s.nilaiAkademik[int.parse(widget.semester)].nilai != null )
+                  //nilai[idx]['nilaiAkademik'][int.parse(widget.semester)] ) 
+                  ? builder(s.nilaiAkademik[int.parse(widget.semester)].nilai)
                   : Center(
                     child: Text(
                       "Belum Ada",

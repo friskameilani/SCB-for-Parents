@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class Siswa {
   String nama;
   String nis;
@@ -6,7 +8,7 @@ class Siswa {
   String tempatTanggalLahir;
   String kelas;
   String asrama;
-  Nilai nilai;
+  List<NilaiAkademik> nilaiAkademik = new List<NilaiAkademik>();
 
   Siswa(
       {this.nama,
@@ -16,7 +18,7 @@ class Siswa {
       this.tempatTanggalLahir,
       this.kelas,
       this.asrama,
-      this.nilai});
+      this.nilaiAkademik});
 
   Siswa.fromJson(Map<String, dynamic> json) {
     nama = json['nama'];
@@ -26,7 +28,13 @@ class Siswa {
     tempatTanggalLahir = json['tempat_tanggal_lahir'];
     kelas = json['kelas'];
     asrama = json['asrama'];
-    nilai = json['nilai'] != null ? new Nilai.fromJson(json['nilai']) : null;
+    if (json['nilaiAkademik'] != null) {
+      json['nilaiAkademik'].forEach((v) {
+        nilaiAkademik.add(new NilaiAkademik.fromJson(v));
+      });
+    }
+    if(nilaiAkademik!=null) print(nilaiAkademik);
+    else print('kosong');
   }
 
   Map<String, dynamic> toJson() {
@@ -38,32 +46,48 @@ class Siswa {
     data['tempat_tanggal_lahir'] = this.tempatTanggalLahir;
     data['kelas'] = this.kelas;
     data['asrama'] = this.asrama;
-    if (this.nilai != null) {
-      data['nilai'] = this.nilai.toJson();
+    if (this.nilaiAkademik != null) {
+      data['nilaiAkademik'] =
+          this.nilaiAkademik.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
-class Nilai {
-  List<List<int>> l;
+class NilaiAkademik {
+  Map<String, dynamic> nilai;
+  static List<String> matpel = [
+    'Pendidikan Agama dan Budi Pekerti',
+    'Pendidikan Kewarganegaraan' ,
+    'Bahasa dan Sastra Indonesia' ,
+    'Bahasa Inggris',
+    'Matematika',
+    'Ilmu Pengetahuan Alam',
+    'Ilmu Pengetahuan Sosial',
+    'Seni Budaya',
+    'Pendidikan Jasmani, Olahraga dan Kesehatan',
+    'Tahfiz Tahsin Quran',
+    'Teknologi Informasi dan Komunikasi',
+    'Bahasa dan Sastra Sunda',
+    'Prakarya',
+    'Bahasa Arab',
+  ];
 
-  Nilai({l});
+  NilaiAkademik({this.nilai});
 
-  Nilai.fromJson(Map<String, dynamic> json) {
-    for(int i=1; i<=6; i++){
-      if(json[i.toString()] != null){
-        l.add(json[i.toString()].cast<int>());
-      }
-    }
+  NilaiAkademik.fromJson(Map<String, dynamic> json) {
+    // print("sempet masuk sini");
+    nilai = jsonDecode(jsonEncode(json));
+    // for(int i=0; i<matpel.length; i++){
+    //   nilai[matpel[i]] = json[matpel[i]].toString();
+    // }
+    // print(nilai);
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    for(int i=1; i<=6; i++){
-      data[i.toString()] = this.l[i-1];
-    }
-
+    for(int i=0; i<matpel.length; i++)
+      data[matpel[i]] = nilai[matpel[i]];
     return data;
   }
 }
