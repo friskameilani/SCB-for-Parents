@@ -36,22 +36,6 @@ class Siswa {
     if(nilaiAkademik!=null) print(nilaiAkademik);
     else print('kosong');
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['nama'] = this.nama;
-    data['nis'] = this.nis;
-    data['nisn'] = this.nisn;
-    data['jenis_kelamin'] = this.jenisKelamin;
-    data['tempat_tanggal_lahir'] = this.tempatTanggalLahir;
-    data['kelas'] = this.kelas;
-    data['asrama'] = this.asrama;
-    if (this.nilaiAkademik != null) {
-      data['nilaiAkademik'] =
-          this.nilaiAkademik.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
 }
 
 class NilaiAkademik {
@@ -77,13 +61,6 @@ class NilaiAkademik {
 
   NilaiAkademik.fromJson(Map<String, dynamic> json) {
     nilai = jsonDecode(jsonEncode(json));
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    for(int i=0; i<matpel.length; i++)
-      data[matpel[i]] = nilai[matpel[i]];
-    return data;
   }
 
   static String getVerdict(int nilai){
