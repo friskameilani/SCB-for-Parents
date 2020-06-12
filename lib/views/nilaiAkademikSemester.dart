@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:flutter/services.dart';
 import 'package:scbforparents/class/siswa.dart';
-import 'dart:math';
 import 'dart:convert';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
 import 'dart:io';
@@ -124,39 +121,28 @@ class NilaiAkademikSmtState extends State<NilaiAkademikSmt>{
 
   var scbgreen = Color.fromRGBO(6, 123, 84, 1.0);
 
-  static var matpel = [
-    'Pendidikan Agama dan Budi Pekerti',
-    'Pendidikan Kewarganegaraan' ,
-    'Bahasa dan Sastra Indonesia' ,
-    'Bahasa Inggris',
-    'Matematika',
-    'Ilmu Pengetahuan Alam',
-    'Ilmu Pengetahuan Sosial',
-    'Seni Budaya',
-    'Pendidikan Jasmani, Olahraga dan Kesehatan',
-    'Tahfiz Tahsin Quran',
-    'Teknologi Informasi dan Komunikasi',
-    'Bahasa dan Sastra Sunda',
-    'Prakarya',
-    'Bahasa Arab',
-  ];
-
-  String verdict(int nilai){
-    String res;
-    if(nilai >= 92)
-      res = "A";
-    else if(nilai >= 82)
-      res = "B";
-    else if (nilai >= 72)
-      res = "C";
-    else res = "D";
-    return res;
+  ClipOval getVerdictCirlce(var verdict){
+    return ClipOval(
+      child: Material(
+        color: (verdict=='A')?Colors.teal
+          :((verdict=='B')?Colors.yellow[900]
+          :((verdict=='C')?Colors.orange[900]
+          :Colors.red[800])), // button color
+        child: SizedBox(
+                width: 30,
+                height: 30,
+                child: Center(
+                  child: Text(
+                    verdict, 
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold),
+              )))));
   }
-  
 
   ListView builder(var skor){
     var list = <Widget>[];
-    for(int i=-1; i<matpel.length; i++){
+    for(int i=-1; i< NilaiAkademik.matpel.length; i++){
       String namaMatpel, nilai, verdict;
       TextStyle style;
       if(i == -1){
@@ -166,30 +152,16 @@ class NilaiAkademikSmtState extends State<NilaiAkademikSmt>{
         style = TextStyle(fontWeight: FontWeight.bold, fontSize: 16);
       }
       else{
-        namaMatpel = matpel[i];
+        namaMatpel = NilaiAkademik.matpel[i];
         nilai = null;
         if(skor[namaMatpel] != null){  
           nilai = skor[namaMatpel].toString();
           print(nilai);
-          verdict = this.verdict(skor[namaMatpel]);
+          verdict = NilaiAkademik.getVerdict(skor[namaMatpel]);
         }
       }
       if(nilai != null){
-        ClipOval verdictCircle = 
-          ClipOval(
-            child: Material(
-                    color: (verdict=='A')?Colors.teal
-                            :((verdict=='B')?Colors.yellow[900]
-                            :((verdict=='C')?Colors.orange[900]
-                            :Colors.red[800])), // button color
-                      child: SizedBox(
-                        width: 30,
-                        height: 30,
-                        child: Center(
-                          child: Text(verdict, 
-                            style: TextStyle(color: Colors.white,
-                                              fontWeight: FontWeight.bold),
-                          )))));
+        ClipOval verdictCircle = this.getVerdictCirlce(verdict);
         list.add(
           Container(
             decoration: BoxDecoration(
@@ -281,11 +253,11 @@ class NilaiAkademikSmtState extends State<NilaiAkademikSmt>{
                   int idx = getIdx(nilai);
                   Siswa s = (idx != null)?new Siswa.fromJson(nilai[idx] as Map<String, dynamic>):null;
                   print(idx);
-                  print(s.nilaiAkademik[int.parse(widget.semester)].nilai);
                   print("sempet disini");
-                  return (idx != null && s.nilaiAkademik[int.parse(widget.semester)].nilai != null )
+                  print('${int.parse(widget.semester)} ${s.nilaiAkademik.length}');
+                  return (idx != null && int.parse(widget.semester) <= s.nilaiAkademik.length)
                   //nilai[idx]['nilaiAkademik'][int.parse(widget.semester)] ) 
-                  ? builder(s.nilaiAkademik[int.parse(widget.semester)].nilai)
+                  ? builder(s.nilaiAkademik[int.parse(widget.semester)-1].nilai)
                   : Center(
                     child: Text(
                       "Belum Ada",

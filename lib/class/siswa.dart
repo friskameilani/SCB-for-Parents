@@ -76,12 +76,7 @@ class NilaiAkademik {
   NilaiAkademik({this.nilai});
 
   NilaiAkademik.fromJson(Map<String, dynamic> json) {
-    // print("sempet masuk sini");
     nilai = jsonDecode(jsonEncode(json));
-    // for(int i=0; i<matpel.length; i++){
-    //   nilai[matpel[i]] = json[matpel[i]].toString();
-    // }
-    // print(nilai);
   }
 
   Map<String, dynamic> toJson() {
@@ -89,5 +84,17 @@ class NilaiAkademik {
     for(int i=0; i<matpel.length; i++)
       data[matpel[i]] = nilai[matpel[i]];
     return data;
+  }
+
+  static String getVerdict(int nilai){
+    String res;
+    if(nilai >= 92)
+      res = "A";
+    else if(nilai >= 82)
+      res = "B";
+    else if (nilai >= 72)
+      res = "C";
+    else res = "D";
+    return res;
   }
 }
