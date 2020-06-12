@@ -1,11 +1,7 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:scbforparents/class/orangtua.dart';
 import 'package:scbforparents/views/catatanKhusus.dart';
 import 'package:scbforparents/views/pilihSmt.dart';
-import 'package:scbforparents/class/siswa.dart';
 
 class OpsiRapor extends StatefulWidget {
   OpsiRapor(this.nis);

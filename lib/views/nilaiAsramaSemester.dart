@@ -1,9 +1,6 @@
-// TODO Implement this library.
 import 'package:flutter/material.dart';
 import 'package:scbforparents/controllers/nilaiAsrama.dart';
 import 'dart:convert';
-import 'package:http/http.dart' as http;
-import 'package:flutter/services.dart' show rootBundle;
 import 'package:syncfusion_flutter_pdf/pdf.dart';
 import 'package:intl/intl.dart';
 import 'dart:io';
@@ -107,7 +104,6 @@ class NilaiAsramaSmtState extends State<NilaiAsramaSmt> {
   List<NilaiAsrama> transkripAsrama = [];
 //  Map<String, int> nilaiAsrama = new Map<String, int>();
 
-  @override
   // void initState() {
   //   loadData();
   // }
@@ -254,7 +250,6 @@ class NilaiAsramaSmtState extends State<NilaiAsramaSmt> {
                   this.transkripAsrama.add(new NilaiAsrama.fromJson(nilai[i] as Map<String, dynamic>));
                 }
                 print(nilai);
-                int idx = 0;
                 print((int.parse(widget.semester)-1).toString()+"  "+transkripAsrama[0].nilai.length.toString());
                 return (int.parse(widget.semester)-1 < this.transkripAsrama[0].nilai.length) 
                 ? builder()

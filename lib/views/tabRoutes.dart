@@ -1,7 +1,4 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:scbforparents/class/orangtua.dart';
 import 'package:scbforparents/controllers/auth.dart';
 import 'package:scbforparents/models/user.dart';
 import 'package:scbforparents/views/beranda.dart';

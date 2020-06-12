@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'nilaiAkademikSemester.dart';
 import 'nilaiAsramaSemester.dart';
-import 'package:scbforparents/class/siswa.dart';
 
 class PilihSmt extends StatefulWidget {
   PilihSmt(this.argument, this.nis);

@@ -2,7 +2,6 @@ import 'package:flutter/services.dart';
 import 'package:scbforparents/class/orangtua.dart';
 import 'package:flutter/material.dart';
 import 'package:scbforparents/views/tabRoutes.dart';
-import 'package:flutter/material.dart';
 import 'package:scbforparents/controllers/auth.dart';
 import 'package:scbforparents/main.dart';
 

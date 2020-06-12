@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:scbforparents/class/orangtua.dart';
 import 'package:scbforparents/views/beranda.dart';
 import 'package:scbforparents/views/catatanKhusus.dart';
 import 'package:scbforparents/views/login.dart';

@@ -1,9 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter/services.dart' show rootBundle;
 import 'package:scbforparents/models/humasItem.dart';
-import 'package:scbforparents/views/newsItem.dart';
 import 'dart:async' show Future;
 import 'dart:convert';
 import 'package:url_launcher/url_launcher.dart';
@@ -37,7 +35,7 @@ class _KabarSeputarSCBState extends State<KabarSeputarSCB> {
   Future<String> getBlogPost() async {
     List<Items> list = [];
     var fullUrl =
-        '${url}/entries?select=fields.title,fields.gambarArtikel,fields.slug&content_type=blogPost&access_token=${accessToken}';
+        '$url/entries?select=fields.title,fields.gambarArtikel,fields.slug&content_type=blogPost&access_token=$accessToken';
     var response = await http.get(fullUrl);
     setState(() {
       var decoded = json.decode(response.body);
